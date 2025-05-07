@@ -2,6 +2,13 @@
 name = "fontspector-fontbakery-bridge"
 version = "1.0.0"
 edition = "2021"
+authors = [
+    "Simon Cozens <simon@simon-cozens.org>",
+]
+description = "Fontspector adaptor to use FontBakery checks"
+repository = "https://github.com/fonttools/fontspector"
+homepage = "https://fonttools.github.io/fontspector/"
+license = "Apache-2.0"
 
 [lib]
 # When running as a plugin:
