@@ -13,7 +13,7 @@ license = "Apache-2.0"
 
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
-freetype-rs = { version = "*", features = [
+freetype-rs = { version = "0", features = [
     "bundled",
 ] } # For freetype_rasterizer
 reqwest = { version = "0.12", features = ["blocking"] } # For fontdata namecheck
