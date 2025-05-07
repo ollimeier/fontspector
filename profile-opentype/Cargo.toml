@@ -6,9 +6,13 @@ authors = [
     "Simon Cozens <simon@simon-cozens.org>",
     "Felipe Sanches <juca@members.fsf.org>",
 ]
+description = "Fontspector checks for OpenType font specification compliance"
+repository = "https://github.com/fonttools/fontspector"
+homepage = "https://fonttools.github.io/fontspector/"
+license = "Apache-2.0"
 
 [dependencies]
-fontspector-checkapi = { path = "../fontspector-checkapi", features = ["kurbo"] }
+fontspector-checkapi = { path = "../fontspector-checkapi", features = ["kurbo"], version = "1.0.0" }
 fontspector-checkhelper = { workspace = true }
 #read-fonts = { workspace = true }
 write-fonts = { workspace = true }

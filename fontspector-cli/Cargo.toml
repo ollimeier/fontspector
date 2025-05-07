@@ -4,7 +4,8 @@ version = "1.0.0"
 authors = ["Simon Cozens <simon@simon-cozens.org>"]
 edition = "2021"
 description = "Quality control for OpenType fonts"
-repository = "https://github.com/simoncozens/fontspector"
+repository = "https://github.com/fonttools/fontspector"
+homepage = "https://fonttools.github.io/fontspector/"
 license = "Apache-2.0"
 
 [features]

@@ -6,6 +6,11 @@ authors = [
     "Simon Cozens <simon@simon-cozens.org>",
     "Felipe Sanches <juca@members.fsf.org>",
 ]
+description = "Fontspector checks for OpenType font best practices"
+repository = "https://github.com/fonttools/fontspector"
+homepage = "https://fonttools.github.io/fontspector/"
+license = "Apache-2.0"
+
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 freetype-rs = { version = "*", features = [
@@ -14,10 +19,8 @@ freetype-rs = { version = "*", features = [
 reqwest = { version = "0.12", features = ["blocking"] } # For fontdata namecheck
 
 [dependencies]
-interpolatable = { git = "https://github.com/simoncozens/interpolatable", features = [
-    "skrifa",
-] } # For interpolation_issues
-fontspector-checkapi = { path = "../fontspector-checkapi" }
+interpolatable = { version = "1.0", features = [ "skrifa" ] } # For interpolation_issues
+fontspector-checkapi = { path = "../fontspector-checkapi", version = "1.0.0" }
 fontspector-checkhelper = { workspace = true }
 #read-fonts = { workspace = true }
 write-fonts = { workspace = true }
