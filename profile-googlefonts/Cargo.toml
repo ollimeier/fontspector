@@ -1,6 +1,6 @@
 [package]
-name = "profile-googlefonts"
-version = "0.1.0"
+name = "fontspector-profile-googlefonts"
+version = "1.0.0"
 edition = "2021"
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]

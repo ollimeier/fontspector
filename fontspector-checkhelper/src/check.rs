@@ -7,9 +7,12 @@ use quote::quote;
 use syn::{parse_macro_input, Ident, ItemFn};
 
 #[derive(Default)]
+/// Does this check apply to a single file, or to a collection of files?
 enum Implementation {
+    /// Check applies to a single file
     #[default]
     CheckOne,
+    /// Check applies to a collection of files
     CheckAll,
 }
 
@@ -35,6 +38,12 @@ impl FromMeta for Implementation {
     }
 }
 
+/// Dedent the rationale string and unwrap it from the `rationale` attribute.
+///
+/// `rationale` text may be written with any degree of indentation, and
+/// may be wrapped in a block of text. This function removes the indentation
+/// and unwraps the text from the block. It also removes any leading or
+/// trailing whitespace from the text.
 fn dedent_and_unwrap_rationale(rationale: &str) -> String {
     let mut new_rationale = String::new();
     let paras = rationale.split("\n\n");
@@ -68,18 +77,32 @@ fn dedent_and_unwrap_rationale(rationale: &str) -> String {
     new_rationale
 }
 
+/// The parameters for the `#[check(...)]` macro.
 #[derive(FromMeta)]
 struct CheckParams {
+    /// The ID of the check.
+    ///
+    /// This should be a unique identifier for the check.
     id: String,
+    /// The human-readable title of the check.
     title: String,
+    /// The rationale for the check
+    ///
+    /// The rationale should contain an explanation to the user not just of what it does, but also why.
     rationale: String,
+    /// The proposal URL(s) for the check.
     #[darling(multiple)]
     proposal: Vec<String>,
+    /// Whether the check applies to a single file or a collection of files.
     #[darling(default)]
     implementation: Implementation,
+    /// File type identifiers which the check applies to.
     applies_to: Option<String>,
+    /// Optionally, the name of a function which can be used to fix the issue on the binary font.
     hotfix: Option<Ident>,
+    /// Optionally, the name of a function which can be used to fix the issue on the source font.
     fix_source: Option<Ident>,
+    /// Arbitrary metadata as a JSON string.
     metadata: Option<String>,
 }
 

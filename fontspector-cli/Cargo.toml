@@ -1,6 +1,6 @@
 [package]
 name = "fontspector"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["Simon Cozens <simon@simon-cozens.org>"]
 edition = "2021"
 description = "Quality control for OpenType fonts"
@@ -16,13 +16,13 @@ zip = "2.5"
 quote = "1.0"
 
 [dependencies]
-fontspector-checkapi = { path = "../fontspector-checkapi", features = ["clap"] }
+fontspector-checkapi = { path = "../fontspector-checkapi", features = ["clap"], version = "1.0.0" }
 # These profiles are baked-in
-fontbakery-bridge = { path = "../fontbakery-bridge", optional = true }
-profile-universal = { path = "../profile-universal" }
-profile-opentype = { path = "../profile-opentype" }
-profile-iso15008 = { path = "../profile-iso15008" }
-profile-googlefonts = { path = "../profile-googlefonts" }
+fontbakery-bridge = { path = "../fontbakery-bridge", optional = true, version = "1.0.0", package="fontspector-fontbakery-bridge" }
+profile-universal = { path = "../profile-universal", version = "1.0.0", package = "fontspector-profile-universal" }
+profile-opentype = { path = "../profile-opentype", version = "1.0.0", package = "fontspector-profile-opentype" }
+profile-iso15008 = { path = "../profile-iso15008", version = "1.0.0", package = "fontspector-profile-iso15008" }
+profile-googlefonts = { path = "../profile-googlefonts", version = "1.0.0", package = "fontspector-profile-googlefonts" }
 clap = { version = "4", features = ["derive"] }
 itertools = { workspace = true }
 log = { workspace = true }

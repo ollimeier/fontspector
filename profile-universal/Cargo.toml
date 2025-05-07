@@ -1,6 +1,6 @@
 [package]
-name = "profile-universal"
-version = "0.1.0"
+name = "fontspector-profile-universal"
+version = "1.0.0"
 edition = "2021"
 authors = [
     "Simon Cozens <simon@simon-cozens.org>",

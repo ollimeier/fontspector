@@ -1,6 +1,6 @@
 [package]
-name = "fontbakery-bridge"
-version = "0.1.0"
+name = "fontspector-fontbakery-bridge"
+version = "1.0.0"
 edition = "2021"
 
 [lib]
@@ -10,16 +10,17 @@ edition = "2021"
 crate-type = ["lib"]
 
 [dependencies]
-fontspector-checkapi = { path = "../fontspector-checkapi" }
-
-# Needed for tests
-profile-universal = { path = "../profile-universal" }
-profile-opentype = { path = "../profile-opentype" }
-profile-googlefonts = { path = "../profile-googlefonts" }
-
+fontspector-checkapi = { path = "../fontspector-checkapi", version = "1.0.0" }
 pyo3 = { workspace = true }
 serde_json = { workspace = true }
 log = { workspace = true }
+
+
+# Needed for tests
+[dev-dependencies]
+profile-universal = { path = "../profile-universal", package="fontspector-profile-universal" }
+profile-opentype = { path = "../profile-opentype", package="fontspector-profile-opentype" }
+profile-googlefonts = { path = "../profile-googlefonts", package="fontspector-profile-googlefonts" }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 # Plugin architecture

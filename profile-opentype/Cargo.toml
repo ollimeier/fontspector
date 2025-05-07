@@ -1,6 +1,6 @@
 [package]
-name = "profile-opentype"
-version = "0.1.0"
+name = "fontspector-profile-opentype"
+version = "1.0.0"
 edition = "2021"
 authors = [
     "Simon Cozens <simon@simon-cozens.org>",
@@ -16,6 +16,3 @@ skrifa = { workspace = true }
 itertools = {workspace = true }
 unicode-properties = { workspace = true }
 kurbo = { workspace = true } # For italic angle check
-
-[dev-dependencies]
-fontbakery-bridge = { path = "../fontbakery-bridge" }

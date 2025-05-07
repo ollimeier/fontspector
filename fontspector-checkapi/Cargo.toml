@@ -1,7 +1,11 @@
 [package]
 name = "fontspector-checkapi"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
+description = "Library for developing checks for the fontspector font QA tool"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/fonttools/fontspector"
+homepage = "https://fonttools.github.io/fontspector"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
@@ -11,7 +15,6 @@ crate-type = ["cdylib", "rlib"]
 pluginator = { workspace = true }
 
 [dependencies]
-#read-fonts = { workspace = true }
 write-fonts = { workspace = true }
 skrifa = { workspace = true }
 fontspector-checkhelper = { workspace = true }
