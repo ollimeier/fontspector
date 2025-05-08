@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 2 commits contributed to the release.
+ - 3 commits contributed to the release.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 2 unique issues were worked on: [#105](https://github.com/fonttools/fontspector/issues/105), [#106](https://github.com/fonttools/fontspector/issues/106)
 
@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Fix font_version parsing ([`cbf7b4b`](https://github.com/fonttools/fontspector/commit/cbf7b4bdd0cc30ddda32c919cbbae9a5e0e09cd2))
  * **[#106](https://github.com/fonttools/fontspector/issues/106)**
     - Fix gpos/gsub typo ([`95867d8`](https://github.com/fonttools/fontspector/commit/95867d8e2048e160735ac7b7f5bb7e99b0fee50e))
+ * **Uncategorized**
+    - Add changelogs ([`8b511ed`](https://github.com/fonttools/fontspector/commit/8b511eda27d0f3c7bb9e1f21d9749585e35c2fce))
 </details>
 
 ## v1.0.0 (2025-05-08)

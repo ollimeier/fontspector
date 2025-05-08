@@ -1254,7 +1254,7 @@ dependencies = [
 
 [[package]]
 name = "fontspector-checkhelper"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "darling",
  "proc-macro2",
@@ -1288,7 +1288,7 @@ dependencies = [
 
 [[package]]
 name = "fontspector-profile-googlefonts"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "chrono",
  "fontspector-checkapi",
@@ -1339,7 +1339,7 @@ dependencies = [
 
 [[package]]
 name = "fontspector-profile-opentype"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "fontspector-checkapi",
  "fontspector-checkhelper",
@@ -1362,7 +1362,7 @@ dependencies = [
 
 [[package]]
 name = "fontspector-profile-universal"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "fontspector-checkapi",
  "fontspector-checkhelper",
