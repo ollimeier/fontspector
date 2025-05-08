@@ -28,7 +28,9 @@ use check::check_impl;
 ///
 /// Example:
 ///
-/// ```rust
+/// ```ignore
+/// use fontspector_api::prelude::*; // Includes this macro
+///
 /// #[check(
 ///    id = "example_check",
 ///   title = "Example Check",
