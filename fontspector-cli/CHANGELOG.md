@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v1.0.1 (2025-05-08)
 
+* Small bug fixes in universal checks
+* Improved release and CI workflow
+* Add README to Cargo.toml manifest
+
 ### Commit Statistics
 
 <csr-read-only-do-not-edit/>
