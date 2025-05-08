@@ -2477,8 +2477,8 @@ def test_check_repo_dirname_matches_nameid_1(check, tmp_path):
     src_family = portable_path(f"data/test/{FONT_FAMILY_NAME}")
     shutil.copytree(src_family, tmp_gf_dir, dirs_exist_ok=True)
 
-    # PASS result
-    fonts = [str(pth) for pth in tmp_gf_dir.glob("*.ttf")]
+    # PASS result; only check regular as we get skips for non-Regular
+    fonts = [str(tmp_gf_dir / f"{FONT_FAMILY_NAME}-Regular.ttf")]
     assert_PASS(check(fonts))
 
     # Get the path of the Regular font; it will be used for deleting the file later.
@@ -2490,7 +2490,7 @@ def test_check_repo_dirname_matches_nameid_1(check, tmp_path):
     os.replace(tmp_gf_dir, renamed_tmp_gf_dir)
 
     # FAIL ("mismatch") result
-    fonts = [str(pth) for pth in renamed_tmp_gf_dir.glob("*.ttf")]
+    fonts = [str(renamed_tmp_gf_dir / f"{FONT_FAMILY_NAME}-Regular.ttf")]
     msg = assert_results_contain(check(fonts), FAIL, "mismatch")
     assert msg == (
         f"Family name on the name table ('{FONT_FAMILY_NAME.title()}')"
