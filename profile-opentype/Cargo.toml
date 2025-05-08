@@ -1,14 +1,18 @@
 [package]
-name = "profile-opentype"
-version = "0.1.0"
+name = "fontspector-profile-opentype"
+version = "1.0.0"
 edition = "2021"
 authors = [
     "Simon Cozens <simon@simon-cozens.org>",
     "Felipe Sanches <juca@members.fsf.org>",
 ]
+description = "Fontspector checks for OpenType font specification compliance"
+repository = "https://github.com/fonttools/fontspector"
+homepage = "https://fonttools.github.io/fontspector/"
+license = "Apache-2.0"
 
 [dependencies]
-fontspector-checkapi = { path = "../fontspector-checkapi", features = ["kurbo"] }
+fontspector-checkapi = { path = "../fontspector-checkapi", features = ["kurbo"], version = "1.0.0" }
 fontspector-checkhelper = { workspace = true }
 #read-fonts = { workspace = true }
 write-fonts = { workspace = true }
@@ -16,6 +20,3 @@ skrifa = { workspace = true }
 itertools = {workspace = true }
 unicode-properties = { workspace = true }
 kurbo = { workspace = true } # For italic angle check
-
-[dev-dependencies]
-fontbakery-bridge = { path = "../fontbakery-bridge" }
