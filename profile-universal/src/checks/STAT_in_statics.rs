@@ -1,8 +1,10 @@
 use std::collections::HashMap;
 
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::raw::{tables::stat::AxisValue, TableProvider};
-use skrifa::Tag;
+use skrifa::{
+    raw::{tables::stat::AxisValue, TableProvider},
+    Tag,
+};
 
 #[check(
     id = "STAT_in_statics",
@@ -18,7 +20,7 @@ use skrifa::Tag;
         the designspace. i.e. a Regular weight static should only have the following
         entry for the weight axis:
 
-        ```
+        ```xml
         <AxisIndex value=\"0\"/>
         <Flags value=\"2\"/>  <!-- ElidableAxisValueName -->
         <ValueNameID value=\"265\"/>  <!-- Regular -->

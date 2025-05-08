@@ -6,7 +6,6 @@ use fontspector_checkapi::prelude::*;
     rationale = "
         
         An OFL.txt file's first line should be the font copyright.
-
     
         The expected pattern for the copyright string adheres to the following rules:
 

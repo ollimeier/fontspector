@@ -17,7 +17,6 @@ use crate::{checks::googlefonts::metadata::family_proto, constants::EXPECTED_COP
         notice within the METADATA.pb file is not too long; if it is more than 500
         characters, this may be an indication that either a full license or the
         font's description has been included in this field by mistake.
-
     
         The expected pattern for the copyright string adheres to the following rules:
 

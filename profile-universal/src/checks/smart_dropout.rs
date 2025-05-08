@@ -18,7 +18,7 @@ fn find_subsequence(haystack: &[u8], needle: &[u8]) -> bool {
 
         Below is the snippet of instructions we expect to see in the fonts:
         
-        ```
+        ```text
         B8 01 FF    PUSHW 0x01FF
         85          SCANCTRL (unconditinally turn on
                               dropout control mode)
