@@ -2,5 +2,4 @@ target
 foo*
 python
 docs
-Cargo.lock
 flamegraph.svg
