@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 2 commits contributed to the release.
+ - 4 commits contributed to the release.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
 
@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - Update changelog ([`1f2767f`](https://github.com/fonttools/fontspector/commit/1f2767fb7287ef691e857eba0a4b74923d0f22ae))
+    - Adjusting changelogs prior to release of fontspector v1.0.1 ([`c2e98f9`](https://github.com/fonttools/fontspector/commit/c2e98f9f3bd79fb20650ce872d098e723d5ded27))
     - Add changelog ([`cfa49cd`](https://github.com/fonttools/fontspector/commit/cfa49cd37952a26afd540700c3fe82b970125b57))
     - Bump fontspector version ([`59460d9`](https://github.com/fonttools/fontspector/commit/59460d97c94e5292b76133fd2b2e787d7242d529))
 </details>
