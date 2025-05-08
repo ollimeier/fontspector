@@ -87,8 +87,8 @@ jobs:
         shell: bash
         run: |
           if [ -n "$GITHUB_REF" ]; then
-              if [[ "$GITHUB_REF" == refs/tags/* ]]; then
-                  echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+              if [[ "$GITHUB_REF" == refs/tags/fontspector-v* ]]; then
+                  echo "VERSION=${GITHUB_REF/refs\/tags\/fontspector-/}" >> $GITHUB_ENV
               else
                   echo "VERSION=dev" >> $GITHUB_ENV
               fi
@@ -114,10 +114,9 @@ jobs:
         with:
           name: ${{ env.ASSET }}
           path: ${{ env.ASSET }}
-      - if: contains(github.ref, 'refs/tags/')
-        name: Create a release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: ${{ env.ASSET }}
-          tag_name: ${{ env.VERSION }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - if: contains(github.ref, 'refs/tags/fontspector-v')
+        name: Add artefact to release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run:
+          gh release upload ${{ env.VERSION }} ${{ env.ASSET }}
