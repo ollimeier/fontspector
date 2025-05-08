@@ -24,9 +24,9 @@ fn layout_valid_script_tags(f: &Testable, _context: &Context) -> CheckFnResult {
         .and_then(|gsub| gsub.script_list().ok());
     let gpos_script_list = font
         .font()
-        .gsub()
+        .gpos()
         .ok()
-        .and_then(|gsub| gsub.script_list().ok());
+        .and_then(|gpos| gpos.script_list().ok());
     for script_list in [gsub_script_list, gpos_script_list].iter().flatten() {
         for script in script_list.script_records() {
             let tag = script.script_tag().to_string();
