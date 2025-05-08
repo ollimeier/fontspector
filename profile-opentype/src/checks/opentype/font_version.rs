@@ -1,6 +1,27 @@
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
-use skrifa::raw::{types::NameId, TableProvider};
-use skrifa::MetadataProvider;
+use skrifa::{
+    raw::{types::NameId, TableProvider},
+    MetadataProvider,
+};
+
+fn parse_version(v: impl Iterator<Item = char>) -> String {
+    let mut result = String::new();
+    let mut periods = 0;
+    for c in v.skip_while(|c| !c.is_ascii_digit()) {
+        if c.is_ascii_digit() {
+            result.push(c);
+        } else if c == '.' {
+            periods += 1;
+            if periods > 1 {
+                break;
+            }
+            result.push(c);
+        } else {
+            break;
+        }
+    }
+    result
+}
 
 #[check(
     id = "opentype/font_version",
@@ -22,21 +43,9 @@ fn font_version(f: &Testable, _context: &Context) -> CheckFnResult {
         .localized_strings(NameId::VERSION_STRING)
         .english_or_first()
         .ok_or(CheckError::Error("No name ID 5".to_string()))?
-        .chars()
-        .skip_while(|c| !c.is_ascii_digit());
-    let mut name_id_5_version_str = String::new();
-    let mut periods = 0;
-    for c in name_id_5_version {
-        if c.is_ascii_digit() {
-            name_id_5_version_str.push(c);
-        } else if c == '.' {
-            periods += 1;
-            if periods > 1 {
-                break;
-            }
-            name_id_5_version_str.push(c);
-        }
-    }
+        .chars();
+    let name_id_5_version_str = parse_version(name_id_5_version);
+
     if name_id_5_version_str.is_empty() {
         return Err(CheckError::Error(
             "No version string in name table".to_string(),
@@ -66,4 +75,20 @@ fn font_version(f: &Testable, _context: &Context) -> CheckFnResult {
         ));
     }
     Ok(Status::just_one_pass())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_parser() {
+        let v = "Version 2.000; ttfautohint (v1.8.4.7-5d5b)";
+        let parsed = parse_version(v.chars());
+        assert_eq!(parsed, "2.000");
+
+        let v = "Version 1.2.3";
+        let parsed = parse_version(v.chars());
+        assert_eq!(parsed, "1.2");
+    }
 }
