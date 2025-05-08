@@ -7,6 +7,7 @@ description = "Quality control for OpenType fonts"
 repository = "https://github.com/fonttools/fontspector"
 homepage = "https://fonttools.github.io/fontspector/"
 license = "Apache-2.0"
+readme = "../README.md"
 
 [features]
 python = ["dep:fontbakery-bridge"]
