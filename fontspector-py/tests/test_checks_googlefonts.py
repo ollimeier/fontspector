@@ -2475,7 +2475,9 @@ def test_check_repo_dirname_matches_nameid_1(check, tmp_path):
     # files.
     tmp_gf_dir = tmp_path / f"ofl/{FONT_FAMILY_NAME}"
     src_family = portable_path(f"data/test/{FONT_FAMILY_NAME}")
+    assert os.path.exists(os.path.join(src_family, "Rosarivo-Regular.ttf"))
     shutil.copytree(src_family, tmp_gf_dir, dirs_exist_ok=True)
+    assert os.path.exists(tmp_gf_dir / f"{FONT_FAMILY_NAME}-Regular.ttf")
 
     # PASS result; only check regular as we get skips for non-Regular
     fonts = [str(tmp_gf_dir / f"{FONT_FAMILY_NAME}-Regular.ttf")]
