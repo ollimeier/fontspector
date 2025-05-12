@@ -1,6 +1,6 @@
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::raw::TableProvider;
-use skrifa::MetadataProvider;
+use fontations::skrifa::raw::TableProvider;
+use fontations::skrifa::MetadataProvider;
 
 #[check(
     id = "whitespace_widths",

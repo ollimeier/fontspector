@@ -1,5 +1,5 @@
 use fontspector_checkapi::{pens::BezGlyph, CheckError, TestFont, DEFAULT_LOCATION};
-use skrifa::MetadataProvider;
+use fontations::skrifa::MetadataProvider;
 use std::ops::Sub;
 
 mod alignment_miss;

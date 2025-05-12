@@ -1,14 +1,14 @@
 use std::collections::HashMap;
 
 use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert};
-use skrifa::raw::{
+use fontations::skrifa::raw::{
     tables::{
         glyf::{Glyf, Glyph},
         loca::Loca,
     },
     TableProvider,
 };
-use skrifa::GlyphId;
+use fontations::skrifa::GlyphId;
 
 use super::transformed_components::decompose_components_impl;
 

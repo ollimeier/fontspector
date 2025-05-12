@@ -1,8 +1,8 @@
 use std::collections::HashSet;
 
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::raw::TableProvider;
-use skrifa::MetadataProvider;
+use fontations::skrifa::raw::TableProvider;
+use fontations::skrifa::MetadataProvider;
 
 #[check(
     id = "opentype/varfont/STAT_axis_record_for_each_axis",

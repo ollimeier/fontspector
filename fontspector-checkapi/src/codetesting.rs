@@ -2,12 +2,12 @@
 
 // No bad thing if we panic in tests
 use crate::{prelude::*, Check, CheckResult, Context, FileTypeConvert, StatusCode};
-use serde_json::Map;
-use skrifa::raw::{types::NameId, TableProvider};
-use write_fonts::{
+use fontations::skrifa::raw::{types::NameId, TableProvider};
+use fontations::write::{
     tables::name::{Name, NameRecord},
     FontBuilder,
 };
+use serde_json::Map;
 
 #[macro_export]
 /// Create a Testable object from a file in the test resources directory

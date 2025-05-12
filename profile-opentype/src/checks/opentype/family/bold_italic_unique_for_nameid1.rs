@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 
 use fontspector_checkapi::{prelude::*, FileTypeConvert};
-use skrifa::raw::tables::os2::SelectionFlags;
+use fontations::skrifa::raw::tables::os2::SelectionFlags;
 
 #[check(
     id = "opentype/family/bold_italic_unique_for_nameid1",

@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::raw::{
+use fontations::skrifa::raw::{
     types::{Version16Dot16, CFF_SFNT_VERSION, TT_SFNT_VERSION},
     TableProvider,
 };

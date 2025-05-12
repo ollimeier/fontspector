@@ -1,6 +1,6 @@
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 use hashbrown::{HashMap, HashSet};
-use skrifa::MetadataProvider;
+use fontations::skrifa::MetadataProvider;
 
 use crate::{
     checks::googlefonts::metadata::family_proto,

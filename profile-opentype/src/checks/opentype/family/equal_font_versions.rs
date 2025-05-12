@@ -1,5 +1,5 @@
 use fontspector_checkapi::{prelude::*, FileTypeConvert, StatusCode};
-use skrifa::raw::{ReadError, TableProvider};
+use fontations::skrifa::raw::{ReadError, TableProvider};
 
 #[check(
     id = "opentype/family/equal_font_versions",

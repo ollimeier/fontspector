@@ -1,5 +1,5 @@
 // Code to make GSUB tables easier to work with
-use skrifa::raw::{
+use fontations::skrifa::raw::{
     tables::{
         gsub::{
             AlternateSubstFormat1, ExtensionSubstFormat1, LigatureSubstFormat1,
@@ -10,7 +10,7 @@ use skrifa::raw::{
     },
     ReadError,
 };
-use skrifa::GlyphId16;
+use fontations::skrifa::GlyphId16;
 
 /// A map of substitutions, input glyphs on the left, output glyphs on the right
 pub type SubstitutionMap = Vec<(Vec<GlyphId16>, Vec<GlyphId16>)>;

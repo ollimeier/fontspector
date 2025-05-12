@@ -19,12 +19,12 @@ freetype-rs = { version = "0", features = [
 reqwest = { version = "0.12", features = ["blocking"] } # For fontdata namecheck
 
 [dependencies]
-interpolatable = { version = "1.0", features = [ "skrifa" ] } # For interpolation_issues
+interpolatable = { version = "1.0", features = [
+    "fontations",
+], git = "https://github.com/simoncozens/interpolatable" } # For interpolation_issues
 fontspector-checkapi = { path = "../fontspector-checkapi", version = "1.0.0" }
 fontspector-checkhelper = { workspace = true }
-#read-fonts = { workspace = true }
-write-fonts = { workspace = true }
-skrifa = { workspace = true }
+fontations = { workspace = true }
 itertools = { workspace = true }
 unicode-properties = { workspace = true }
 unicode_names2 = { workspace = true }

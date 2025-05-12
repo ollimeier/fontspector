@@ -2,7 +2,7 @@ use fontspector_checkapi::{
     pens::BezGlyph, prelude::*, skip, testfont, FileTypeConvert, DEFAULT_LOCATION,
 };
 use rustybuzz::{Face, UnicodeBuffer};
-use skrifa::MetadataProvider;
+use fontations::skrifa::MetadataProvider;
 use unicode_canonical_combining_class::{get_canonical_combining_class, CanonicalCombiningClass};
 use yeslogic_unicode_blocks::{
     COMBINING_DIACRITICAL_MARKS, COMBINING_DIACRITICAL_MARKS_EXTENDED,

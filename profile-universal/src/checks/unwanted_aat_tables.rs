@@ -1,5 +1,5 @@
 use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert};
-use write_fonts::FontBuilder;
+use fontations::write::FontBuilder;
 
 const UNWANTED_TABLES: [&[u8; 4]; 23] = [
     b"acnt", b"ankr", b"bdat", b"bhed", b"bloc", b"bmap", b"bsln", b"EBSC", b"fdsc", b"feat",

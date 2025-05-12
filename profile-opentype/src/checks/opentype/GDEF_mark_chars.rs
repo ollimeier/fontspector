@@ -1,6 +1,6 @@
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::raw::tables::gdef::GlyphClassDef;
-use skrifa::MetadataProvider;
+use fontations::skrifa::raw::tables::gdef::GlyphClassDef;
+use fontations::skrifa::MetadataProvider;
 use unicode_properties::{GeneralCategory, UnicodeGeneralCategory};
 
 pub(crate) fn is_nonspacing_mark(c: char) -> bool {

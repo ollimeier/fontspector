@@ -1,5 +1,5 @@
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::raw::{tables::os2::SelectionFlags, TableProvider};
+use fontations::skrifa::raw::{tables::os2::SelectionFlags, TableProvider};
 
 use crate::network_conditions::is_listed_on_google_fonts;
 

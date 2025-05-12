@@ -2,8 +2,8 @@ use fontspector_checkapi::{
     pens::BezGlyph, prelude::*, testfont, FileTypeConvert, DEFAULT_LOCATION,
 };
 use kurbo::{BezPath, ParamCurve};
-use skrifa::raw::{types::BoundingBox, TableProvider};
-use skrifa::{
+use fontations::skrifa::raw::{types::BoundingBox, TableProvider};
+use fontations::skrifa::{
     prelude::{LocationRef, Size},
     MetadataProvider,
 };

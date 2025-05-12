@@ -1,9 +1,9 @@
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::raw::{
+use fontations::skrifa::raw::{
     tables::glyf::{Anchor, Glyph},
     TableProvider,
 };
-use skrifa::GlyphId;
+use fontations::skrifa::GlyphId;
 use std::collections::HashSet;
 
 #[check(

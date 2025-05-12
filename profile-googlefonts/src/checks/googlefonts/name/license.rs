@@ -1,6 +1,6 @@
 use fontspector_checkapi::{prelude::*, FileTypeConvert};
-use skrifa::raw::TableProvider;
-use skrifa::string::StringId;
+use fontations::skrifa::raw::TableProvider;
+use fontations::skrifa::string::StringId;
 
 #[check(
     id = "googlefonts/name/license",

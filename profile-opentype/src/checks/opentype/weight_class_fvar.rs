@@ -1,5 +1,5 @@
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::raw::TableProvider;
+use fontations::skrifa::raw::TableProvider;
 
 #[check(
     id = "opentype/weight_class_fvar",

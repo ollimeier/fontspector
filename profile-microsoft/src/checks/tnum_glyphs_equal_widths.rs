@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 use rustybuzz::{ttf_parser, Face, UnicodeBuffer};
-use skrifa::GlyphId;
+use fontations::skrifa::GlyphId;
 
 fn verify_widths(face: &Face, text: &str) -> HashMap<i32, Vec<GlyphId>> {
     let mut buffer = UnicodeBuffer::new();

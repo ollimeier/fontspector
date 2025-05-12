@@ -1,7 +1,7 @@
 use fontspector_checkapi::{
     pens::HasInkPen, prelude::*, testfont, FileTypeConvert, DEFAULT_LOCATION,
 };
-use skrifa::{GlyphId, MetadataProvider};
+use fontations::skrifa::{GlyphId, MetadataProvider};
 
 #[check(
     id="mandatory_glyphs",

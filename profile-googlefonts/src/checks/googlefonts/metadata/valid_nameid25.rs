@@ -1,5 +1,5 @@
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::string::StringId;
+use fontations::skrifa::string::StringId;
 
 // This is not actually googlefonts/metadata (in the sense of METADATA.pb) related, but we
 // keep the check ID for legacy reasons.

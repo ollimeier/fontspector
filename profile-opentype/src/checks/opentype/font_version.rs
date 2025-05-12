@@ -1,5 +1,5 @@
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
-use skrifa::{
+use fontations::skrifa::{
     raw::{types::NameId, TableProvider},
     MetadataProvider,
 };

@@ -2,7 +2,7 @@ use std::path::PathBuf;
 
 use fontspector_checkapi::{prelude::*, FileTypeConvert};
 use itertools::Itertools;
-use skrifa::raw::{types::FWord, TableProvider};
+use fontations::skrifa::raw::{types::FWord, TableProvider};
 
 #[check(
     id = "opentype/family/underline_thickness",

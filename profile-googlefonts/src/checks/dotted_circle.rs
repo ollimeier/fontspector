@@ -4,11 +4,11 @@ use fontspector_checkapi::{
     skip, testfont, FileTypeConvert, TestFont,
 };
 use hashbrown::{HashMap, HashSet};
-use skrifa::raw::{
+use fontations::skrifa::raw::{
     tables::{gdef::GlyphClassDef, gpos::PositionSubtables},
     TableProvider,
 };
-use skrifa::{GlyphId, MetadataProvider};
+use fontations::skrifa::{GlyphId, MetadataProvider};
 
 fn is_complex_shaper_font(f: &TestFont) -> Option<bool> {
     for script_list in [

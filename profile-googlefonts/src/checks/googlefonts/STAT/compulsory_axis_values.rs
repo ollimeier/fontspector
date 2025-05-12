@@ -2,8 +2,8 @@ use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 use hashbrown::HashMap;
 use itertools::Itertools;
 use markdown_table::{Heading, MarkdownTable};
-use skrifa::raw::{tables::stat::AxisValue, TableProvider};
-use skrifa::{FontRef, MetadataProvider};
+use fontations::skrifa::raw::{tables::stat::AxisValue, TableProvider};
+use fontations::skrifa::{FontRef, MetadataProvider};
 
 use crate::utils::build_expected_font;
 

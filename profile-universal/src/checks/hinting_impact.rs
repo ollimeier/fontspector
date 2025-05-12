@@ -1,11 +1,11 @@
-use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert, TestFont};
-use skrifa::raw::{tables::glyf::Glyf, ReadError, TableProvider};
-use skrifa::{FontRef, GlyphId, Tag};
-use write_fonts::{
+use fontations::skrifa::raw::{tables::glyf::Glyf, ReadError, TableProvider};
+use fontations::skrifa::{raw, FontRef, GlyphId, Tag};
+use fontations::write::{
     from_obj::FromTableRef,
     tables::glyf::{GlyfLocaBuilder, Glyph},
     FontBuilder,
 };
+use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert, TestFont};
 
 fn is_hinted(font: &TestFont) -> bool {
     if font.has_table(b"fpgm") || font.has_table(b"prep") || font.has_table(b"cvt ") {
@@ -67,7 +67,7 @@ fn any_glyphs_have_instructions(font: &FontRef<'_>) -> Result<bool, ReadError> {
         .flatten()
         .take(100) // Limit to 100 glyphs to avoid performance issues
         .any(|g| match g {
-            skrifa::raw::tables::glyf::Glyph::Simple(simple) => !simple.instructions().is_empty(),
+            raw::tables::glyf::Glyph::Simple(simple) => !simple.instructions().is_empty(),
             _ => false,
         }))
 }

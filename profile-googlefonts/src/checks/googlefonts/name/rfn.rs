@@ -2,8 +2,8 @@ use std::sync::LazyLock;
 
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use regex::Regex;
-use skrifa::raw::{types::NameId, TableProvider};
-use skrifa::MetadataProvider;
+use fontations::skrifa::raw::{types::NameId, TableProvider};
+use fontations::skrifa::MetadataProvider;
 
 #[allow(clippy::unwrap_used)]
 static RFN_RE: LazyLock<Regex> =

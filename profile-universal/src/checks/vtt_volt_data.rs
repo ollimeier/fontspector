@@ -3,7 +3,7 @@ use std::collections::HashSet;
 // Note that most of this fontbakery check is folded into unwanted_tables.
 // All that's left is the check for zz* feature tags and language systems.
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
-use skrifa::raw::TableProvider;
+use fontations::skrifa::raw::TableProvider;
 
 #[check(
     id = "vtt_volt_data",

@@ -1,6 +1,6 @@
 use super::{family_proto, protos::fonts_public::FontProto};
 use fontspector_checkapi::{prelude::*, FileTypeConvert, TestFont};
-use skrifa::string::StringId;
+use fontations::skrifa::string::StringId;
 
 #[check(
     id = "googlefonts/metadata/consistent_with_fonts",

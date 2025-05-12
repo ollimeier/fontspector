@@ -1,6 +1,6 @@
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use itertools::Itertools;
-use skrifa::raw::{
+use fontations::skrifa::raw::{
     tables::meta::{DataMapRecord, Metadata::ScriptLangTags},
     FontData, TableProvider,
 };

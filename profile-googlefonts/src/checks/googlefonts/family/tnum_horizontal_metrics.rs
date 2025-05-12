@@ -1,6 +1,6 @@
 use fontspector_checkapi::{prelude::*, FileTypeConvert};
 use hashbrown::{HashMap, HashSet};
-use skrifa::raw::TableProvider;
+use fontations::skrifa::raw::TableProvider;
 
 #[check(
     id = "googlefonts/family/tnum_horizontal_metrics",

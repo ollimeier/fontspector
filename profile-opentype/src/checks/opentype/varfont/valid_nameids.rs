@@ -1,6 +1,6 @@
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::raw::types::NameId;
-use skrifa::MetadataProvider;
+use fontations::skrifa::raw::types::NameId;
+use fontations::skrifa::MetadataProvider;
 
 #[check(
     id = "opentype/varfont/valid_nameids",

@@ -1,8 +1,8 @@
 use std::collections::HashSet;
 
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::raw::{tables::gdef::GlyphClassDef, TableProvider};
-use skrifa::GlyphId;
+use fontations::skrifa::raw::{tables::gdef::GlyphClassDef, TableProvider};
+use fontations::skrifa::GlyphId;
 
 #[check(
     id = "ligature_carets",

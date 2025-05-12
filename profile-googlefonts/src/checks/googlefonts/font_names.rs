@@ -1,6 +1,6 @@
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert, TestFont};
 use markdown_table::{Heading, MarkdownTable};
-use skrifa::string::StringId;
+use fontations::skrifa::string::StringId;
 
 use crate::utils::build_expected_font;
 

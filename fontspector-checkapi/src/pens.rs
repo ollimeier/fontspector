@@ -1,4 +1,4 @@
-use skrifa::outline::OutlinePen;
+use fontations::skrifa::outline::OutlinePen;
 
 #[derive(Debug, Default)]
 /// A pen for determining the delta between the highest and lowest points in an outline
@@ -218,7 +218,7 @@ impl BezGlyph {
 }
 
 #[cfg(feature = "kurbo")]
-impl skrifa::outline::OutlinePen for BezGlyph {
+impl OutlinePen for BezGlyph {
     fn move_to(&mut self, x: f32, y: f32) {
         self.next().move_to((x, y));
     }

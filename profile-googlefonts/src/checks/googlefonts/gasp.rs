@@ -1,6 +1,6 @@
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use markdown_table::MarkdownTable;
-use skrifa::raw::{tables::gasp::GaspRangeBehavior, TableProvider};
+use fontations::skrifa::raw::{tables::gasp::GaspRangeBehavior, TableProvider};
 
 const NON_HINTING_MESSAGE: &str =  "If you are dealing with an unhinted font, it can be fixed by running the fonts through the command 'gftools fix-nonhinting'\nGFTools is available at https://pypi.org/project/gftools/";
 

@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::{
+use fontations::skrifa::{
     raw::{tables::stat::AxisValue, TableProvider},
     Tag,
 };

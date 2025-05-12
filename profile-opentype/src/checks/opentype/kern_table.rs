@@ -1,7 +1,7 @@
 // Fontations doesn't yet support kern table
 
 // use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-// use skrifa::raw::TableProvider;
+// use fontations::skrifa::raw::TableProvider;
 
 // #[check(
 //     id = "opentype/kern_table",

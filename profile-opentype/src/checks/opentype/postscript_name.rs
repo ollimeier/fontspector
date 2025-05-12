@@ -1,5 +1,5 @@
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
-use skrifa::raw::types::NameId;
+use fontations::skrifa::raw::types::NameId;
 
 #[check(
     id = "opentype/postscript_name",

@@ -6,7 +6,7 @@ use fontspector_checkapi::{
     prelude::*,
     testfont, FileTypeConvert, TestFont, DEFAULT_LOCATION,
 };
-use skrifa::{GlyphId, MetadataProvider};
+use fontations::skrifa::{GlyphId, MetadataProvider};
 use unicode_properties::{GeneralCategory, UnicodeGeneralCategory};
 
 const INVISIBLE_LETTERS: [u32; 4] = [0x115F, 0x1160, 0x3164, 0xFFA0];

@@ -1,5 +1,5 @@
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
-use skrifa::raw::{
+use fontations::skrifa::raw::{
     tables::{head::MacStyle, os2::SelectionFlags},
     TableProvider,
 };

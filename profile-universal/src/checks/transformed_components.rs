@@ -2,13 +2,13 @@ use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert};
 use hashbrown::HashMap;
 use itertools::Itertools;
 use kurbo::Affine;
-use skrifa::raw::{
+use fontations::skrifa::raw::{
     tables::glyf::{Anchor, CurvePoint, Glyph, Transform},
     types::F2Dot14,
     FontData, TableProvider,
 };
-use skrifa::GlyphId;
-use write_fonts::{
+use fontations::skrifa::GlyphId;
+use fontations::write::{
     from_obj::ToOwnedObj,
     tables::glyf::{
         Component, CompositeGlyph, Contour, GlyfLocaBuilder, Glyph as WriteGlyph, SimpleGlyph,
