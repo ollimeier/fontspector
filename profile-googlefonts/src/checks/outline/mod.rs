@@ -1,5 +1,5 @@
-use fontspector_checkapi::{pens::BezGlyph, CheckError, TestFont, DEFAULT_LOCATION};
 use fontations::skrifa::MetadataProvider;
+use fontspector_checkapi::{pens::BezGlyph, CheckError, TestFont, DEFAULT_LOCATION};
 use std::ops::Sub;
 
 mod alignment_miss;

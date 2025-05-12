@@ -1,9 +1,9 @@
 use std::collections::HashMap;
 
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use fontations::skrifa::raw::tables::gdef::GlyphClassDef;
 use fontations::skrifa::raw::TableProvider;
 use fontations::skrifa::{GlyphId, MetadataProvider};
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use unicode_properties::{GeneralCategory, UnicodeGeneralCategory};
 
 fn is_space(c: char) -> bool {

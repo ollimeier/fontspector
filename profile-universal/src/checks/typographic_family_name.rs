@@ -1,5 +1,5 @@
-use fontspector_checkapi::{prelude::*, FileTypeConvert, StatusCode};
 use fontations::skrifa::raw::types::NameId;
+use fontspector_checkapi::{prelude::*, FileTypeConvert, StatusCode};
 
 #[check(
     id = "typographic_family_name",

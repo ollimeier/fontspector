@@ -1,12 +1,12 @@
 use std::collections::HashSet;
 
+use fontations::skrifa::{GlyphId, MetadataProvider};
 use fontspector_checkapi::{
     constants::{ALL_HANGUL_SYLLABLES_CODEPOINTS, MODERN_HANGUL_SYLLABLES_CODEPOINTS},
     pens::HasInkPen,
     prelude::*,
     testfont, FileTypeConvert, TestFont, DEFAULT_LOCATION,
 };
-use fontations::skrifa::{GlyphId, MetadataProvider};
 use unicode_properties::{GeneralCategory, UnicodeGeneralCategory};
 
 const INVISIBLE_LETTERS: [u32; 4] = [0x115F, 0x1160, 0x3164, 0xFFA0];

@@ -1,5 +1,5 @@
-use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 use fontations::skrifa::raw::{tables::gpos::PositionSubtables, TableProvider};
+use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 
 #[check(
     id = "gpos_kerning_info",

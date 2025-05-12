@@ -1,5 +1,5 @@
-use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert, TestFont};
 use fontations::skrifa::raw::TableProvider;
+use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert, TestFont};
 
 const CJK_CODEPAGE_BITS: [u8; 5] = [17, 18, 19, 20, 21];
 

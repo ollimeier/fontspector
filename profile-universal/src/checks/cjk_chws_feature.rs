@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 
-use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 use fontations::skrifa::Tag;
+use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 
 #[check(
     id = "cjk_chws_feature",

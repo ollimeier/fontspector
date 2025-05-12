@@ -1,6 +1,6 @@
-use fontspector_checkapi::{prelude::*, FileTypeConvert};
 use fontations::skrifa::raw::TableProvider;
 use fontations::skrifa::string::StringId;
+use fontspector_checkapi::{prelude::*, FileTypeConvert};
 
 #[check(
     id = "googlefonts/name/license",

@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 
-use fontspector_checkapi::{constants::VALID_LANG_TAGS, prelude::*, testfont, FileTypeConvert};
 use fontations::skrifa::raw::TableProvider;
+use fontspector_checkapi::{constants::VALID_LANG_TAGS, prelude::*, testfont, FileTypeConvert};
 
 #[check(
     id = "opentype/layout_valid_language_tags",

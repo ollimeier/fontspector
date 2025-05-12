@@ -1,8 +1,8 @@
 use std::path::PathBuf;
 
+use fontations::skrifa::raw::{types::FWord, TableProvider};
 use fontspector_checkapi::{prelude::*, FileTypeConvert};
 use itertools::Itertools;
-use fontations::skrifa::raw::{types::FWord, TableProvider};
 
 #[check(
     id = "opentype/family/underline_thickness",

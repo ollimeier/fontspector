@@ -1,9 +1,9 @@
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use fontations::skrifa::{
     prelude::{LocationRef, Size},
     raw::TableProvider,
     MetadataProvider,
 };
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
 use crate::checks::iso15008::{pair_kerning, x_height_intersections};
 

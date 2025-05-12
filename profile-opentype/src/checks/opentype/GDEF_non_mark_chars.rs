@@ -1,7 +1,7 @@
 use crate::checks::opentype::GDEF_mark_chars::is_nonspacing_mark;
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use fontations::skrifa::raw::TableProvider;
 use fontations::skrifa::{GlyphId16, MetadataProvider};
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
 fn swaption<T, U>(a: T, b: Option<U>) -> Option<(T, U)> {
     b.map(|b| (a, b))

@@ -1,7 +1,5 @@
 use std::collections::HashSet;
 
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert, GetSubstitutionMap};
-use itertools::Itertools;
 use fontations::skrifa::raw::{
     tables::{
         colr::Paint,
@@ -10,6 +8,8 @@ use fontations::skrifa::raw::{
     TableProvider,
 };
 use fontations::skrifa::{charmap::MapVariant, GlyphId, MetadataProvider};
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert, GetSubstitutionMap};
+use itertools::Itertools;
 
 #[check(
     id = "unreachable_glyphs",

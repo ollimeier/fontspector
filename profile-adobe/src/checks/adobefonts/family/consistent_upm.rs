@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 
-use fontspector_checkapi::{prelude::*, FileTypeConvert};
 use fontations::skrifa::raw::TableProvider;
+use fontspector_checkapi::{prelude::*, FileTypeConvert};
 
 #[check(
     id = "adobefonts/family/consistent_upm",

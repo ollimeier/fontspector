@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
-use fontspector_checkapi::{prelude::*, FileTypeConvert};
 use fontations::skrifa::raw::types::NameId;
+use fontspector_checkapi::{prelude::*, FileTypeConvert};
 
 #[check(
     id = "opentype/family/max_4_fonts_per_family_name",

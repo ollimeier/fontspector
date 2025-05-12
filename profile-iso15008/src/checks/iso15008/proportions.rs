@@ -1,9 +1,9 @@
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use fontations::skrifa::{
     metrics::GlyphMetrics,
     prelude::{LocationRef, Size},
     MetadataProvider,
 };
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
 #[check(
     id = "iso15008/proportions",

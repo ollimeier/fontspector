@@ -1,6 +1,6 @@
-use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert};
 use fontations::skrifa::raw::types::Tag;
 use fontations::write::FontBuilder;
+use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert};
 
 const UNWANTED_TABLES: [(Tag, &str); 17] = [
     (Tag::new(b"DSIG"), "This font has a digital signature (DSIG table) which is only required - even if only a placeholder - on old programs like MS Office 2013 in order to work properly.\n

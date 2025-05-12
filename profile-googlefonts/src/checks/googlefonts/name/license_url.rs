@@ -1,5 +1,5 @@
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use fontations::skrifa::string::StringId;
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
 #[derive(Debug, PartialEq)]
 struct License {

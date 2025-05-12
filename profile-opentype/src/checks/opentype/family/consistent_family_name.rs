@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 
-use fontspector_checkapi::{prelude::*, FileTypeConvert};
 use fontations::skrifa::raw::types::NameId;
 use fontations::skrifa::MetadataProvider;
+use fontspector_checkapi::{prelude::*, FileTypeConvert};
 
 #[check(
     id = "opentype/family/consistent_family_name",

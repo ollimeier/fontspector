@@ -1,8 +1,8 @@
+use fontations::skrifa::raw::{tables::stat::AxisValue, TableProvider};
+use fontations::skrifa::{string::StringId, Tag};
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert, TestFont};
 use google_fonts_axisregistry::AxisRegistry;
 use hashbrown::HashMap;
-use fontations::skrifa::raw::{tables::stat::AxisValue, TableProvider};
-use fontations::skrifa::{string::StringId, Tag};
 
 fn normalize_name(name: &str) -> String {
     name.split_whitespace().collect()

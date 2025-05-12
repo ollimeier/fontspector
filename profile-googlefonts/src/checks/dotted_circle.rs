@@ -1,14 +1,14 @@
+use fontations::skrifa::raw::{
+    tables::{gdef::GlyphClassDef, gpos::PositionSubtables},
+    TableProvider,
+};
+use fontations::skrifa::{GlyphId, MetadataProvider};
 use fontspector_checkapi::{
     constants::{INDIC_SCRIPT_TAGS, USE_SCRIPT_TAGS},
     prelude::*,
     skip, testfont, FileTypeConvert, TestFont,
 };
 use hashbrown::{HashMap, HashSet};
-use fontations::skrifa::raw::{
-    tables::{gdef::GlyphClassDef, gpos::PositionSubtables},
-    TableProvider,
-};
-use fontations::skrifa::{GlyphId, MetadataProvider};
 
 fn is_complex_shaper_font(f: &TestFont) -> Option<bool> {
     for script_list in [

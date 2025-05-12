@@ -1,7 +1,3 @@
-use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert};
-use hashbrown::HashMap;
-use itertools::Itertools;
-use kurbo::Affine;
 use fontations::skrifa::raw::{
     tables::glyf::{Anchor, CurvePoint, Glyph, Transform},
     types::F2Dot14,
@@ -15,6 +11,10 @@ use fontations::write::{
     },
     FontBuilder,
 };
+use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert};
+use hashbrown::HashMap;
+use itertools::Itertools;
+use kurbo::Affine;
 
 fn transform_is_linear(t: Transform) -> bool {
     t.xx == F2Dot14::from_f32(1.0)

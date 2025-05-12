@@ -1,5 +1,5 @@
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use fontations::skrifa::raw::TableProvider;
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
 const RECOMMENDED: [u16; 11] = [16, 32, 64, 128, 256, 500, 512, 1000, 1024, 2000, 2048];
 

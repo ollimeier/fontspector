@@ -1,5 +1,5 @@
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use fontations::skrifa::raw::types::NameId;
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
 const NAME_LIMITS: [(NameId, usize); 6] = [
     (NameId::FULL_NAME, 63),

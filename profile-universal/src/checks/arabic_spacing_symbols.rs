@@ -1,6 +1,6 @@
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use fontations::skrifa::raw::tables::gdef::GlyphClassDef;
 use fontations::skrifa::MetadataProvider;
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
 const ARABIC_SPACING_SYMBOLS: [u16; 17] = [
     0xFBB2, // Dot Above

@@ -1,6 +1,6 @@
 use crate::constants::TTFAUTOHINT_RE;
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use fontations::skrifa::string::StringId;
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
 #[check(
     id = "googlefonts/has_ttfautohint_params",

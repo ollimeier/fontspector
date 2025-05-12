@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 
-use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 use fontations::skrifa::MetadataProvider;
+use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 
 #[check(
     id = "opentype/varfont/distinct_instance_records",

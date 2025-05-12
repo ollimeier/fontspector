@@ -1,6 +1,6 @@
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use fontations::skrifa::raw::TableProvider;
 use fontations::skrifa::{GlyphId, MetadataProvider};
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
 const AVG_CHAR_WEIGHTS: [(char, u32); 27] = [
     ('a', 64),

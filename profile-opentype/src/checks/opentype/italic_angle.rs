@@ -1,12 +1,12 @@
-use fontspector_checkapi::{
-    pens::BezGlyph, prelude::*, testfont, FileTypeConvert, DEFAULT_LOCATION,
-};
-use kurbo::{BezPath, ParamCurve};
 use fontations::skrifa::raw::{types::BoundingBox, TableProvider};
 use fontations::skrifa::{
     prelude::{LocationRef, Size},
     MetadataProvider,
 };
+use fontspector_checkapi::{
+    pens::BezGlyph, prelude::*, testfont, FileTypeConvert, DEFAULT_LOCATION,
+};
+use kurbo::{BezPath, ParamCurve};
 
 fn x_leftmost_intersection(paths: &[BezPath], y: f32, x_min: f32, x_max: f32) -> Option<f32> {
     let mut y_adjust = 0.0;

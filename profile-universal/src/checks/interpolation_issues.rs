@@ -1,7 +1,7 @@
-use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use interpolatable::{run_tests, Problem, ProblemDetails};
 use fontations::skrifa::raw::{tables::fvar::VariationAxisRecord, ReadError, TableProvider};
 use fontations::skrifa::{setting::VariationSetting, FontRef, GlyphId};
+use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
+use interpolatable::{run_tests, Problem, ProblemDetails};
 
 fn lerp(a: f32, b: f32, t: f32) -> f32 {
     a + (b - a) * t

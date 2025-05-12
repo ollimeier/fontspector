@@ -1,6 +1,6 @@
+use fontations::skrifa::raw::TableProvider;
 use fontspector_checkapi::{prelude::*, FileTypeConvert};
 use hashbrown::HashMap;
-use fontations::skrifa::raw::TableProvider;
 
 #[check(
     id = "googlefonts/STAT/axis_order",

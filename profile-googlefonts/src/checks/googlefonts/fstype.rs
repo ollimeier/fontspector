@@ -1,5 +1,5 @@
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use fontations::skrifa::raw::TableProvider;
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
 const FSTYPE_RESTRICTIONS: [(u16, &str); 5] = [
     (0x0002,

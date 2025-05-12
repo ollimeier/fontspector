@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
-use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 use fontations::skrifa::raw::{tables::stat::AxisValue, TableProvider};
+use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 
 #[check(
     id = "microsoft/fvar_STAT_axis_ranges",

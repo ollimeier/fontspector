@@ -1,8 +1,8 @@
+use fontations::skrifa::raw::TableProvider;
+use fontations::skrifa::GlyphId;
 use fontspector_checkapi::{
     pens::AreaPen, prelude::*, testfont, FileTypeConvert, DEFAULT_LOCATION,
 };
-use fontations::skrifa::raw::TableProvider;
-use fontations::skrifa::GlyphId;
 
 #[check(
     id = "empty_glyph_on_gid1_for_colrv0",

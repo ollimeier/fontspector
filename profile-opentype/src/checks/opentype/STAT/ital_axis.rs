@@ -1,8 +1,8 @@
-use fontspector_checkapi::{prelude::*, FileTypeConvert, TestFont};
 use fontations::skrifa::raw::{
     tables::stat::{AxisValue, AxisValueTableFlags},
     ReadError, TableProvider,
 };
+use fontspector_checkapi::{prelude::*, FileTypeConvert, TestFont};
 
 fn segment_vf_collection(fonts: Vec<TestFont>) -> Vec<(Option<TestFont>, Option<TestFont>)> {
     let mut roman_italic = vec![];

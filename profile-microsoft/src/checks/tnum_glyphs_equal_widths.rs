@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 
+use fontations::skrifa::GlyphId;
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 use rustybuzz::{ttf_parser, Face, UnicodeBuffer};
-use fontations::skrifa::GlyphId;
 
 fn verify_widths(face: &Face, text: &str) -> HashMap<i32, Vec<GlyphId>> {
     let mut buffer = UnicodeBuffer::new();

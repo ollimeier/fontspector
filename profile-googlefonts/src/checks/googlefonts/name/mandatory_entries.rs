@@ -1,5 +1,5 @@
-use fontspector_checkapi::{constants::RIBBI_STYLE_NAMES, prelude::*, testfont, FileTypeConvert};
 use fontations::skrifa::string::StringId;
+use fontspector_checkapi::{constants::RIBBI_STYLE_NAMES, prelude::*, testfont, FileTypeConvert};
 
 #[check(
     id = "googlefonts/name/mandatory_entries",

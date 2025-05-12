@@ -1,8 +1,8 @@
-use fontspector_checkapi::{prelude::*, FileTypeConvert, TestFont};
 use fontations::skrifa::raw::{
     tables::glyf::{Glyph, SimpleGlyph},
     TableProvider,
 };
+use fontspector_checkapi::{prelude::*, FileTypeConvert, TestFont};
 
 #[derive(Debug, Default)]
 struct Metrics {

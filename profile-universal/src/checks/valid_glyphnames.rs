@@ -1,8 +1,8 @@
 use std::collections::HashSet;
 
+use fontations::skrifa::raw::{types::Version16Dot16, TableProvider};
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 use itertools::Itertools;
-use fontations::skrifa::raw::{types::Version16Dot16, TableProvider};
 
 enum NameValidity {
     OK,
