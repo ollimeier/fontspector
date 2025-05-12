@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
+use fontations::skrifa::MetadataProvider;
 use fontspector_checkapi::{prelude::*, skip, FileTypeConvert};
-use skrifa::MetadataProvider;
 
 #[check(
     id = "varfont/consistent_axes",

@@ -1,5 +1,5 @@
+use fontations::skrifa::MetadataProvider;
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
-use skrifa::MetadataProvider;
 
 #[check(
     id = "whitespace_glyphs",

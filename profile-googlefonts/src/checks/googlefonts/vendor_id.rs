@@ -1,8 +1,8 @@
 use std::sync::LazyLock;
 
+use fontations::skrifa::raw::TableProvider;
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use hashbrown::HashSet;
-use skrifa::raw::TableProvider;
 
 const VENDOR_IDS_FILE: &str = include_str!("../../../resources/vendor_ids.txt");
 static VENDOR_IDS: LazyLock<HashSet<&str>> = LazyLock::new(|| {

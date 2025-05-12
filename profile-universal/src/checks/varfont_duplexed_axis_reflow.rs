@@ -1,8 +1,6 @@
 use std::collections::{HashMap, HashSet};
 
-use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use itertools::Itertools;
-use skrifa::raw::{
+use fontations::skrifa::raw::{
     tables::{
         glyf::Glyph,
         gpos::{
@@ -13,7 +11,9 @@ use skrifa::raw::{
     },
     FontData, ReadError, TableProvider,
 };
-use skrifa::{GlyphId, MetadataProvider};
+use fontations::skrifa::{GlyphId, MetadataProvider};
+use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
+use itertools::Itertools;
 
 #[check(
     id = "varfont/duplexed_axis_reflow",
@@ -240,7 +240,7 @@ fn pairs_with_region_2(
 }
 
 fn grovel_item_variation_store(
-    value_record: &skrifa::raw::tables::gpos::ValueRecord,
+    value_record: &fontations::skrifa::raw::tables::gpos::ValueRecord,
     offset_data: FontData<'_>,
     var_store: &ItemVariationStore,
     effective_regions: &HashSet<u16>,

@@ -1,5 +1,5 @@
+use fontations::skrifa::raw::TableProvider;
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::raw::TableProvider;
 
 #[check(
     id = "integer_ppem_if_hinted",

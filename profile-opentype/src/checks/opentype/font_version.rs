@@ -1,8 +1,8 @@
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
-use skrifa::{
+use fontations::skrifa::{
     raw::{types::NameId, TableProvider},
     MetadataProvider,
 };
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
 fn parse_version(v: impl Iterator<Item = char>) -> String {
     let mut result = String::new();

@@ -1,5 +1,5 @@
+use fontations::skrifa::raw::types::NameId;
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
-use skrifa::raw::types::NameId;
 
 #[check(
     id = "opentype/name/match_familyname_fullfont",

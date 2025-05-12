@@ -1,10 +1,10 @@
-use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::raw::{
+use fontations::skrifa::raw::{
     tables::glyf::{Glyph, PointFlags},
     types::Point,
     TableProvider,
 };
-use skrifa::GlyphId;
+use fontations::skrifa::GlyphId;
+use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 
 #[check(
     id = "opentype/points_out_of_bounds",

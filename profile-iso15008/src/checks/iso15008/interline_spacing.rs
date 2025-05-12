@@ -1,9 +1,9 @@
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
-use skrifa::{
+use fontations::skrifa::{
     metrics::GlyphMetrics,
     prelude::{LocationRef, Size},
     MetadataProvider,
 };
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
 use crate::checks::iso15008::find_stem_width;
 

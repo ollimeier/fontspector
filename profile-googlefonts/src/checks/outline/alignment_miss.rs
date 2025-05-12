@@ -1,9 +1,9 @@
 use std::collections::HashMap;
 
+use fontations::skrifa::{outline::OutlinePen, raw::TableProvider, GlyphId, MetadataProvider};
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert, DEFAULT_LOCATION};
 use serde::Serialize;
 use serde_json::Value;
-use skrifa::{outline::OutlinePen, raw::TableProvider, GlyphId, MetadataProvider};
 
 use super::close_but_not_on;
 const ALIGNMENT_MISS_EPSILON: i16 = 2; // Four point lee-way on alignment misses

@@ -1,5 +1,5 @@
+use fontations::skrifa::raw::TableProvider;
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
-use skrifa::raw::TableProvider;
 
 use crate::network_conditions::remote_styles;
 

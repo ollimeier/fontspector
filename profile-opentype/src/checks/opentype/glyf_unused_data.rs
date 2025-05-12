@@ -1,6 +1,6 @@
+use fontations::skrifa::raw::TableProvider;
+use fontations::skrifa::Tag;
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
-use skrifa::raw::TableProvider;
-use skrifa::Tag;
 use std::cmp::Ordering;
 
 #[check(

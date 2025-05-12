@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 
+use fontations::skrifa::raw::tables::glyf::Glyph;
+use fontations::skrifa::MetadataProvider;
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
-use skrifa::raw::tables::glyf::Glyph;
-use skrifa::MetadataProvider;
 
 const CARON_CODEPOINTS: [u32; 4] = [
     0x013D, // LATIN CAPITAL LETTER L WITH CARON

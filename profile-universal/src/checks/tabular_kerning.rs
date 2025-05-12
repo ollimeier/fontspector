@@ -1,12 +1,12 @@
 use hashbrown::{HashMap, HashSet};
 
-use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert, GetSubstitutionMap};
-use itertools::Itertools;
-use skrifa::raw::{
+use fontations::skrifa::raw::{
     tables::gpos::{PairPosFormat1, PairPosFormat2},
     ReadError, TableProvider,
 };
-use skrifa::{GlyphId, MetadataProvider};
+use fontations::skrifa::{GlyphId, MetadataProvider};
+use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert, GetSubstitutionMap};
+use itertools::Itertools;
 use unicode_properties::{GeneralCategory, UnicodeGeneralCategory};
 
 const _EXCLUDED: [u32; 12] = [

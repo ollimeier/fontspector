@@ -1,6 +1,6 @@
+use fontations::skrifa::raw::TableProvider;
+use fontations::skrifa::FontRef;
 use fontspector_checkapi::{constants::OutlineType, prelude::*, testfont, FileTypeConvert};
-use skrifa::raw::TableProvider;
-use skrifa::FontRef;
 
 use crate::utils::build_expected_font;
 

@@ -3,8 +3,7 @@ use crate::{
     filetype::FileTypeConvert,
     CheckError, Context, FileType, Testable,
 };
-use itertools::Either;
-use skrifa::{
+use fontations::skrifa::{
     font::FontRef,
     outline::{DrawSettings, OutlinePen},
     prelude::Size,
@@ -23,6 +22,7 @@ use skrifa::{
     string::StringId,
     GlyphId, GlyphId16, GlyphNames, MetadataProvider, Tag,
 };
+use itertools::Either;
 use std::{
     collections::{HashMap, HashSet},
     error::Error,

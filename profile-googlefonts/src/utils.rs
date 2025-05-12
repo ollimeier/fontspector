@@ -1,6 +1,6 @@
+use fontations::skrifa::FontRef;
 use fontspector_checkapi::{CheckError, TestFont};
 use google_fonts_axisregistry::{build_fvar_instances, build_name_table, build_stat};
-use skrifa::FontRef;
 
 pub(crate) fn build_expected_font<'a>(
     font: &'a TestFont,

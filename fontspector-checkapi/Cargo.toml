@@ -15,8 +15,7 @@ crate-type = ["cdylib", "rlib"]
 pluginator = { workspace = true }
 
 [dependencies]
-write-fonts = { workspace = true }
-skrifa = { workspace = true }
+fontations = { workspace = true }
 fontspector-checkhelper = { workspace = true }
 log = { workspace = true }
 indexmap = { workspace = true }
@@ -27,7 +26,7 @@ glob-match = "0.2.1"
 clap = { version = "4", features = ["derive"], optional = true }
 
 # Serializing and deserializing profiles
-toml = { version = "0.8.14", default-features = false, features=["parse"] }
+toml = { version = "0.8.14", default-features = false, features = ["parse"] }
 serde = { workspace = true }
 
 # Storing configuration

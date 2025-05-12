@@ -1,9 +1,9 @@
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
-use skrifa::raw::TableProvider;
-use skrifa::{
+use fontations::skrifa::raw::TableProvider;
+use fontations::skrifa::{
     prelude::{LocationRef, Size},
     MetadataProvider,
 };
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
 #[check(
     id = "typoascender_exceeds_Agrave",

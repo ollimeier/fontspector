@@ -1,6 +1,6 @@
+use fontations::skrifa::raw::{tables::gdef::GlyphClassDef, TableProvider};
+use fontations::skrifa::MetadataProvider;
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
-use skrifa::raw::{tables::gdef::GlyphClassDef, TableProvider};
-use skrifa::MetadataProvider;
 
 const LEGACY_ACCENTS: [u32; 13] = [
     0x00A8, // DIAERESIS
