@@ -8,11 +8,13 @@ wasm-bindgen = { version = "0.2.63" }
 console_error_panic_hook = { version = "0.1.6" }
 js-sys = { version = "0.3.68" }
 fontspector-checkapi = { path = "../fontspector-checkapi" }
-profile-opentype = { path = "../profile-opentype", package="fontspector-profile-opentype" }
-profile-universal = { path = "../profile-universal", package="fontspector-profile-universal" }
-profile-googlefonts = { path = "../profile-googlefonts", package="fontspector-profile-googlefonts" }
+profile-opentype = { path = "../profile-opentype", package = "fontspector-profile-opentype" }
+profile-universal = { path = "../profile-universal", package = "fontspector-profile-universal" }
+profile-googlefonts = { path = "../profile-googlefonts", package = "fontspector-profile-googlefonts" }
 serde_json = { workspace = true, features = ["preserve_order"] }
-profile-iso15008 = { path = "../profile-iso15008", package="fontspector-profile-iso15008" }
+profile-iso15008 = { path = "../profile-iso15008", package = "fontspector-profile-iso15008" }
+profile-adobe = { path = "../profile-adobe", package = "fontspector-profile-adobe" }
+profile-microsoft = { path = "../profile-microsoft", package = "fontspector-profile-microsoft" }
 
 [lib]
 crate-type = ["cdylib", "rlib"]

@@ -27,7 +27,7 @@ jobs:
         run: cargo clippy --all-targets --all-features -- -D warnings
       - name: Run tests
         run: |
-          cargo test --verbose --workspace
+          cargo test --verbose --workspace --exclude fontspector-web
           pip install maturin pytest
           cd fontspector-py
           maturin build

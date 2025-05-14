@@ -14,7 +14,7 @@
     }
 
     .modal-body {
-        background-color: rgb(166, 234, 255);
+        background-color: rgb(193, 237, 252);
     }
 
     #test {
@@ -23,7 +23,7 @@
 
     .dropzone {
         border: none;
-        background-color: rgba(166, 234, 255, 0.3)
+        background-color: rgba(193, 237, 252, 0.8)
     }
 
     img.img-fluid {
