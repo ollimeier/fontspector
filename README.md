@@ -1,8 +1,9 @@
 # Fontspector
 
+![](fontspector-web/www/Fontspector.svg)
+
 Fontspector is a command-line tool for checking the quality of font projects.
-It is a Rust port of [fontbakery](http://github.com/fonttools/fontbakery),
-and is currently at an early alpha stage.
+It is a Rust port of [fontbakery](http://github.com/fonttools/fontbakery).
 
 ## Components
 
@@ -22,35 +23,20 @@ Fontspector is made up of multiple crates:
 
 You have two options for running the CLI tool - you can download our binaries, or you can compile your own.
 
-Official release binaries will be available from the GitHub releases page once Fontspector 1.0 is released. In the meantime, if you want to try the latest command line binaries now, you can look in the [Actions page](https://github.com/fonttools/fontspector/actions/workflows/rust.yml).
+- Official release binaries are available from the [GitHub releases page](https://github.com/fonttools/fontspector/releases).
+- You can build the latest release from source with `cargo install fontspector`. (If you don't have a Rust compiler installed, you can use `brew install rustup` on macOS Homebrew or [rustup](https://rustup.rs) to install one.)
+- You can build the bleeding-edge version with `cargo install git+https://github.com/fonttools/fontspector/`
 
-Similarly, once Fontspector 1.0 is released, you can build it from source with `cargo install fontspector`. (If you don't have a Rust compiler installed, you can use `brew install rustup` on macOS Homebrew or [rustup](https://rustup.rs) to install one.) 
-
-Until then, you can build and install from source by either cloning this repository and running `cargo build --release` (which will place a `fontspector` binary in the `target/release` subdirectory), or by running `cargo install https://github.com/fonttools/fontspector/` (which will compile and then install the `fontspector` binary onto your system). On macOS you'll need to pre-install the [protobuf.dev](https://protobuf.dev) package, such as with Homebrew like this:
-
-    brew install protobuf
-    cargo build --release;
-    ./target/release/fontspector ~/font.ttf;
+> On macOS you'll need to pre-install the [protobuf.dev](https://protobuf.dev) package, such as with Homebrew like this:
+>
+> brew install protobuf
+> cargo build --release;
+> ./target/release/fontspector ~/font.ttf;
 
 The single `fontspector` binary contains all the built-in checks, profiles, and HTML/Markdown templates. As mentioned below, some profiles require additional plugin binaries.
 
 By default, fontspector CLI is built without Python support. If you want to run
 fontbakery checks inside fontspector, build with `cargo build --release --features python`. You can then use the `--use-python` flag at runtime to cause checks registered with Fontbakery to be run in Fontspector if no Rust implementation is available.
-
-## Running the test suite
-
-We export the Fontspector check runner to a Python module, and then use
-`pytest` to run (a modified version of) the fontbakery test suite. To
-do this:
-
-```
-pip3 install -U maturin
-cd fontspector-py
-python3 -m venv venv ; . venv/bin/activate
-pip install maturin
-maturin develop
-pytest
-```
 
 ## Building the web version
 
@@ -67,6 +53,21 @@ cd www; npm install; npm run build
 ```
 
 The results appear in `../docs/`.
+
+## Running the test suite
+
+We export the Fontspector check runner to a Python module, and then use
+`pytest` to run (a modified version of) the fontbakery test suite. To
+do this:
+
+```
+pip3 install -U maturin
+cd fontspector-py
+python3 -m venv venv ; . venv/bin/activate
+pip install maturin
+maturin develop
+pytest
+```
 
 ## Building plugin profiles
 
