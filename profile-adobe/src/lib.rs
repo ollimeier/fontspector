@@ -32,9 +32,44 @@ impl fontspector_checkapi::Plugin for Adobe {
             .exclude_check("whitespace_ink")
             .with_overrides("whitespace_glyphs", vec![
                 Override::new("missing-whitespace-glyph-0x00A0", StatusCode::Warn,  "For Adobe, this is not as severe as assessed in the original check for 0x00A0.")
+            ]).with_overrides("valid_glyphnames", vec![
+                Override::new("found-invalid-names", StatusCode::Warn, "")
+            ])
+            .with_overrides("family/win_ascent_and_descent", vec![
+                Override::new("ascent", StatusCode::Warn, "For Adobe, this is not as severe as assessed in the original check."),
+                Override::new("descent", StatusCode::Warn, "For Adobe, this is not as severe as assessed in the original check.")
+            ])
+            .with_overrides("os2_metrics_match_hhea", vec![
+                Override::new("ascender", StatusCode::Warn, ""),
+                Override::new("descender", StatusCode::Warn, ""),
+                Override::new("lineGap", StatusCode::Warn, "")
+            ])
+            .with_overrides("fontbakery_version", vec![
+                Override::new("connection-error", StatusCode::Skip, "For Adobe, users shouldn't be bothered with a failed check if their internet connection isn't functional.")
+            ])
+            .with_overrides("opentype/name/match_familyname_fullfont", vec![
+                Override::new("mismatch-font-names", StatusCode::Warn, "Many CFF OpenType fonts in circulation are built with the Microsoft platform Full font name string identical to the PostScript FontName in the CFF Name INDEX. This practice was documented in the OpenType spec until version 1.5.")
+            ])
+            .with_overrides("varfont/bold_wght_coord", vec![
+                Override::new("no-bold-instance", StatusCode::Warn, "Adobe strongly recommends, but does not require having a Bold instance."),
+                Override::new("wght-not-700", StatusCode::Warn, "Adobe strongly recommends (but does not require) that instance should have coordinate 700 on the 'wght' axis.")
+            ])
+            .with_overrides("opentype/fvar/regular_coords_correct", vec![
+                Override::new("no-regular-instance", StatusCode::Warn, "Adobe strongly recommends, but does not require having a Regular instance.")
+            ])
+            .with_overrides("opentype/varfont/valid_default_instance_nameids", vec![
+                Override::new("invalid-default-instance-subfamily-name", StatusCode::Warn, "Adobe and the OpenType spec strongly recommend following these guidelines, but they are not hard requirements so we are relaxing this to WARN rather than FAIL.\nFonts that do not meet these guidelines might behave inconsistently so please carefully consider trying to meet them."),
+                Override::new("invalid-default-instance-postscript-name", StatusCode::Warn, "Adobe and the OpenType spec strongly recommend following these guidelines, but they are not hard requirements so we are relaxing this to WARN rather than FAIL.\nFonts that do not meet these guidelines might behave inconsistently so please carefully consider trying to meet them.")
+            ])
+            .with_overrides("inconsistencies_between_fvar_STAT", vec![
+                Override::new("missing-fvar-instance-axis-value", StatusCode::Warn, "Adobe and Fontwerk strongly recommend following this guideline, but it is not a hard requirement so we are relaxing this to WARN rather than FAIL.\nFonts that do not meet this guideline might behave inconsistently so please carefully consider trying to meet it.")
+            ])
+            .with_overrides("opentype/weight_class_fvar", vec![
+                Override::new("bad-weight-class", StatusCode::Warn, "Adobe and Fontwerk strongly recommend following this guideline, but it is not a hard requirement so we are relaxing this to WARN rather than FAIL.\nFonts that do not meet this guideline might behave inconsistently so please carefully consider trying to meet it.")
             ]);
         builder.build("adobefonts", cr)
     }
 }
 
+#[cfg(not(target_family = "wasm"))]
 pluginator::plugin_implementation!(fontspector_checkapi::Plugin, Adobe);
