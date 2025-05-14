@@ -220,11 +220,11 @@ const PROFILES: Record<string, string> = {
   universal: "Universal (community best practices)",
   googlefonts: "Google Fonts",
   iso15008: "ISO 15008 (in-car accessibility)",
-  // adobefonts: "Adobe Fonts",
-  // fontbureau: "Font Bureau",
+  adobefonts: "Adobe Fonts",
+  fontbureau: "Font Bureau",
   // typenetwork: "Type Network",
-  // fontwerk: "Fontwerk",
-  // microsoft: "Microsoft",
+  fontwerk: "Fontwerk",
+  microsoft: "Microsoft",
 };
 
 function addProfile(profilename: string, col: number) {

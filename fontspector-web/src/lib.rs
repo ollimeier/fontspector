@@ -2,10 +2,13 @@ use js_sys::{Reflect, Uint8Array};
 use wasm_bindgen::prelude::*;
 extern crate console_error_panic_hook;
 use fontspector_checkapi::{
-    Check, CheckResult, Context, Plugin, Registry, Testable, TestableCollection, TestableType,
+    Check, CheckResult, Context, Plugin, Profile, Registry, Testable, TestableCollection,
+    TestableType,
 };
+use profile_adobe::Adobe;
 use profile_googlefonts::GoogleFonts;
 use profile_iso15008::Iso15008;
+use profile_microsoft::Microsoft;
 use profile_opentype::OpenType;
 use profile_universal::Universal;
 
@@ -31,6 +34,23 @@ pub fn check_fonts(fonts: &JsValue, profile: &str) -> Result<String, JsValue> {
     Iso15008
         .register(&mut registry)
         .expect("Couldn't register iso15008 profile, fontspector bug");
+    Adobe
+        .register(&mut registry)
+        .expect("Couldn't register Adobe profile, fontspector bug");
+    Microsoft
+        .register(&mut registry)
+        .expect("Couldn't register Microsoft profile, fontspector bug");
+
+    for (name, toml) in [
+        ("fontbureau", include_str!("../../profiles/fontbureau.toml")),
+        ("fontwerk", include_str!("../../profiles/fontwerk.toml")),
+    ] {
+        let profile = Profile::from_toml(toml).expect("Couldn't load profile, fontspector bug");
+        registry
+            .register_profile(name, profile)
+            .expect("Couldn't register profile, fontspector bug");
+    }
+
     let testables: Vec<Testable> = Reflect::own_keys(fonts)?
         .into_iter()
         .map(|filename| {
