@@ -1,6 +1,6 @@
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 use itertools::Itertools;
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 #[check(
     id = "varfont/instances_in_order",
@@ -17,7 +17,7 @@ fn varfont_instances_in_order(t: &Testable, context: &Context) -> CheckFnResult 
     let f = testfont!(t);
     skip!(!f.has_axis("wght"), "no-wght", "Font has no weight axis");
     let mut problems = vec![];
-    let mut sublists: Vec<Vec<HashMap<String, f32>>> = vec![vec![]];
+    let mut sublists: Vec<Vec<BTreeMap<String, f32>>> = vec![vec![]];
     let coords = f.named_instances().map(|(_name, coords)| coords);
     let mut last_non_wght = None;
 

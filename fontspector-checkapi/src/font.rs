@@ -28,7 +28,7 @@ use fontations::{
 };
 use itertools::Either;
 use std::{
-    collections::{HashMap, HashSet},
+    collections::{BTreeMap, HashMap, HashSet},
     error::Error,
     fmt::{Debug, Formatter},
     path::{Path, PathBuf},
@@ -300,7 +300,7 @@ impl TestFont<'_> {
     /// Returns an iterator over the named instances in the font.
     ///
     /// Each item is a tuple of the instance name and a map of axis tag to user coordinate value.
-    pub fn named_instances(&self) -> impl Iterator<Item = (String, HashMap<String, f32>)> + '_ {
+    pub fn named_instances(&self) -> impl Iterator<Item = (String, BTreeMap<String, f32>)> + '_ {
         self.font().named_instances().iter().map(|ni| {
             let instance_name = self
                 .font()
