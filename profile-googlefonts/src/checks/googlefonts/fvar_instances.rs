@@ -30,7 +30,12 @@ fn fvar_instances(t: &Testable, _context: &Context) -> CheckFnResult {
     let instances: IndexMap<String, _> = f.named_instances().collect();
     let expected_instances: IndexMap<String, _> = expected_font.named_instances().collect();
     let mut table = vec![];
+    let mut done = IndexSet::new();
     for name in instances.keys().chain(expected_instances.keys()) {
+        if done.contains(name) {
+            continue;
+        }
+        done.insert(name);
         let mut row = IndexMap::new();
         row.insert("Name".to_string(), name.to_string());
         if let Some(font_instance) = instances.get(name) {
