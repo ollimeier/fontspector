@@ -1,5 +1,8 @@
-use fontations::skrifa::raw::{tables::head::MacStyle, TableProvider};
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
+use fontations::{
+    skrifa::raw::{tables::head::MacStyle, TableProvider},
+    write::from_obj::ToOwnedTable,
+};
+use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert};
 
 #[check(
     id = "opentype/mac_style",
@@ -9,6 +12,7 @@ use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
         that describe whether a font is bold and/or italic must be coherent with the
         actual style of the font as inferred by its filename.
     ",
+    hotfix = fix_mac_style,
     proposal = "https://github.com/fonttools/fontbakery/issues/4829",  // legacy check
 )]
 fn mac_style(f: &Testable, _context: &Context) -> CheckFnResult {
@@ -44,4 +48,31 @@ fn mac_style(f: &Testable, _context: &Context) -> CheckFnResult {
         ));
     }
     return_result(problems)
+}
+
+fn fix_mac_style(f: &mut Testable) -> FixFnResult {
+    let font = fixfont!(f);
+    let mut head: fontations::write::tables::head::Head = font
+        .font()
+        .head()
+        .map_err(|e| format!("Error getting head table: {}", e))?
+        .to_owned_table();
+
+    let Some(style) = font.style() else {
+        return Ok(false);
+    };
+    let mut bits = head.mac_style;
+    if style == "Bold" || style == "BoldItalic" {
+        bits.insert(MacStyle::BOLD);
+    } else {
+        bits.remove(MacStyle::BOLD);
+    }
+    if style.contains("Italic") {
+        bits.insert(MacStyle::ITALIC);
+    } else {
+        bits.remove(MacStyle::ITALIC);
+    }
+    head.mac_style = bits;
+    f.set(font.rebuild_with_new_tables(&[head])?);
+    Ok(true)
 }

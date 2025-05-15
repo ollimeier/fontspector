@@ -1,5 +1,5 @@
-use fontations::skrifa::raw::TableProvider;
-use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
+use fontations::{skrifa::raw::TableProvider, write::from_obj::ToOwnedTable};
+use fontspector_checkapi::{fixfont, prelude::*, skip, testfont, FileTypeConvert};
 
 #[check(
     id = "integer_ppem_if_hinted",
@@ -15,7 +15,8 @@ use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
                 May use fractional ppem sizes if this bit is clear;
     ",
     proposal = "https://github.com/fonttools/fontbakery/issues/2338",
-    title = "PPEM must be an integer on hinted fonts."
+    title = "PPEM must be an integer on hinted fonts.",
+    hotfix = fix_integer_ppem_if_hinted
 )]
 fn integer_ppem_if_hinted(f: &Testable, _context: &Context) -> CheckFnResult {
     let font = testfont!(f);
@@ -26,24 +27,21 @@ fn integer_ppem_if_hinted(f: &Testable, _context: &Context) -> CheckFnResult {
     );
     Ok(if font.font().head()?.flags() & 0b1000 == 0 {
         Status::just_one_fail("bad-flags",
-        "This is a hinted font, so it must have bit 3 set on the flags of the head table, so that PPEM values will be rounded into an integer value.
-        
-
-This can be accomplished by using the 'gftools fix-hinting' command:
-
-        
-```
-# create virtualenv
-python3 -m venv venv
-
-# activate virtualenv
-source venv/bin/activate
-
-# install gftools
-pip install git+https://www.github.com/googlefonts/gftools\n
-```"
+        "This is a hinted font, so it must have bit 3 set on the flags of the head table, so that PPEM values will be rounded into an integer value."
     )
     } else {
         Status::just_one_pass()
     })
+}
+
+fn fix_integer_ppem_if_hinted(t: &mut Testable) -> FixFnResult {
+    let f = fixfont!(t);
+    let mut head: fontations::write::tables::head::Head = f
+        .font()
+        .head()
+        .map_err(|e| format!("Failed to read head table: {}", e))?
+        .to_owned_table();
+    head.flags |= 0b1000;
+    t.set(f.rebuild_with_new_tables(&[head])?);
+    Ok(true)
 }

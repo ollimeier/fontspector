@@ -1,5 +1,9 @@
-use fontations::skrifa::raw::{tables::gasp::GaspRangeBehavior, TableProvider};
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
+use fontations::{
+    skrifa::raw::{tables::gasp::GaspRangeBehavior, TableProvider},
+    types::Tag,
+    write::FontBuilder,
+};
+use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert};
 use markdown_table::MarkdownTable;
 
 const NON_HINTING_MESSAGE: &str =  "If you are dealing with an unhinted font, it can be fixed by running the fonts through the command 'gftools fix-nonhinting'\nGFTools is available at https://pypi.org/project/gftools/";
@@ -39,6 +43,7 @@ fn gasp_meaning(value: GaspRangeBehavior) -> String {
     
     ",
     proposal = "https://github.com/fonttools/fontbakery/issues/4829",
+    hotfix = fix_unhinted_font,
     title = "Is the Grid-fitting and Scan-conversion Procedure ('gasp') table
 set to optimize rendering?"
 )]
@@ -108,4 +113,33 @@ fn gasp(t: &Testable, _context: &Context) -> CheckFnResult {
         }
     }
     return_result(problems)
+}
+
+fn fix_unhinted_font(t: &mut Testable) -> FixFnResult {
+    let f = fixfont!(t);
+    if f.has_table(b"fpgm") || (f.has_table(b"prep") && f.has_table(b"gasp")) {
+        return Ok(false);
+    }
+    let new_gasp = fontations::write::tables::gasp::Gasp {
+        version: 0,
+        gasp_ranges: vec![fontations::write::tables::gasp::GaspRange {
+            range_max_ppem: 0xFFFF,
+            range_gasp_behavior: GaspRangeBehavior::GASP_GRIDFIT
+                | GaspRangeBehavior::GASP_DOGRAY
+                | GaspRangeBehavior::GASP_SYMMETRIC_GRIDFIT
+                | GaspRangeBehavior::GASP_SYMMETRIC_SMOOTHING,
+        }],
+        num_ranges: 1,
+    };
+    // PUSHW[] 511 SCANCTRL[] PUSHB[] 4 SCANTYPE[]
+    let new_prep = b"\xb8\x01\xff\x85\xb0\x04\x8d";
+    let mut new_font = FontBuilder::new();
+    new_font
+        .add_table(&new_gasp)
+        .map_err(|e| format!("Error while adding gasp table to font: {}", e))?;
+    new_font.add_raw(Tag::new(b"prep"), new_prep);
+    new_font.copy_missing_tables(f.font());
+    let new_bytes = new_font.build();
+    t.set(new_bytes);
+    Ok(true)
 }

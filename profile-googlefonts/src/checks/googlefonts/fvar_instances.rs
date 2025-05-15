@@ -1,6 +1,7 @@
 use std::vec;
 
-use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert, TestFont};
+use fontspector_checkapi::{fixfont, prelude::*, skip, testfont, FileTypeConvert, TestFont};
+use google_fonts_axisregistry::build_fvar_instances;
 use indexmap::{IndexMap, IndexSet};
 use markdown_table::{Heading, MarkdownTable};
 
@@ -18,11 +19,17 @@ use crate::utils::build_expected_font;
     
     ",
     proposal = "https://github.com/fonttools/fontbakery/pull/3800",
-    title = "Check variable font instances"
+    title = "Check variable font instances",
+    hotfix = fix_fvar_instances,
 )]
 fn fvar_instances(t: &Testable, _context: &Context) -> CheckFnResult {
     let f = testfont!(t);
     let mut problems = vec![];
+    skip!(
+        !f.is_variable_font(),
+        "is-variable-font",
+        "Font is not a variable font"
+    );
     skip!(f.has_axis("MORF"), "has-morf", "Font has a MORF axis");
     let expected_font_data = build_expected_font(&f, &[])?;
     let expected_font = TestFont::new_from_data(&t.filename, &expected_font_data)
@@ -30,7 +37,12 @@ fn fvar_instances(t: &Testable, _context: &Context) -> CheckFnResult {
     let instances: IndexMap<String, _> = f.named_instances().collect();
     let expected_instances: IndexMap<String, _> = expected_font.named_instances().collect();
     let mut table = vec![];
+    let mut done = IndexSet::new();
     for name in instances.keys().chain(expected_instances.keys()) {
+        if done.contains(name) {
+            continue;
+        }
+        done.insert(name);
         let mut row = IndexMap::new();
         row.insert("Name".to_string(), name.to_string());
         if let Some(font_instance) = instances.get(name) {
@@ -122,4 +134,14 @@ fn fvar_instances(t: &Testable, _context: &Context) -> CheckFnResult {
         ));
     }
     return_result(problems)
+}
+
+fn fix_fvar_instances(t: &mut Testable) -> FixFnResult {
+    let f = fixfont!(t);
+    if !f.is_variable_font() {
+        return Ok(false);
+    }
+    let new_binary = build_fvar_instances(f.font(), None).map_err(|e| e.to_string())?;
+    t.set(new_binary);
+    Ok(true)
 }

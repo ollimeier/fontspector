@@ -3,28 +3,32 @@ use crate::{
     filetype::FileTypeConvert,
     CheckError, Context, FileType, Testable,
 };
-use fontations::skrifa::{
-    font::FontRef,
-    outline::{DrawSettings, OutlinePen},
-    prelude::Size,
-    raw::{
-        tables::{
-            gdef::GlyphClassDef,
-            glyf::Glyph,
-            gpos::{PairPos, PairPosFormat1, PairPosFormat2, PositionSubtables},
-            head::MacStyle,
-            layout::{Feature, FeatureRecord},
-            os2::SelectionFlags,
+use fontations::{
+    read::TopLevelTable,
+    skrifa::{
+        font::FontRef,
+        outline::{DrawSettings, OutlinePen},
+        prelude::Size,
+        raw::{
+            tables::{
+                gdef::GlyphClassDef,
+                glyf::Glyph,
+                gpos::{PairPos, PairPosFormat1, PairPosFormat2, PositionSubtables},
+                head::MacStyle,
+                layout::{Feature, FeatureRecord},
+                os2::SelectionFlags,
+            },
+            ReadError, TableProvider,
         },
-        ReadError, TableProvider,
+        setting::VariationSetting,
+        string::StringId,
+        GlyphId, GlyphId16, GlyphNames, MetadataProvider, Tag,
     },
-    setting::VariationSetting,
-    string::StringId,
-    GlyphId, GlyphId16, GlyphNames, MetadataProvider, Tag,
+    write::{validate::Validate, FontWrite},
 };
 use itertools::Either;
 use std::{
-    collections::{HashMap, HashSet},
+    collections::{BTreeMap, HashMap, HashSet},
     error::Error,
     fmt::{Debug, Formatter},
     path::{Path, PathBuf},
@@ -296,7 +300,7 @@ impl TestFont<'_> {
     /// Returns an iterator over the named instances in the font.
     ///
     /// Each item is a tuple of the instance name and a map of axis tag to user coordinate value.
-    pub fn named_instances(&self) -> impl Iterator<Item = (String, HashMap<String, f32>)> + '_ {
+    pub fn named_instances(&self) -> impl Iterator<Item = (String, BTreeMap<String, f32>)> + '_ {
         self.font().named_instances().iter().map(|ni| {
             let instance_name = self
                 .font()
@@ -498,6 +502,24 @@ impl TestFont<'_> {
             .os2()?
             .fs_selection()
             .intersects(SelectionFlags::USE_TYPO_METRICS))
+    }
+
+    /// Rebuild the font with new tables
+    ///
+    /// This will create a font with the tables specified, and then copy all other
+    /// tables from the original font.
+    pub fn rebuild_with_new_tables<T: FontWrite + Validate + TopLevelTable>(
+        &self,
+        tables: &[T],
+    ) -> Result<Vec<u8>, String> {
+        let mut new_font = fontations::write::FontBuilder::new();
+        for table in tables {
+            new_font
+                .add_table(table)
+                .map_err(|e| format!("Error adding table to new font: {}", e))?;
+        }
+        new_font.copy_missing_tables(self.font());
+        Ok(new_font.build())
     }
 }
 

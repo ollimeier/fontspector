@@ -380,11 +380,11 @@ fn load_configuration(args: &Args) -> Map<String, serde_json::Value> {
 fn try_fixing_stuff(results: &mut RunResults, args: &Args, registry: &Registry) {
     let failed_checks = results
         .iter_mut()
-        .filter(|x| x.worst_status() >= StatusCode::Fail)
+        .filter(|x| x.worst_status() >= StatusCode::Warn)
         .collect::<Vec<_>>();
     // Group the fixes by filename because we want to provide testables
     // // let mut fix_sources = HashMap::new();
-    let mut fix_binaries: HashMap<String, Vec<(&HotfixFunction, &mut CheckResult)>> =
+    let mut fix_binaries: HashMap<String, Vec<(String, &HotfixFunction, &mut CheckResult)>> =
         HashMap::new();
     for result in failed_checks.into_iter() {
         let Some(check) = registry.checks.get(&result.check_id) else {
@@ -399,7 +399,7 @@ fn try_fixing_stuff(results: &mut RunResults, args: &Args, registry: &Registry) 
             fix_binaries
                 .entry(result.filename.clone().unwrap())
                 .or_default()
-                .push((check.hotfix.unwrap(), result));
+                .push((check.id.to_string(), check.hotfix.unwrap(), result));
         }
     }
 
@@ -409,7 +409,8 @@ fn try_fixing_stuff(results: &mut RunResults, args: &Args, registry: &Registry) 
             std::process::exit(1)
         });
         let mut modified = false;
-        for (fix, result) in fixes.into_iter() {
+        for (id, fix, result) in fixes.into_iter() {
+            log::info!("Trying to fix {} with {}", file, id);
             result.hotfix_result = match fix(&mut testable) {
                 Ok(hotfix_behaviour) => {
                     modified |= hotfix_behaviour;

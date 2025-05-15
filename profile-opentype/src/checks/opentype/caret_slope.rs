@@ -1,5 +1,5 @@
-use fontations::skrifa::raw::TableProvider;
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
+use fontations::{skrifa::raw::TableProvider, types::Fixed, write::from_obj::ToOwnedTable};
+use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert};
 
 #[check(
     id = "opentype/caret_slope",
@@ -19,7 +19,8 @@ use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
         This check allows for a 0.1° rounding difference between the Italic angle
         as calculated by the caret slope and post.italicAngle
-    "#
+    "#,
+    hotfix = fix_caret_slope,
 )]
 fn caret_slope(t: &Testable, _context: &Context) -> CheckFnResult {
     let f = testfont!(t);
@@ -47,4 +48,57 @@ fn caret_slope(t: &Testable, _context: &Context) -> CheckFnResult {
         ));
     }
     Ok(Status::just_one_pass())
+}
+
+// fn fix_post_italic_angle(t: &mut Testable) -> FixFnResult {
+//     let f = fixfont!(t);
+//     let Some(style) = f.style() else {
+//         return Ok(false);
+//     };
+//     let mut post: fontations::write::tables::post::Post = f
+//         .font()
+//         .post()
+//         .map_err(|e| format!("Couldn't get post table: {}", e))?
+//         .to_owned_table();
+//     let hhea = f
+//         .font()
+//         .hhea()
+//         .map_err(|e| format!("Couldn't get hhea table: {}", e))?;
+//     if !style.contains("Italic") {
+//         post.italic_angle = 0.into();
+//     } else {
+//         let run = hhea.caret_slope_run();
+//         let rise = hhea.caret_slope_rise();
+//         let angle = (-run as f64 / rise as f64).atan().to_degrees();
+//         post.italic_angle = Fixed::from_f64(angle);
+//     }
+//     t.set(f.rebuild_with_new_tables(&[post])?);
+//     Ok(true)
+// }
+
+fn fix_caret_slope(t: &mut Testable) -> FixFnResult {
+    let f = fixfont!(t);
+    let mut hhea: fontations::write::tables::hhea::Hhea = f
+        .font()
+        .hhea()
+        .map_err(|e| format!("Couldn't get hhea table: {}", e))?
+        .to_owned_table();
+    let post = f
+        .font()
+        .post()
+        .map_err(|e| format!("Couldn't get post table: {}", e))?;
+    if post.italic_angle() == Fixed::ZERO {
+        println!("Skipping fix_caret_slope for non-italic font");
+        return Ok(false);
+    }
+    let upem = f
+        .font()
+        .head()
+        .map_err(|e| format!("Couldn't get head table: {}", e))?
+        .units_per_em();
+    hhea.caret_slope_rise = upem as i16;
+    hhea.caret_slope_run =
+        (-post.italic_angle().to_f32().to_radians().tan() * upem as f32).round() as i16;
+    t.set(f.rebuild_with_new_tables(&[hhea])?);
+    Ok(true)
 }

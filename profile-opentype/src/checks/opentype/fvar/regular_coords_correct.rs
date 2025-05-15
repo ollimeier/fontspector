@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert, TestFont};
 
@@ -9,7 +9,7 @@ const REGULAR_COORDINATE_EXPECTATIONS: [(&str, f32); 4] = [
     ("ital", 0.0),
 ];
 
-fn find_regular(f: TestFont) -> Option<HashMap<String, f32>> {
+fn find_regular(f: TestFont) -> Option<BTreeMap<String, f32>> {
     let mut instance = f.named_instances().find(|(name, _loc)| name == "Regular");
     if instance.is_none() {
         instance = f.named_instances().find(|(name, _loc)| name == "Italic");

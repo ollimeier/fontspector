@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 use fontations::skrifa::raw::{tables::stat::AxisValue, TableProvider};
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
@@ -60,7 +60,7 @@ fn fvar_STAT_axis_ranges(t: &Testable, _context: &Context) -> CheckFnResult {
                     let stat_axis = &stat_axis_tags[axis_index as usize];
                     (stat_axis.to_string(), av.value().to_f32())
                 })
-                .collect::<HashMap<_, _>>();
+                .collect::<BTreeMap<_, _>>();
             if coordinates == stat_coord_set {
                 found_in_format4 = true;
                 break;
