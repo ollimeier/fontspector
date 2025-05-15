@@ -1,5 +1,6 @@
 use fontations::skrifa::string::StringId;
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert, TestFont};
+use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert, TestFont};
+use google_fonts_axisregistry::build_name_table;
 use markdown_table::{Heading, MarkdownTable};
 
 use crate::utils::build_expected_font;
@@ -28,7 +29,8 @@ const NAME_IDS: [(StringId, &str); 6] = [
     
     ",
     proposal = "https://github.com/fonttools/fontbakery/pull/3800",
-    title = "Check font names are correct"
+    title = "Check font names are correct",
+    hotfix = fix_font_names,
 )]
 fn font_names(t: &Testable, _context: &Context) -> CheckFnResult {
     let f = testfont!(t);
@@ -89,4 +91,15 @@ fn font_names(t: &Testable, _context: &Context) -> CheckFnResult {
         ));
     }
     return_result(problems)
+}
+
+fn fix_font_names(t: &mut Testable) -> FixFnResult {
+    let f = fixfont!(t);
+    if f.has_axis("MORF") {
+        return Ok(false);
+    }
+    let new_binary =
+        build_name_table(f.font(), None, None, &[], None).map_err(|e| e.to_string())?;
+    t.set(new_binary);
+    Ok(true)
 }
