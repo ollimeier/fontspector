@@ -1,8 +1,11 @@
-use fontations::skrifa::raw::{
-    tables::{head::MacStyle, os2::SelectionFlags},
-    TableProvider,
+use fontations::{
+    skrifa::raw::{
+        tables::{head::MacStyle, os2::SelectionFlags},
+        TableProvider,
+    },
+    write::from_obj::ToOwnedTable,
 };
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
+use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert};
 
 #[check(
     id = "opentype/fsselection",
@@ -21,6 +24,7 @@ use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
         the bold and italic bits in head.macStyle per the OpenType spec.
     ",
     proposal = "https://github.com/fonttools/fontbakery/issues/4829",  // legacy check
+    hotfix = fix_fsselection,
 )]
 fn fsselection(f: &Testable, _context: &Context) -> CheckFnResult {
     let font = testfont!(f);
@@ -69,4 +73,32 @@ fn fsselection(f: &Testable, _context: &Context) -> CheckFnResult {
         }
     }
     return_result(problems)
+}
+
+fn fix_fsselection(t: &mut Testable) -> FixFnResult {
+    let f = fixfont!(t);
+    let Some(style) = f.style() else {
+        return Ok(false);
+    };
+    let mut os2: fontations::write::tables::os2::Os2 = f
+        .font()
+        .os2()
+        .map_err(|e| format!("Couldn't read OS/2 table: {}", e))?
+        .to_owned_table();
+    os2.fs_selection &= SelectionFlags::USE_TYPO_METRICS;
+    let bold_expected = style == "Bold" || style == "BoldItalic";
+    let italic_expected = style.contains("Italic");
+    let regular_expected = !bold_expected && !italic_expected;
+    if bold_expected {
+        os2.fs_selection |= SelectionFlags::BOLD;
+    }
+    if italic_expected {
+        os2.fs_selection |= SelectionFlags::ITALIC;
+    }
+    if regular_expected {
+        os2.fs_selection |= SelectionFlags::REGULAR;
+    }
+
+    t.set(f.rebuild_with_new_tables(&[os2])?);
+    Ok(true)
 }
