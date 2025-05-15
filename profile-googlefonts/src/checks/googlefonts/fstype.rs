@@ -1,5 +1,5 @@
-use fontations::skrifa::raw::TableProvider;
-use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
+use fontations::{skrifa::raw::TableProvider, write::from_obj::ToOwnedTable};
+use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert};
 
 const FSTYPE_RESTRICTIONS: [(u16, &str); 5] = [
     (0x0002,
@@ -32,7 +32,8 @@ const FSTYPE_RESTRICTIONS: [(u16, &str); 5] = [
     
     ",
     proposal = "https://github.com/fonttools/fontbakery/issues/4829",
-    title = "Checking OS/2 fsType does not impose restrictions."
+    title = "Checking OS/2 fsType does not impose restrictions.",
+    hotfix = fix_fstype,
 )]
 fn fstype(t: &Testable, _context: &Context) -> CheckFnResult {
     let f = testfont!(t);
@@ -57,4 +58,16 @@ fn fstype(t: &Testable, _context: &Context) -> CheckFnResult {
             restrictions.join("\n")
         ),
     ))
+}
+
+fn fix_fstype(t: &mut Testable) -> FixFnResult {
+    let f = fixfont!(t);
+    let mut os2: fontations::write::tables::os2::Os2 = f
+        .font()
+        .os2()
+        .map_err(|e| format!("Failed to read OS/2 table: {}", e))?
+        .to_owned_table();
+    os2.fs_type = 0;
+    t.set(f.rebuild_with_new_tables(&[os2])?);
+    Ok(true)
 }
