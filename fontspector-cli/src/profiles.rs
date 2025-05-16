@@ -56,6 +56,7 @@ pub(crate) fn register_and_return_toml_profile(
     name.to_string()
 }
 
+#[allow(unused_variables)]
 pub(crate) fn register_core_profiles(args: &Args, registry: &mut Registry<'static>) {
     #[cfg(feature = "python")]
     if args.use_python {
