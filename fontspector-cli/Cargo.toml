@@ -10,7 +10,7 @@ license = "Apache-2.0"
 readme = "../README.md"
 
 [features]
-python = ["dep:fontbakery-bridge"]
+python = ["dep:fontbakery-bridge", "fontspector-checkapi/python"]
 
 [build-dependencies]
 walkdir = "2.5"
@@ -18,9 +18,11 @@ zip = "3"
 quote = "1.0"
 
 [dependencies]
-fontspector-checkapi = { path = "../fontspector-checkapi", features = ["clap"], version = "1.0.0" }
+fontspector-checkapi = { path = "../fontspector-checkapi", features = [
+    "clap",
+], version = "1.0.0" }
 # These profiles are baked-in
-fontbakery-bridge = { path = "../fontbakery-bridge", optional = true, version = "1.0.0", package="fontspector-fontbakery-bridge" }
+fontbakery-bridge = { path = "../fontbakery-bridge", optional = true, version = "1.0.0", package = "fontspector-fontbakery-bridge" }
 profile-universal = { path = "../profile-universal", version = "1.0.0", package = "fontspector-profile-universal" }
 profile-opentype = { path = "../profile-opentype", version = "1.0.0", package = "fontspector-profile-opentype" }
 profile-iso15008 = { path = "../profile-iso15008", version = "1.0.0", package = "fontspector-profile-iso15008" }

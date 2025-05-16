@@ -10,6 +10,9 @@ homepage = "https://fonttools.github.io/fontspector"
 [lib]
 crate-type = ["cdylib", "rlib"]
 
+[features]
+python = []
+
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 # Plugin architecture
 pluginator = { workspace = true }
