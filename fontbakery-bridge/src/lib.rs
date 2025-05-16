@@ -109,7 +109,11 @@ fn python_checkrunner(c: &Testable, context: &Context) -> CheckFnResult {
         .unwrap_or_else(|e| Err(CheckError::Error(format!("Python error: {}", e))))
 }
 
-fn register_python_checks(modulename: &str, source: &str, cr: &mut Registry) -> Result<(), String> {
+pub fn register_python_checks(
+    modulename: &str,
+    source: &str,
+    cr: &mut Registry,
+) -> Result<(), String> {
     Python::with_gil(|py| {
         // Assert that we have loaded the FB prelude
         let _prelude = PyModule::import_bound(py, "fontbakery.prelude")?;
@@ -117,10 +121,11 @@ fn register_python_checks(modulename: &str, source: &str, cr: &mut Registry) -> 
         let full_source = "from fontbakery.prelude import *\n\n".to_string() + source;
         let module =
             PyModule::from_code_bound(py, &full_source, &format!("{}.py", modulename), modulename)?;
-        // let check = module.getattr("check_hinting_impact")?;
+        log::debug!("Loaded module {}", modulename);
         // Find all functions in the module which are checks
         let checktype = callable.getattr("FontBakeryCheck")?;
         for name in module.dir()?.iter() {
+            log::debug!("Looking at module attribute {}", name);
             let name_str: String = name.extract()?;
             let obj = module.getattr(name.downcast()?)?;
             if let Ok(true) = obj.is_instance(&checktype) {
@@ -135,20 +140,23 @@ fn register_python_checks(modulename: &str, source: &str, cr: &mut Registry) -> 
                     );
                     continue;
                 }
-                let title: String = obj.getattr("__doc__")?.extract()?;
+                let title: String = obj
+                    .getattr("__doc__")
+                    .and_then(|doc| doc.extract())
+                    .unwrap_or("An untitled check".to_string());
                 let py_rationale = obj.getattr("rationale")?;
                 let rationale: String = if py_rationale.is_instance_of::<PyList>() {
                     let r: Vec<String> = py_rationale.extract()?;
                     r.join(", ")
                 } else {
-                    py_rationale.extract()?
+                    py_rationale.extract().unwrap_or("No rationale".to_string())
                 };
                 let py_proposal = obj.getattr("proposal")?;
                 let proposals: Vec<String> = if py_proposal.is_instance_of::<PyList>() {
                     let r: Vec<String> = py_proposal.extract()?;
                     r.iter().map(|s| s.to_string()).collect()
                 } else {
-                    let s: String = py_proposal.extract()?;
+                    let s: String = py_proposal.extract().unwrap_or("No proposal".to_string());
                     vec![s.to_string()]
                 };
 

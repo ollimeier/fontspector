@@ -83,6 +83,11 @@ pub struct Profile {
     /// by providing `WARN_SIZE` and `FAIL_SIZE` values in the profile; the user
     /// can then override these values on the command line.
     configuration_defaults: HashMap<CheckId, HashMap<String, serde_json::Value>>,
+
+    #[cfg(feature = "python")]
+    #[serde(default)]
+    /// Code files to include to register Python-based checks
+    pub check_definitions: Vec<String>,
 }
 
 impl Profile {

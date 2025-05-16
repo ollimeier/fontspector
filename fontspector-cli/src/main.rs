@@ -2,11 +2,11 @@
 //! Quality control for OpenType fonts
 
 mod args;
+mod profiles;
 mod reporters;
 
 use std::{
     collections::HashMap,
-    io::Read,
     path::PathBuf,
     time::{Duration, Instant},
 };
@@ -14,27 +14,24 @@ use std::{
 use args::Args;
 use clap::Parser;
 
-#[cfg(feature = "python")]
-use fontbakery_bridge::FontbakeryBridge;
-
 use fontspector_checkapi::{
-    Check, CheckResult, Context, FixResult, HotfixFunction, Override, Plugin, Profile, Registry,
-    StatusCode, Testable, TestableCollection, TestableType,
+    Check, CheckResult, Context, FixResult, HotfixFunction, Override, Registry, StatusCode,
+    Testable, TestableCollection, TestableType,
 };
-use itertools::Either;
-use profile_googlefonts::GoogleFonts;
-use profile_iso15008::Iso15008;
-use profile_opentype::OpenType;
-use profile_universal::Universal;
-use reporters::{process_reporter_args, terminal::TerminalReporter, Reporter, RunResults};
-use serde_json::{json, Map};
 
 #[cfg(not(debug_assertions))]
 use indicatif::ParallelProgressIterator;
 #[cfg(debug_assertions)]
 use indicatif::ProgressIterator;
+
+use itertools::Either;
+use profiles::{register_and_return_toml_profile, register_core_profiles};
+
 #[cfg(not(debug_assertions))]
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
+
+use reporters::{process_reporter_args, terminal::TerminalReporter, Reporter, RunResults};
+use serde_json::{json, Map};
 
 // As a special case for Google fonts, all files in an article/
 // directory are associated with the parent's group.
@@ -72,33 +69,7 @@ fn main() {
     // Set up the check registry
     let mut registry = Registry::new();
 
-    #[cfg(feature = "python")]
-    if args.use_python {
-        // Python implementations first, I want to override them
-        #[allow(clippy::expect_used)] // If this fails, I *want* to panic
-        FontbakeryBridge
-            .register(&mut registry)
-            .expect("Couldn't register fontbakery bridge, fontspector bug");
-    }
-
-    #[allow(clippy::expect_used)] // If this fails, I *want* to panic
-    OpenType
-        .register(&mut registry)
-        .expect("Couldn't register opentype profile, fontspector bug");
-    #[allow(clippy::expect_used)] // If this fails, I *want* to panic
-    Universal
-        .register(&mut registry)
-        .expect("Couldn't register universal profile, fontspector bug");
-
-    #[allow(clippy::expect_used)] // If this fails, I *want* to panic
-    GoogleFonts
-        .register(&mut registry)
-        .expect("Couldn't register googlefonts profile, fontspector bug");
-
-    #[allow(clippy::expect_used)] // If this fails, I *want* to panic
-    Iso15008
-        .register(&mut registry)
-        .expect("Couldn't register iso15008 profile, fontspector bug");
+    register_core_profiles(&args, &mut registry);
 
     for plugin_path in args.plugins.iter() {
         if let Err(err) = registry.load_plugin(plugin_path) {
@@ -108,35 +79,7 @@ fn main() {
 
     // Load the relevant profile - maybe it's a file?
     let profile_name = if args.profile.ends_with(".toml") {
-        // Name should be path basename without extension
-        let path = PathBuf::from(&args.profile);
-        let name = path.file_stem().unwrap_or_default().to_string_lossy();
-        match std::fs::File::open(&path) {
-            Ok(mut file) => {
-                log::info!("Loading profile from file {:?}", name);
-                let mut toml = String::new();
-                if let Err(e) = file.read_to_string(&mut toml) {
-                    log::error!("Could not read profile {:}: {:}", name, e);
-                    std::process::exit(1);
-                }
-                let profile: Profile = Profile::from_toml(&toml).unwrap_or_else(|e| {
-                    log::error!("Could not parse profile {:}: {:}", name, e);
-                    std::process::exit(1);
-                });
-
-                registry
-                    .register_profile(&name, profile)
-                    .unwrap_or_else(|e| {
-                        log::error!("Could not register profile {:}: {:}", name, e);
-                        std::process::exit(1);
-                    });
-            }
-            Err(e) => {
-                log::error!("Could not open profile file {:}: {:?}", args.profile, e);
-                std::process::exit(1);
-            }
-        }
-        name.to_string()
+        register_and_return_toml_profile(&args, &mut registry)
     } else {
         args.profile.clone()
     };
