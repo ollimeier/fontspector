@@ -1289,7 +1289,7 @@ dependencies = [
 
 [[package]]
 name = "fontspector-checkapi"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "clap",
  "fontations",

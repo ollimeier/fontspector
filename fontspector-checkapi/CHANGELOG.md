@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## v1.0.1 (2025-05-19)
 
 ### Commit Statistics
 
@@ -29,10 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * **[#113](https://github.com/fonttools/fontspector/issues/113)**
     - Make Fontbakery Python bridge usable ([`7082188`](https://github.com/fonttools/fontspector/commit/7082188f3e6c2ecae5090eba82390835cc1e41ff))
  * **Uncategorized**
-    - Changelog ([`ef00046`](https://github.com/fonttools/fontspector/commit/ef00046228bd11cc5fa15be5d45f2e37d629b024))
+    - Changelog ([`4ee3184`](https://github.com/fonttools/fontspector/commit/4ee3184cda649d31da7359ffe8e2e7a827ca3d34))
 </details>
-
-## v1.0.1 (2025-05-19)
 
 ## v1.0.0 (2025-05-08)
 
