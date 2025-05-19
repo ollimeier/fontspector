@@ -5,13 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v1.0.1 (2025-05-19)
+## Unreleased
 
 ### Commit Statistics
 
 <csr-read-only-do-not-edit/>
 
- - 4 commits contributed to the release over the course of 7 calendar days.
+ - 6 commits contributed to the release over the course of 7 calendar days.
  - 11 days passed between releases.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 3 unique issues were worked on: [#107](https://github.com/fonttools/fontspector/issues/107), [#111](https://github.com/fonttools/fontspector/issues/111), [#113](https://github.com/fonttools/fontspector/issues/113)
@@ -29,8 +29,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * **[#113](https://github.com/fonttools/fontspector/issues/113)**
     - Make Fontbakery Python bridge usable ([`7082188`](https://github.com/fonttools/fontspector/commit/7082188f3e6c2ecae5090eba82390835cc1e41ff))
  * **Uncategorized**
+    - Commit changelog ([`a015028`](https://github.com/fonttools/fontspector/commit/a0150285d3a741e2dce97702f58c4a6e69fa5fe2))
+    - Adjusting changelogs prior to release of fontspector-checkapi v1.0.1 ([`69bf604`](https://github.com/fonttools/fontspector/commit/69bf6042bf8074cb216296d844867d99e63730b6))
     - Changelog ([`4ee3184`](https://github.com/fonttools/fontspector/commit/4ee3184cda649d31da7359ffe8e2e7a827ca3d34))
 </details>
+
+## v1.0.1 (2025-05-19)
 
 ## v1.0.0 (2025-05-08)
 
