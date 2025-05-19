@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.0.2 (2025-05-19)
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 4 commits contributed to the release over the course of 4 calendar days.
+ - 11 days passed between releases.
+ - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 4 unique issues were worked on: [#111](https://github.com/fonttools/fontspector/issues/111), [#112](https://github.com/fonttools/fontspector/issues/112), [#113](https://github.com/fonttools/fontspector/issues/113), [#114](https://github.com/fonttools/fontspector/issues/114)
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **[#111](https://github.com/fonttools/fontspector/issues/111)**
+    - Include most of the fixes from gftools-fix ([`2de6875`](https://github.com/fonttools/fontspector/commit/2de68751c8c4da8c29f9e46d444280cdf478c6b2))
+ * **[#112](https://github.com/fonttools/fontspector/issues/112)**
+    - Upgrade zip from yanked release ([`182edee`](https://github.com/fonttools/fontspector/commit/182edeedd7c4e885241433cba0bb1e246b352582))
+ * **[#113](https://github.com/fonttools/fontspector/issues/113)**
+    - Make Fontbakery Python bridge usable ([`7082188`](https://github.com/fonttools/fontspector/commit/7082188f3e6c2ecae5090eba82390835cc1e41ff))
+ * **[#114](https://github.com/fonttools/fontspector/issues/114)**
+    - Add badges reporter ([`8683fb8`](https://github.com/fonttools/fontspector/commit/8683fb89801fb1df5c07d71f45c07efa79b111e0))
+</details>
+
 ## v1.0.1 (2025-05-08)
 
 * Small bug fixes in universal checks
@@ -15,7 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 4 commits contributed to the release.
+ - 5 commits contributed to the release.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
 
@@ -26,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - Release fontspector v1.0.1 ([`b6ef630`](https://github.com/fonttools/fontspector/commit/b6ef630c8a3e151093343cdaa72b934a9070236b))
     - Update changelog ([`1f2767f`](https://github.com/fonttools/fontspector/commit/1f2767fb7287ef691e857eba0a4b74923d0f22ae))
     - Adjusting changelogs prior to release of fontspector v1.0.1 ([`c2e98f9`](https://github.com/fonttools/fontspector/commit/c2e98f9f3bd79fb20650ce872d098e723d5ded27))
     - Add changelog ([`cfa49cd`](https://github.com/fonttools/fontspector/commit/cfa49cd37952a26afd540700c3fe82b970125b57))
