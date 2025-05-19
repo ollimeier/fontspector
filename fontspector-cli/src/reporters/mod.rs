@@ -6,6 +6,7 @@ use std::{collections::HashMap, path::PathBuf};
 
 include!(concat!(env!("OUT_DIR"), "/templates.rs"));
 
+pub(crate) mod badges;
 pub(crate) mod csv;
 #[cfg(feature = "duckdb")]
 pub(crate) mod duckdb;
@@ -176,5 +177,9 @@ pub(crate) fn process_reporter_args(args: &Args, reporters: &mut Vec<Box<dyn Rep
         reporters.push(Box::new(crate::reporters::duckdb::DuckDbReporter::new(
             duckdbfile,
         )));
+    }
+
+    if let Some(directory) = args.badges.as_ref() {
+        reporters.push(Box::new(badges::BadgesReporter::new(directory)));
     }
 }
