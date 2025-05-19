@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 3 commits contributed to the release over the course of 7 calendar days.
+ - 4 commits contributed to the release over the course of 7 calendar days.
  - 11 days passed between releases.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 2 unique issues were worked on: [#107](https://github.com/fonttools/fontspector/issues/107), [#111](https://github.com/fonttools/fontspector/issues/111)
@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * **[#111](https://github.com/fonttools/fontspector/issues/111)**
     - Include most of the fixes from gftools-fix ([`2de6875`](https://github.com/fonttools/fontspector/commit/2de68751c8c4da8c29f9e46d444280cdf478c6b2))
  * **Uncategorized**
+    - Release fontspector-profile-googlefonts v1.0.2, fontspector-profile-universal v1.0.2 ([`d26f105`](https://github.com/fonttools/fontspector/commit/d26f105058189e6baa1ccd726d2151851e4e7d85))
     - Release fontspector-profile-opentype v1.0.2, fontspector-profile-googlefonts v1.0.2, fontspector-profile-universal v1.0.2 ([`fd2d019`](https://github.com/fonttools/fontspector/commit/fd2d0197d3918c1f74890b69fed4fe49ac8a3408))
 </details>
 
