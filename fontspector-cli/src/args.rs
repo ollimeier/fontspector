@@ -94,6 +94,10 @@ pub struct Args {
     #[clap(long, help_heading = "Reports")]
     pub update_templates: bool,
 
+    /// Write JSON badges to the given directory
+    #[clap(long, help_heading = "Reports")]
+    pub badges: Option<String>,
+
     /// Fall back to Python implementations of unported checks
     #[clap(long)]
     #[cfg(feature = "python")]
