@@ -1341,7 +1341,7 @@ dependencies = [
 
 [[package]]
 name = "fontspector-profile-googlefonts"
-version = "1.0.1"
+version = "1.0.2"
 dependencies = [
  "chrono",
  "fontations",
@@ -1402,7 +1402,7 @@ dependencies = [
 
 [[package]]
 name = "fontspector-profile-opentype"
-version = "1.0.1"
+version = "1.0.2"
 dependencies = [
  "fontations",
  "fontspector-checkapi",
@@ -1424,7 +1424,7 @@ dependencies = [
 
 [[package]]
 name = "fontspector-profile-universal"
-version = "1.0.1"
+version = "1.0.2"
 dependencies = [
  "fontations",
  "fontspector-checkapi",
