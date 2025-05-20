@@ -1380,7 +1380,7 @@ dependencies = [
 
 [[package]]
 name = "fontspector-profile-iso15008"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "fontations",
  "fontspector-checkapi",
