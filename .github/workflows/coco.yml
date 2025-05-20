@@ -1,5 +1,7 @@
 on: [pull_request]
 
+name: "Lint commit messages"
+
 jobs:
   cog_check_job:
     runs-on: ubuntu-latest
