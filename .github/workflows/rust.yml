@@ -119,4 +119,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run:
-          gh release upload ${{ env.VERSION }} ${{ env.ASSET }}
+          gh release upload fontspector-${{ env.VERSION }} ${{ env.ASSET }}
