@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 1 commit contributed to the release over the course of 7 calendar days.
+ - 3 commits contributed to the release over the course of 7 calendar days.
  - 11 days passed between releases.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 1 unique issue was worked on: [#107](https://github.com/fonttools/fontspector/issues/107)
@@ -24,6 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
  * **[#107](https://github.com/fonttools/fontspector/issues/107)**
     - Move to fontations crate ([`da2830b`](https://github.com/fonttools/fontspector/commit/da2830ba694bf3379142a81dad043031e1c39f35))
+ * **Uncategorized**
+    - Changelog ([`e9b952d`](https://github.com/fonttools/fontspector/commit/e9b952dc63eab2092f7bad436968427cd7778e88))
+    - Release fontspector-profile-iso15008 v1.0.1 ([`2e2d557`](https://github.com/fonttools/fontspector/commit/2e2d557d985d48b73e401885ff72b8e28700de08))
 </details>
 
 ## v1.0.0 (2025-05-08)
