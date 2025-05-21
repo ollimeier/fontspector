@@ -239,5 +239,67 @@ fn validate(c: &Testable, _context: &Context) -> CheckFnResult {
         ));
     }
 
+    if !msg.languages.is_empty() && !msg.name().starts_with("Noto ") {
+        problems.push(Status::fail(
+            "language",
+            "Non-Noto families should not have any language fields in METADATA.pb",
+        ));
+    }
+
     return_result(problems)
+}
+
+#[cfg(test)]
+mod tests {
+    #![allow(clippy::unwrap_used)]
+
+    use super::*;
+    use fontspector_checkapi::StatusCode;
+
+    #[test]
+    fn test_noto_languages() {
+        let mdpb = Testable::new_with_contents(
+            "METADATA.pb",
+            include_bytes!("../../../../../fontspector-py/data/test/notosanskhudawadi/METADATA.pb")
+                .to_vec(),
+        );
+        assert!(String::from_utf8(mdpb.contents.clone())
+            .unwrap()
+            .contains("languages:"));
+        let result = validate_impl(&mdpb, &Context::default())
+            .unwrap()
+            .collect::<Vec<_>>();
+        assert!(
+            result.iter().all(|r| r.severity < StatusCode::Warn),
+            "Expected all checks to pass, but got: {:#?}",
+            result
+        );
+
+        let league_gothic =
+            include_bytes!("../../../../../fontspector-py/data/test/leaguegothic-vf/METADATA.pb");
+        let good_mdpb = Testable::new_with_contents("METADATA.pb", league_gothic.to_vec());
+        assert!(!String::from_utf8(good_mdpb.contents)
+            .unwrap()
+            .contains("languages:"));
+        let result = validate_impl(&mdpb, &Context::default())
+            .unwrap()
+            .collect::<Vec<_>>();
+        assert!(
+            result.iter().all(|r| r.severity < StatusCode::Warn),
+            "Expected all checks to pass, but got: {:#?}",
+            result
+        );
+        let league_languages =
+            (String::from_utf8_lossy(league_gothic) + "\n  languages: \"en_Latn\"\n").to_string();
+        let bad_mdpb = Testable::new_with_contents("METADATA.pb", league_languages.into_bytes());
+        assert!(String::from_utf8(bad_mdpb.contents.clone())
+            .unwrap()
+            .contains("languages:"));
+        let result = validate_impl(&bad_mdpb, &Context::default())
+            .unwrap()
+            .collect::<Vec<_>>();
+        assert!(result
+            .iter()
+            .any(|r| r.severity == StatusCode::Fail && r.code.as_deref() == Some("language")));
+    }
 }
