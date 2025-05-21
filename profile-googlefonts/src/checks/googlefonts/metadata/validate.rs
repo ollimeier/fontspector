@@ -239,5 +239,12 @@ fn validate(c: &Testable, _context: &Context) -> CheckFnResult {
         ));
     }
 
+    if !msg.languages.is_empty() && !msg.name().starts_with("Noto ") {
+        problems.push(Status::fail(
+            "language",
+            "Non-Noto families should not have any language fields in METADATA.pb",
+        ));
+    }
+
     return_result(problems)
 }
