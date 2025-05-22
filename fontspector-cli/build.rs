@@ -6,10 +6,13 @@ use std::{
 };
 
 use quote::quote;
+use shadow_rs::ShadowBuilder;
 use walkdir::WalkDir;
 use zip::{write::SimpleFileOptions, ZipWriter};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    ShadowBuilder::builder().build().unwrap();
+
     let walkdir = WalkDir::new("../templates");
     let it = walkdir.into_iter();
     let mut buf = [0; 65536];

@@ -1,9 +1,10 @@
+use crate::build;
 use clap::{ArgAction, Parser};
 use fontspector_checkapi::StatusCode;
 
 /// Quality control for OpenType fonts
 #[derive(Parser, Debug)]
-#[clap(author, version, about, long_about = None)]
+#[clap(author, version, long_version = build::CLAP_LONG_VERSION, about, long_about = None)]
 pub struct Args {
     /// Plugins to load
     #[clap(long, value_delimiter = ',')]
