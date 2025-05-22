@@ -160,6 +160,7 @@ impl Reporter for JinjaTemplatedReporter {
                 Ok(status < log_status)
             },
         );
+        // Checks by filename
         for result in results.iter() {
             let filename = result.filename.as_ref().unwrap_or(&all_fonts).as_str();
             if result.worst_status() < args.loglevel {
@@ -182,6 +183,12 @@ impl Reporter for JinjaTemplatedReporter {
                     .push(result);
             }
         }
+        // Sort other_checks by status, worst first
+        for file in other_checks.values_mut() {
+            file.sort_by_key(|a| std::cmp::Reverse(a.worst_status()));
+        }
+
+        // Checks by section
         let summary = results.summary();
         let mut by_section_by_check: IndexMap<String, IndexMap<String, Vec<&CheckResult>>> =
             IndexMap::new();
@@ -196,6 +203,12 @@ impl Reporter for JinjaTemplatedReporter {
                 .or_default();
             let check = section.entry(checkresult.check_id.clone()).or_default();
             check.push(checkresult);
+        }
+        // Sort check results by worst status, highest first
+        for section in by_section_by_check.values_mut() {
+            for check in section.values_mut() {
+                check.sort_by_key(|a| std::cmp::Reverse(a.worst_status()));
+            }
         }
 
         let proposals: HashMap<String, Vec<String>> = registry
