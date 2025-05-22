@@ -12,7 +12,7 @@ use std::{
 };
 
 use args::Args;
-use clap::Parser;
+use clap::{CommandFactory, FromArgMatches};
 
 use fontspector_checkapi::{
     Check, CheckResult, Context, FixResult, HotfixFunction, Override, Registry, StatusCode,
@@ -33,6 +33,10 @@ use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use reporters::{process_reporter_args, terminal::TerminalReporter, Reporter, RunResults};
 use serde_json::{json, Map};
 
+use shadow_rs::shadow;
+
+shadow!(build);
+
 // As a special case for Google fonts, all files in an article/
 // directory are associated with the parent's group.
 const COLLAPSED_SUBDIRECTORIES: [&str; 1] = ["article"];
@@ -41,7 +45,25 @@ fn main() {
     let start_time = Instant::now();
 
     // Command line handling
-    let args = Args::parse();
+    let mut cmd2 = Args::command();
+    #[allow(clippy::const_is_empty)] // const is not const
+    let short_version: String = format!(
+        "{}{}",
+        env!("CARGO_PKG_VERSION"),
+        if build::TAG.is_empty() {
+            " (".to_owned() + build::SHORT_COMMIT + ")"
+        } else {
+            "".to_owned()
+        }
+    );
+    cmd2 = cmd2
+        .version(short_version)
+        .long_version(build::CLAP_LONG_VERSION);
+    let mut matches = cmd2.get_matches();
+    let args = Args::from_arg_matches_mut(&mut matches).unwrap_or_else(|e| {
+        let _ = e.print();
+        std::process::exit(1);
+    });
 
     env_logger::init_from_env(env_logger::Env::default().filter_or(
         env_logger::DEFAULT_FILTER_ENV,

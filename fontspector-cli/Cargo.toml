@@ -16,6 +16,7 @@ python = ["dep:fontbakery-bridge", "fontspector-checkapi/python"]
 walkdir = "2.5"
 zip = "3"
 quote = "1.0"
+shadow-rs = "1.1.1"
 
 [dependencies]
 fontspector-checkapi = { path = "../fontspector-checkapi", features = [
@@ -27,13 +28,14 @@ profile-universal = { path = "../profile-universal", version = "1.0.0", package 
 profile-opentype = { path = "../profile-opentype", version = "1.0.0", package = "fontspector-profile-opentype" }
 profile-iso15008 = { path = "../profile-iso15008", version = "1.0.0", package = "fontspector-profile-iso15008" }
 profile-googlefonts = { path = "../profile-googlefonts", version = "1.0.0", package = "fontspector-profile-googlefonts" }
-clap = { version = "4", features = ["derive"] }
+clap = { version = "4", features = ["derive", "string"] }
 itertools = { workspace = true }
 log = { workspace = true }
 env_logger = "0.11"
 rayon = "1.0.1"
 indicatif = { version = "0.17", features = ["rayon"] }
 homedir = "0.3.4"
+shadow-rs = {version = "1.1.1", default-features = false}
 
 # Terminal reporter
 termimad = "0"
