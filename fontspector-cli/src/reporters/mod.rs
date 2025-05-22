@@ -113,11 +113,13 @@ pub fn create_user_home_templates_directory(force: bool) -> PathBuf {
         let mut file = zip
             .by_index(i)
             .expect("Internal error: couldn't read from templates zip file");
+        log::debug!("Copyin template file {:?}", file.mangled_name());
         let path = templates_dir.join(file.mangled_name());
         if !path.exists() || force {
             // Create any intermediate subdirectories
             if let Some(parent) = path.parent() {
                 if !parent.exists() {
+                    log::debug!("Creating parent directory {:?}", parent);
                     std::fs::create_dir_all(parent).unwrap_or_else(|e| {
                         println!("Couldn't create {:?}: {}", parent.to_str(), e);
                         std::process::exit(1);
@@ -127,6 +129,7 @@ pub fn create_user_home_templates_directory(force: bool) -> PathBuf {
             if file.is_dir() {
                 continue;
             }
+            log::debug!("Writing template file {:?}", path);
             let mut writer = std::fs::File::create(&path).unwrap_or_else(|e| {
                 println!("Couldn't create template file {:?}: {}", path.to_str(), e);
                 std::process::exit(1)
