@@ -11,7 +11,7 @@ fontspector-checkapi = { path = "../fontspector-checkapi", features = [
     "kurbo",
 ] }
 fontations = { workspace = true }
-regex = "1.10.6"
+regex = { workspace = true }
 rustybuzz = { workspace = true }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]

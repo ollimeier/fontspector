@@ -13,6 +13,11 @@ crate-type = ["cdylib", "rlib"]
 [features]
 python = []
 
+[build-dependencies]
+minreq = { version = "2.6.0", features = ["https"] }
+scraper = "0.22.0"
+regex = { workspace = true }
+
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 # Plugin architecture
 pluginator = { workspace = true }

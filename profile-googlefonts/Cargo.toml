@@ -27,7 +27,7 @@ indexmap = { workspace = true }
 itertools = { workspace = true }
 markdown-table = { workspace = true }
 protobuf = "3.7.1"
-regex = "1.10.6"
+regex = { workspace = true }
 serde_json = { workspace = true }
 serde = { workspace = true }
 fontations = { workspace = true }
