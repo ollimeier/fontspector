@@ -18,7 +18,12 @@ fn vendor_id(f: &Testable, context: &Context) -> CheckFnResult {
         .get("vendor_id")
         .ok_or(CheckError::skip(
             "no-vendor-id",
-            "Add the `vendor_id` key to a `fontspector.yaml` file on your font project directory to enable this check.\nYou'll also need to use the `--configuration` flag when invoking fontspector",
+            "Add the `vendor_id` key to a `fontspector.toml` file on your font project directory to enable this check.\nYou'll also need to use the `--configuration` flag when invoking fontspector",
+        ))?
+        .as_str()
+        .ok_or(CheckError::skip(
+            "invalid-vendor-id",
+            "The `vendor_id` key in the configuration file must be a string.",
         ))?;
     let os2_vendor_id = font.font().os2()?.ach_vend_id().to_string();
     if os2_vendor_id.as_str() == expected_vendor_id {
