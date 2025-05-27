@@ -1,5 +1,7 @@
 #![allow(clippy::unwrap_used, clippy::expect_used)]
 
+use std::collections::HashMap;
+
 // No bad thing if we panic in tests
 use crate::{prelude::*, Check, CheckResult, Context, FileTypeConvert, StatusCode};
 use fontations::skrifa::raw::{types::NameId, TableProvider};
@@ -7,7 +9,6 @@ use fontations::write::{
     tables::name::{Name, NameRecord},
     FontBuilder,
 };
-use serde_json::Map;
 
 #[macro_export]
 /// Create a Testable object from a file in the test resources directory
@@ -39,7 +40,7 @@ pub fn run_check(check: Check<'_>, font: Testable) -> Option<CheckResult> {
     let ctx: Context = Context {
         skip_network: false,
         network_timeout: Some(10),
-        configuration: Map::new(),
+        configuration: HashMap::new(),
         check_metadata: check.metadata(),
         full_lists: false,
         cache: Default::default(),

@@ -29,7 +29,7 @@ glob-match = "0.2.1"
 clap = { version = "4", features = ["derive"], optional = true }
 
 # Serializing and deserializing profiles
-toml = { version = "0.8.14", default-features = false, features = ["parse"] }
+toml = { workspace = true }
 serde = { workspace = true }
 
 # Storing configuration

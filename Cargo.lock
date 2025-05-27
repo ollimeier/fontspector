@@ -1304,6 +1304,7 @@ dependencies = [
  "shadow-rs",
  "tera",
  "termimad",
+ "toml",
  "walkdir",
  "zip",
 ]
