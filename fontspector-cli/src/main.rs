@@ -7,6 +7,7 @@ mod reporters;
 
 use std::{
     collections::HashMap,
+    io::Write,
     path::PathBuf,
     time::{Duration, Instant},
 };
@@ -125,7 +126,8 @@ fn main() {
             checks_per_section.insert(section.clone(), checks);
         }
         if args.list_checks_json {
-            println!(
+            let _ = writeln!(
+                std::io::stdout(),
                 "{}",
                 serde_json::to_string_pretty(&checks_per_section).unwrap_or("{}".to_string())
             );
@@ -192,7 +194,8 @@ fn main() {
     let count_of_families = testables.len() - count_of_files;
 
     if !any_reports_to_stdout {
-        println!(
+        let _ = writeln!(
+            std::io::stdout(),
             "Running {:} check{} on {} file{} in {} famil{}",
             checkorder.len(),
             if checkorder.len() == 1 { "" } else { "s" },
@@ -248,12 +251,13 @@ fn main() {
     }
 
     if !args.quiet && !any_reports_to_stdout {
-        println!(
+        let _ = writeln!(
+            std::io::stdout(),
             "Ran {} checks in {:.3}s",
             checkorder.len(),
             start_time.elapsed().as_secs_f32()
         );
-        TerminalReporter::summary_report(results.summary());
+        let _ = TerminalReporter::summary_report(results.summary());
     }
 
     if args.verbose >= 1 {

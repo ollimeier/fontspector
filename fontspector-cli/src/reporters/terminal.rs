@@ -3,6 +3,7 @@ use crate::{reporters::Reporter, Args};
 use colored::{ColoredString, Colorize};
 use fontspector_checkapi::{FixResult, Registry, StatusCode};
 use itertools::Itertools;
+use std::io::Write;
 use std::{collections::HashMap, path::Path};
 use termimad::MadSkin;
 
@@ -54,7 +55,8 @@ impl Reporter for TerminalReporter {
                     }
 
                     if self.succinct {
-                        println!(
+                        let _ = writeln!(
+                            std::io::stdout(),
                             "{:}: {:} {:} [{}]",
                             Path::new(filename)
                                 .file_name()
@@ -71,20 +73,28 @@ impl Reporter for TerminalReporter {
                     }
 
                     if !fileheading_done {
-                        println!("Testing: {:}", filename);
+                        let _ = writeln!(std::io::stdout(), "Testing: {:}", filename);
                         fileheading_done = true;
                     }
                     if !sectionheading_done {
-                        println!("  Section: {:}\n", sectionname);
+                        let _ = writeln!(std::io::stdout(), "  Section: {:}\n", sectionname);
                         sectionheading_done = true;
                     }
-                    println!(">> {:}", result.check_id);
+                    let _ = writeln!(std::io::stdout(), ">> {:}", result.check_id);
                     if args.verbose > 0 {
-                        println!("   {:}", result.check_name);
-                        println!("\nRationale:\n{}", skin.term_text(&result.check_rationale));
+                        let _ = writeln!(std::io::stdout(), "   {:}", result.check_name);
+                        let _ = writeln!(
+                            std::io::stdout(),
+                            "\nRationale:\n{}",
+                            skin.term_text(&result.check_rationale)
+                        );
                     }
                     for subresult in subresults {
-                        println!("{}\n", skin.term_text(&subresult.to_string()));
+                        let _ = writeln!(
+                            std::io::stdout(),
+                            "{}\n",
+                            skin.term_text(&subresult.to_string())
+                        );
                     }
                     match &result.hotfix_result {
                         Some(FixResult::Available) => {
@@ -110,7 +120,7 @@ impl Reporter for TerminalReporter {
                         }
                         _ => {}
                     }
-                    println!("\n");
+                    let _ = writeln!(std::io::stdout(), "\n");
                 }
             }
         }
@@ -118,15 +128,17 @@ impl Reporter for TerminalReporter {
 }
 
 impl TerminalReporter {
-    pub fn summary_report(summary: HashMap<StatusCode, i32>) {
-        print!("\nSummary:\n  ");
+    pub fn summary_report(summary: HashMap<StatusCode, i32>) -> Result<(), std::io::Error> {
+        write!(std::io::stdout(), "\nSummary:\n  ")?;
         for code in StatusCode::all() {
-            print!(
+            write!(
+                std::io::stdout(),
                 "{:}: {:} ",
                 colored_status(code, None),
                 summary.get(&code).unwrap_or(&0)
-            );
+            )?;
         }
-        println!();
+        writeln!(std::io::stdout())?;
+        Ok(())
     }
 }
