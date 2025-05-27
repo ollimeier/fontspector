@@ -7,6 +7,7 @@ use crate::{
 use fontspector_checkapi::{CheckResult, Registry, StatusCode};
 use indexmap::IndexMap;
 use serde_json::json;
+use std::io::Write;
 use tera::{Context, Tera, Value};
 
 use super::create_user_home_templates_directory;
@@ -255,7 +256,7 @@ impl Reporter for JinjaTemplatedReporter {
                 std::process::exit(1);
             });
         if self.filename == "-" {
-            println!("{}", rendered);
+            let _ = writeln!(std::io::stdout(), "{}", rendered);
             return;
         }
         std::fs::write(&self.filename, rendered).unwrap_or_else(|e| {
@@ -265,6 +266,11 @@ impl Reporter for JinjaTemplatedReporter {
             );
             std::process::exit(1);
         });
-        println!("{} report written to {}", self.name, self.filename);
+        let _ = writeln!(
+            std::io::stdout(),
+            "{} report written to {}",
+            self.name,
+            self.filename
+        );
     }
 }
