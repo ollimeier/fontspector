@@ -2,6 +2,7 @@
 //! Quality control for OpenType fonts
 
 mod args;
+mod configuration;
 mod profiles;
 mod reporters;
 
@@ -15,8 +16,8 @@ use args::Args;
 use clap::{CommandFactory, FromArgMatches};
 
 use fontspector_checkapi::{
-    Check, CheckResult, Context, FixResult, HotfixFunction, Override, Registry, StatusCode,
-    Testable, TestableCollection, TestableType,
+    Check, CheckResult, Context, FixResult, HotfixFunction, Registry, StatusCode, Testable,
+    TestableCollection, TestableType,
 };
 
 #[cfg(not(debug_assertions))]
@@ -24,6 +25,7 @@ use indicatif::ParallelProgressIterator;
 #[cfg(debug_assertions)]
 use indicatif::ProgressIterator;
 
+use configuration::{load_configuration, UserConfigurationFile};
 use itertools::Either;
 use profiles::{register_and_return_toml_profile, register_core_profiles};
 
@@ -31,7 +33,7 @@ use profiles::{register_and_return_toml_profile, register_core_profiles};
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 
 use reporters::{process_reporter_args, terminal::TerminalReporter, Reporter, RunResults};
-use serde_json::{json, Map};
+use serde_json::json;
 
 use shadow_rs::shadow;
 
@@ -166,24 +168,32 @@ fn main() {
     }
 
     // Load configuration
-    let configuration: Map<String, serde_json::Value> = load_configuration(&args);
-    let overrides = load_overrides(&configuration);
+    let configuration: UserConfigurationFile = load_configuration(&args);
+    let overrides = configuration.overrides.clone().unwrap_or_default();
+    let mut includes = args.checkid.clone().unwrap_or_default();
+    let mut excludes = args.exclude_checkid.clone().unwrap_or_default();
+    if let Some(more_includes) = configuration.explicit_checks.as_ref() {
+        includes.extend(more_includes.iter().cloned());
+    }
+    if let Some(more_excludes) = configuration.exclude_checks.as_ref() {
+        excludes.extend(more_excludes.iter().cloned());
+    }
 
     // Establish a check order
     let checkorder: Vec<(String, &TestableType, &Check, Context)> = profile.check_order(
-        &args.checkid,
-        &args.exclude_checkid,
+        &includes,
+        &excludes,
         &registry,
         Context {
             skip_network: args.skip_network,
             network_timeout: Some(10), // XXX
-            configuration: Map::new(),
+            configuration: HashMap::new(),
             check_metadata: serde_json::Value::Null,
             full_lists: args.full_lists,
             cache: Default::default(),
             overrides,
         },
-        configuration,
+        &configuration.per_check_config,
         &testables,
     );
 
@@ -316,32 +326,6 @@ fn group_inputs(args: &Args) -> Vec<TestableCollection> {
         .collect()
 }
 
-fn load_configuration(args: &Args) -> Map<String, serde_json::Value> {
-    args.configuration
-        .as_ref()
-        .map(|filename| {
-            std::fs::File::open(filename).unwrap_or_else(|e| {
-                log::error!("Could not open configuration file {}: {:}", filename, e);
-                std::process::exit(1)
-            })
-        })
-        .and_then(|file| {
-            serde_json::from_reader(std::io::BufReader::new(file)).unwrap_or_else(|e| {
-                log::error!("Could not parse configuration file: {:}", e);
-                std::process::exit(1)
-            })
-        })
-        .map(|file: serde_json::Value| {
-            file.as_object()
-                .unwrap_or_else(|| {
-                    log::error!("Configuration file must be a JSON object");
-                    std::process::exit(1)
-                })
-                .clone()
-        })
-        .unwrap_or_default()
-}
-
 fn try_fixing_stuff(results: &mut RunResults, args: &Args, registry: &Registry) {
     let failed_checks = results
         .iter_mut()
@@ -392,27 +376,4 @@ fn try_fixing_stuff(results: &mut RunResults, args: &Args, registry: &Registry) 
             });
         }
     }
-}
-
-fn load_overrides(configuration: &Map<String, serde_json::Value>) -> Vec<Override> {
-    let mut overrides = vec![];
-    if let Some(config_overrides) = configuration.get("overrides").and_then(|v| v.as_array()) {
-        for override_value in config_overrides {
-            if let Some(override_map) = override_value.as_object() {
-                if let (Some(code), Some(status), Some(reason)) = (
-                    override_map.get("code").and_then(|v| v.as_str()),
-                    override_map
-                        .get("status")
-                        .and_then(|v| v.as_str())
-                        .and_then(StatusCode::from_string),
-                    override_map.get("reason").and_then(|v| v.as_str()),
-                ) {
-                    overrides.push(Override::new(code, status, reason));
-                } else {
-                    log::warn!("Invalid override entry: {:?}", override_value);
-                }
-            }
-        }
-    }
-    overrides
 }

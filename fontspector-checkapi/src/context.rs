@@ -5,7 +5,7 @@ use std::{
 
 use serde_json::{Map, Value};
 
-use crate::{Check, Override, Profile};
+use crate::{Check, CheckId, Override, Profile};
 
 #[derive(Debug, Clone, Default)]
 /// The context of a check
@@ -18,7 +18,7 @@ pub struct Context {
     /// The network timeout in seconds
     pub network_timeout: Option<u64>,
     /// Additional configuration
-    pub configuration: Map<String, Value>,
+    pub configuration: HashMap<CheckId, Value>,
     /// Metadata in the check's definition
     ///
     /// The purpose of this is to allow multiple checks to share an implementation
@@ -50,10 +50,9 @@ impl Context {
     }
 
     /// Get the configuration for a particular check
-    pub fn local_config(&self, check_id: &str) -> Map<String, Value> {
+    pub fn local_config(&self, check_id: &str) -> Value {
         self.configuration
             .get(check_id)
-            .and_then(|v| v.as_object())
             .cloned()
             .unwrap_or_default()
     }
@@ -65,22 +64,20 @@ impl Context {
     pub fn specialize(
         &self,
         check: &Check,
-        configuration: &Map<String, serde_json::Value>,
+        configuration: &HashMap<CheckId, serde_json::Value>,
         profile: &Profile,
     ) -> Self {
         // Start with the user's configuration.
         let mut our_copy = configuration.clone();
         // Now fill in any default configuration values for this check
         let check_config_defaults: HashMap<String, Value> = profile.defaults(check.id);
-        if !check_config_defaults.is_empty() {
-            if let Some(local_config) = our_copy
-                .entry(check.id.to_string())
-                .or_insert_with(|| Value::Object(Map::new()))
-                .as_object_mut()
-            {
-                for (key, value) in check_config_defaults {
-                    local_config.entry(key).or_insert(value);
-                }
+        if let Some(local_config) = our_copy
+            .entry(check.id.to_string())
+            .or_insert_with(|| Value::Object(Map::new()))
+            .as_object_mut()
+        {
+            for (key, value) in check_config_defaults {
+                local_config.entry(key).or_insert(value);
             }
         }
         // I'm not keen on these two clones, but overrides are rare; let's keep an eye

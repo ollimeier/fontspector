@@ -1,5 +1,5 @@
 #![deny(clippy::unwrap_used, clippy::expect_used)]
-use std::{env, path::Path, vec};
+use std::{collections::HashMap, env, path::Path, vec};
 // Provide an environment where we can run fontbakery tests
 // as-is, but have them call a Rust implementation underneath
 use fontspector_checkapi::{
@@ -106,7 +106,7 @@ impl CheckTester {
             TestableType::Collection(&collection)
         };
 
-        let mut fontspector_config = serde_json::Map::new();
+        let mut fontspector_config = HashMap::new();
         let mut skip_network = false;
 
         if let Some(kwargs) = kwargs {

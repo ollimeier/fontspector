@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use js_sys::{Reflect, Uint8Array};
 use wasm_bindgen::prelude::*;
 extern crate console_error_panic_hook;
@@ -72,7 +74,7 @@ pub fn check_fonts(fonts: &JsValue, profile: &str) -> Result<String, JsValue> {
     let context = Context {
         skip_network: true,
         network_timeout: None,
-        configuration: serde_json::Map::new(),
+        configuration: HashMap::new(),
         check_metadata: serde_json::Value::Null,
         full_lists: false,
         cache: Default::default(),
@@ -81,11 +83,11 @@ pub fn check_fonts(fonts: &JsValue, profile: &str) -> Result<String, JsValue> {
     let all_testables: Vec<TestableType> = collection.collection_and_files().collect();
 
     let checkorder: Vec<(String, &TestableType, &Check, Context)> = profile.check_order(
-        &None,
-        &None,
+        &[],
+        &[],
         &registry,
         context,
-        serde_json::Map::new(),
+        &HashMap::new(),
         &all_testables,
     );
 
