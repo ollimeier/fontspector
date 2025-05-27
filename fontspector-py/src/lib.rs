@@ -23,7 +23,7 @@ struct CheckTester {
 }
 
 fn obj_to_testable(py: Python, arg: &Bound<'_, PyAny>) -> PyResult<Testable> {
-    let ttfont_class = py.import_bound("fontTools.ttLib")?.getattr("TTFont")?;
+    let ttfont_class = py.import("fontTools.ttLib")?.getattr("TTFont")?;
     // if it's a string, just return a new testable
     if arg.is_instance_of::<PyString>() {
         let filename: String = arg.extract()?;
@@ -88,9 +88,9 @@ impl CheckTester {
             .get_item(0)
             .map_err(|_| PyValueError::new_err("No args found"))?;
         let testables = if first_arg.is_instance_of::<PyList>() {
+            let first_arg: &Bound<PyList> = first_arg.downcast()?;
             first_arg
-                .iter()?
-                .flatten()
+                .iter()
                 .map(|a| obj_to_testable(py, &a))
                 .collect::<Result<Vec<_>, _>>()?
         } else {
@@ -136,9 +136,9 @@ impl CheckTester {
             .run(&newargs, &context, None)
             .ok_or_else(|| PyValueError::new_err("No results returned?"))?;
         // Map results back to a Python list of subresults
-        let status_module = py.import_bound("fontbakery.status")?;
-        let subresult_module = py.import_bound("fontbakery.result")?;
-        let message_class = py.import_bound("fontbakery.message")?.getattr("Message")?;
+        let status_module = py.import("fontbakery.status")?;
+        let subresult_module = py.import("fontbakery.result")?;
+        let message_class = py.import("fontbakery.message")?.getattr("Message")?;
         let mut py_subresults = vec![];
         for subresult in result.subresults {
             let severity = match subresult.severity {
