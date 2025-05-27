@@ -11,11 +11,11 @@ crate-type = ["cdylib"]
 [dependencies]
 fontspector-checkapi = { path = "../fontspector-checkapi" }
 
-profile-opentype = { path = "../profile-opentype", package="fontspector-profile-opentype" }
-profile-universal = { path = "../profile-universal", package="fontspector-profile-universal" }
-profile-googlefonts = { path = "../profile-googlefonts", package="fontspector-profile-googlefonts" }
-profile-iso15008 = { path = "../profile-iso15008", package="fontspector-profile-iso15008" }
+profile-opentype = { path = "../profile-opentype", package = "fontspector-profile-opentype" }
+profile-universal = { path = "../profile-universal", package = "fontspector-profile-universal" }
+profile-googlefonts = { path = "../profile-googlefonts", package = "fontspector-profile-googlefonts" }
+profile-iso15008 = { path = "../profile-iso15008", package = "fontspector-profile-iso15008" }
 
 serde_json = { workspace = true } # For configuration
 pyo3 = { workspace = true }
-pythonize = "0.22.0"
+pythonize = { workspace = true }
