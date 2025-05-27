@@ -5,8 +5,11 @@
 #![allow(non_upper_case_globals)]
 #![deny(clippy::unwrap_used, clippy::expect_used)]
 
+use std::ffi::CString;
+
 use fontspector_checkapi::{prelude::*, StatusCode};
 use pyo3::{
+    exceptions::PyValueError,
     prelude::*,
     types::{PyList, PyTuple},
 };
@@ -21,7 +24,7 @@ fn python_checkrunner_impl(
 ) -> PyResult<CheckFnResult> {
     let filename = testable.filename.to_string_lossy();
     Python::with_gil(|py| {
-        let module = PyModule::import_bound(py, module)?;
+        let module = PyModule::import(py, module)?;
         let check = module.getattr(function)?;
 
         // Let's check this check's mandatory arguments
@@ -33,12 +36,12 @@ fn python_checkrunner_impl(
         }
         let arg = if args[0] == "font" {
             // Convert the Testable to a Python Font object
-            let testable = PyModule::import_bound(py, "fontbakery.testable")?;
+            let testable = PyModule::import(py, "fontbakery.testable")?;
             let font = testable.getattr("Font")?;
             font.call1((filename,))?
         } else if args[0] == "ttFont" {
             // Convert the Testable to a Python TTFont object
-            let ttlib = PyModule::import_bound(py, "fontTools.ttLib")?;
+            let ttlib = PyModule::import(py, "fontTools.ttLib")?;
             let ttfont = ttlib.getattr("TTFont")?;
             ttfont.call1((filename,))?
         } else {
@@ -53,7 +56,7 @@ fn python_checkrunner_impl(
         // If the checkresult is a single tuple, turn it into a list of tuples, and get a generator
         if checkresult.is_instance_of::<PyTuple>() {
             let checkresults = vec![checkresult];
-            checkresult = PyList::new_bound(py, checkresults)
+            checkresult = PyList::new(py, checkresults)?
                 .getattr("__iter__")?
                 .call0()?;
         }
@@ -116,11 +119,18 @@ pub fn register_python_checks(
 ) -> Result<(), String> {
     Python::with_gil(|py| {
         // Assert that we have loaded the FB prelude
-        let _prelude = PyModule::import_bound(py, "fontbakery.prelude")?;
-        let callable = PyModule::import_bound(py, "fontbakery.callable")?;
+        let _prelude = PyModule::import(py, "fontbakery.prelude")?;
+        let callable = PyModule::import(py, "fontbakery.callable")?;
         let full_source = "from fontbakery.prelude import *\n\n".to_string() + source;
-        let module =
-            PyModule::from_code_bound(py, &full_source, &format!("{}.py", modulename), modulename)?;
+        let module = PyModule::from_code(
+            py,
+            &CString::new(full_source)
+                .map_err(|_| PyValueError::new_err("Failed to create CString from source"))?,
+            &CString::new(format!("{}.py", modulename))
+                .map_err(|_| PyValueError::new_err("Failed to create CString from module name"))?,
+            &CString::new(modulename)
+                .map_err(|_| PyValueError::new_err("Failed to create CString from module name"))?,
+        )?;
         log::debug!("Loaded module {}", modulename);
         // Find all functions in the module which are checks
         let checktype = callable.getattr("FontBakeryCheck")?;
@@ -197,23 +207,32 @@ impl fontspector_checkapi::Plugin for FontbakeryBridge {
         pyo3::prepare_freethreaded_python();
         // Load needed FB modules
         let ok: PyResult<()> = Python::with_gil(|py| {
-            PyModule::from_code_bound(
+            #[allow(clippy::unwrap_used)] // Static strings
+            PyModule::from_code(
                 py,
-                include_str!("../fontbakery/Lib/fontbakery/callable.py"),
-                "callable.py",
-                "fontbakery.callable",
+                &CString::new(include_str!("../fontbakery/Lib/fontbakery/callable.py")).map_err(
+                    |_| PyValueError::new_err("Failed to create CString from callable source"),
+                )?,
+                &CString::new("callable.py").unwrap(),
+                &CString::new("fontbakery.callable").unwrap(),
             )?;
-            PyModule::from_code_bound(
+            #[allow(clippy::unwrap_used)] // Static strings
+            PyModule::from_code(
                 py,
-                include_str!("../fontbakery/Lib/fontbakery/status.py"),
-                "status.py",
-                "fontbakery.status",
+                &CString::new(include_str!("../fontbakery/Lib/fontbakery/status.py")).map_err(
+                    |_| PyValueError::new_err("Failed to create CString from status source"),
+                )?,
+                &CString::new("status.py").unwrap(),
+                &CString::new("fontbakery.status").unwrap(),
             )?;
-            PyModule::from_code_bound(
+            #[allow(clippy::unwrap_used)] // Static strings
+            PyModule::from_code(
                 py,
-                include_str!("../fontbakery/Lib/fontbakery/message.py"),
-                "message.py",
-                "fontbakery.message",
+                &CString::new(include_str!("../fontbakery/Lib/fontbakery/message.py")).map_err(
+                    |_| PyValueError::new_err("Failed to create CString from message source"),
+                )?,
+                &CString::new("message.py").unwrap(),
+                &CString::new("fontbakery.message").unwrap(),
             )?;
             Ok(())
         });
