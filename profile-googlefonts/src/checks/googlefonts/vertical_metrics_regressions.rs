@@ -1,4 +1,4 @@
-use crate::network_conditions::remote_styles;
+use crate::network_conditions::{is_listed_on_google_fonts, remote_styles};
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 
 #[check(
@@ -46,6 +46,12 @@ fn vertical_metrics_regressions(t: &Testable, context: &Context) -> CheckFnResul
         context.skip_network,
         "network-disabled",
         "Network access disabled"
+    );
+    skip!(
+        !is_listed_on_google_fonts(&f.best_familyname().unwrap_or_default(), context)
+            .map_err(CheckError::Error)?,
+        "not-listed-on-google-fonts",
+        "Skipping check because font is not listed on Google Fonts"
     );
     let family_name = f.best_familyname().unwrap_or("New font".to_string());
     let remote = remote_styles(&family_name, context)

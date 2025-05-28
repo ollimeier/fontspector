@@ -1,7 +1,7 @@
 use fontations::skrifa::raw::TableProvider;
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 
-use crate::network_conditions::remote_styles;
+use crate::network_conditions::{is_listed_on_google_fonts, remote_styles};
 
 #[check(
     id = "googlefonts/version_bump",
@@ -21,6 +21,12 @@ fn version_bump(f: &Testable, context: &Context) -> CheckFnResult {
         context.skip_network,
         "network-check",
         "Skipping network check"
+    );
+    skip!(
+        !is_listed_on_google_fonts(&font.best_familyname().unwrap_or_default(), context)
+            .map_err(CheckError::Error)?,
+        "not-listed-on-google-fonts",
+        "Skipping check because font is not listed on Google Fonts"
     );
     let family_name = font.best_familyname().ok_or(CheckError::Error(
         "Could not determine family name".to_string(),
