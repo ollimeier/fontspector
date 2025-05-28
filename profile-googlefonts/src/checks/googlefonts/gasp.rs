@@ -4,7 +4,7 @@ use fontations::{
     write::FontBuilder,
 };
 use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert};
-use markdown_table::MarkdownTable;
+use tabled::builder::Builder;
 
 const NON_HINTING_MESSAGE: &str =  "If you are dealing with an unhinted font, it can be fixed by running the fonts through the command 'gftools fix-nonhinting'\nGFTools is available at https://pypi.org/project/gftools/";
 
@@ -74,23 +74,17 @@ fn gasp(t: &Testable, _context: &Context) -> CheckFnResult {
             "The 'gasp' table does not have an entry that applies for all font sizes. The gaspRange value for such entry should be set to 0xFFFF.",
         ));
     }
-    let md_table = MarkdownTable::new(
-        gasp_table
-            .gasp_ranges()
-            .iter()
-            .map(|r| {
-                vec![
-                    format!("PPM <= {}", r.range_max_ppem),
-                    gasp_meaning(r.range_gasp_behavior.get()),
-                ]
-            })
-            .collect(),
-    );
+    let md_table = Builder::from_iter(gasp_table.gasp_ranges().iter().map(|r| {
+        vec![
+            format!("PPM <= {}", r.range_max_ppem),
+            gasp_meaning(r.range_gasp_behavior.get()),
+        ]
+    }));
     problems.push(Status::info(
         "ranges",
         &format!(
             "These are the ppm ranges declared on the gasp table:\n\n{}\n",
-            md_table.to_string()
+            md_table.build().with(tabled::settings::Style::markdown())
         ),
     ));
     for range in gasp_table.gasp_ranges() {

@@ -1,7 +1,7 @@
 use fontations::skrifa::string::StringId;
 use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert, TestFont};
 use google_fonts_axisregistry::build_name_table;
-use markdown_table::{Heading, MarkdownTable};
+use tabled::builder::Builder;
 
 use crate::utils::build_expected_font;
 
@@ -45,7 +45,9 @@ fn font_names(t: &Testable, _context: &Context) -> CheckFnResult {
     let expected_font = TestFont::new_from_data(&t.filename, &expected_font_data)
         .map_err(|e| CheckError::Error(format!("Couldn't build expected font from data: {}", e)))?;
     let mut ok = true;
-    let mut rows = vec![];
+    let mut md_table = Builder::new();
+    md_table.push_record(vec!["Name", "Current", "Expected"]);
+
     for &(name_id, name) in NAME_IDS.iter() {
         let current = f.get_best_name(&[name_id]).unwrap_or("N/A".to_string());
         let expected = expected_font
@@ -71,22 +73,15 @@ fn font_names(t: &Testable, _context: &Context) -> CheckFnResult {
             row.push(current);
             row.push(expected);
         }
-        rows.push(row);
+        md_table.push_record(row);
     }
-    let mut md_table = MarkdownTable::new(rows);
-    md_table.with_headings(vec![
-        Heading::new("Name".to_string(), None),
-        Heading::new("Current".to_string(), None),
-        Heading::new("Expected".to_string(), None),
-    ]);
+
     if !ok {
         problems.push(Status::fail(
             "bad-names",
             &format!(
                 "Font names are incorrect:\n\n{}",
-                md_table.as_markdown().map_err(|_| CheckError::Error(
-                    "Can't happen (table creation failed)".to_string()
-                ))?
+                md_table.build().with(tabled::settings::Style::markdown())
             ),
         ));
     }
