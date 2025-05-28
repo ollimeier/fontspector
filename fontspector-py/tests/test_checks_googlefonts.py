@@ -1,6 +1,7 @@
 import glob
 import math
 import os
+from pathlib import Path
 import shutil
 import tempfile
 
@@ -782,8 +783,18 @@ def test_family_directory_condition():
 
 
 @check_id("googlefonts/family/has_license")
-def test_check_family_has_license(check):
+def test_check_family_has_license(check, tmp_path):
     """Check font project has a license."""
+
+    def make_fake_gf_repo(dir):
+        """Create a fake Google Fonts repository with the given files."""
+        repo_path = tmp_path / "ofl" / "some_family"
+        shutil.rmtree(repo_path, ignore_errors=True)  # Clean up any previous runs
+        repo_path.mkdir(parents=True)
+        files = list(Path(dir).glob("*"))
+        for file in files:
+            shutil.copy(file, repo_path)
+        return [str(repo_path / Path(file).name) for file in files]
 
     def licenses_for_test(path):
         return glob.glob(path + "/LICENSE.txt") + glob.glob(path + "/OFL.txt")
@@ -791,7 +802,7 @@ def test_check_family_has_license(check):
     detected_licenses = licenses_for_test(portable_path("data/test/028/multiple"))
     assert len(detected_licenses) > 1
     assert_results_contain(
-        check(detected_licenses),
+        check(make_fake_gf_repo(portable_path("data/test/028/multiple"))),
         FAIL,
         "multiple",
         "with multiple licenses...",
@@ -799,7 +810,7 @@ def test_check_family_has_license(check):
 
     detected_licenses = licenses_for_test(portable_path("data/test/028/none"))
     assert_results_contain(
-        check(detected_licenses),
+        check(make_fake_gf_repo(portable_path("data/test/028/none"))),
         FAIL,
         "no-license",
         "with no license...",
@@ -807,13 +818,13 @@ def test_check_family_has_license(check):
 
     detected_licenses = licenses_for_test(portable_path("data/test/028/pass_ofl"))
     assert_PASS(
-        check(detected_licenses),
+        check(make_fake_gf_repo(portable_path("data/test/028/pass_ofl"))),
         "with a single OFL license...",
     )
 
     detected_licenses = licenses_for_test(portable_path("data/test/028/pass_apache"))
     assert_PASS(
-        check(detected_licenses),
+        check(make_fake_gf_repo(portable_path("data/test/028/pass_apache"))),
         "with a single Apache license...",
     )
 
