@@ -33,12 +33,14 @@ module.exports = {
   },
   mode: "development",
   plugins: [
-    new CopyWebpackPlugin([
-      "index.html",
-      "*.css",
-      "*.svg",
-      "cmark-gfm.js",
-      "node_modules/harfbuzzjs/hb.wasm",
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        "index.html",
+        "*.css",
+        "*.svg",
+        "cmark-gfm.js",
+        "node_modules/harfbuzzjs/hb.wasm",
+      ],
+    }),
   ],
 };
