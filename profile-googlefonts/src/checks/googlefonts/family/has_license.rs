@@ -1,5 +1,5 @@
-use crate::LICENSE;
-use fontspector_checkapi::prelude::*;
+use crate::{seems_like_gf_repo, LICENSE};
+use fontspector_checkapi::{prelude::*, skip};
 
 #[check(
     id = "googlefonts/family/has_license",
@@ -25,6 +25,11 @@ fn has_license(c: &TestableCollection, context: &Context) -> CheckFnResult {
             ),
         )
     } else if licenses.is_empty() {
+        skip!(
+            !seems_like_gf_repo(c),
+            "not-in-google-fonts-repo",
+            "This check is only relevant for the google/fonts repository"
+        );
         Status::just_one_fail(
             "no-license",
             "No license file was found. Please add an OFL.txt or a LICENSE.txt file.",
