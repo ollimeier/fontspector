@@ -13,12 +13,13 @@ use crate::checks::googlefonts::metadata::family_proto;
 )]
 fn family_directory_name(c: &Testable, _context: &Context) -> CheckFnResult {
     // Assume we actually have directories, we might not in a WASM context
-    let Some(directory) = c.filename.parent() else {
+    let Ok(fullpath) = std::fs::canonicalize(&c.filename) else {
         skip!("no-directory", "No directory information")
     };
     let msg = family_proto(c)?;
-    let last_component = directory
-        .file_name()
+    let last_component = fullpath
+        .parent()
+        .and_then(|p| p.file_name())
         .ok_or(CheckError::Error("No directory name".to_string()))?
         .to_string_lossy();
     let expected = msg.name().replace(" ", "").to_lowercase();
