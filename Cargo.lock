@@ -2973,8 +2973,7 @@ dependencies = [
 [[package]]
 name = "papergrid"
 version = "0.15.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "30268a8d20c2c0d126b2b6610ab405f16517f6ba9f244d8c59ac2c512a8a1ce7"
+source = "git+https://github.com/zhiburt/tabled#fd48cef72a3e87beada497689509f9ab7b5823dd"
 dependencies = [
  "ahash 0.8.12",
  "bytecount",
@@ -4350,8 +4349,7 @@ dependencies = [
 [[package]]
 name = "tabled"
 version = "0.19.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "228d124371171cd39f0f454b58f73ddebeeef3cef3207a82ffea1c29465aea43"
+source = "git+https://github.com/zhiburt/tabled#fd48cef72a3e87beada497689509f9ab7b5823dd"
 dependencies = [
  "papergrid",
  "tabled_derive",
