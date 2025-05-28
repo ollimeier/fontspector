@@ -1,6 +1,6 @@
 [package]
-name = "profile-designspace"
-version = "0.1.0"
+name = "fontspector-profile-designspace"
+version = "1.0.3"
 edition = "2021"
 
 [lib]
@@ -8,9 +8,9 @@ crate-type = ["cdylib"]
 
 [dependencies]
 fontspector-checkapi = { path = "../fontspector-checkapi" }
-norad = "0.14.2"
-serde_json = "1.0.68"
-quick-xml = { version = "0.36.0", features = ["serialize"] }
+norad = "0.16.0"
+serde_json = { workspace = true }
+quick-xml = { version = "0.37.0", features = ["serialize"] }
 
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 # Plugin architecture
