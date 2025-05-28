@@ -17,6 +17,18 @@ pub(crate) const IMAGE: FileType = FileType {
     pattern: "*.{png,jpg,jpeg,jxl,gif,svg}",
 };
 
+pub(crate) fn seems_like_gf_repo(c: &TestableCollection) -> bool {
+    c.iter().next().is_some_and(|f| {
+        let Some(grandparent) = f.filename.parent().and_then(|p| p.parent()) else {
+            return false;
+        };
+
+        grandparent
+            .file_name()
+            .is_some_and(|n| n == "ofl" || n == "apache" || n == "ufl")
+    })
+}
+
 pub struct GoogleFonts;
 impl fontspector_checkapi::Plugin for GoogleFonts {
     fn register(&self, cr: &mut Registry) -> Result<(), String> {
