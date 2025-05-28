@@ -3,7 +3,7 @@ use std::vec;
 use fontspector_checkapi::{fixfont, prelude::*, skip, testfont, FileTypeConvert, TestFont};
 use google_fonts_axisregistry::build_fvar_instances;
 use indexmap::{IndexMap, IndexSet};
-use markdown_table::{Heading, MarkdownTable};
+use tabled::builder::Builder;
 
 use crate::utils::build_expected_font;
 
@@ -83,23 +83,14 @@ fn fvar_instances(t: &Testable, _context: &Context) -> CheckFnResult {
         && same_names
             .iter()
             .any(|i| instances[**i]["wght"] != expected_instances[**i]["wght"]);
-    let mut md_table = MarkdownTable::new(
-        table
-            .iter()
-            .map(|ix| {
-                vec![
-                    ix.get("Name").map_or("Unknown", |s| s.as_ref()),
-                    ix.get("current").map_or("N/A", |s| s.as_ref()),
-                    ix.get("expected").map_or("N/A", |s| s.as_ref()),
-                ]
-            })
-            .collect(),
-    );
-    md_table.with_headings(vec![
-        Heading::new("Name".to_string(), None),
-        Heading::new("current".to_string(), None),
-        Heading::new("expected".to_string(), None),
-    ]);
+    let mut md_table = Builder::from_iter(table.iter().map(|ix| {
+        vec![
+            ix.get("Name").map_or("Unknown", |s| s.as_ref()),
+            ix.get("current").map_or("N/A", |s| s.as_ref()),
+            ix.get("expected").map_or("N/A", |s| s.as_ref()),
+        ]
+    }));
+    md_table.insert_record(0, vec!["Name", "current", "expected"]);
     if wght_wrong || !missing_names.is_empty() || !new_names.is_empty() {
         let mut hints = vec![];
         if !missing_names.is_empty() {
@@ -116,9 +107,7 @@ fn fvar_instances(t: &Testable, _context: &Context) -> CheckFnResult {
             &format!(
                 "fvar instances are incorrect:\n\n{}\n\n{}\n\n",
                 hints.join("\n"),
-                md_table.as_markdown().map_err(|_| CheckError::Error(
-                    "Can't happen (table creation failed)".to_string()
-                ))?
+                md_table.build().with(tabled::settings::Style::markdown())
             ),
         ));
     } else if same_names
@@ -129,8 +118,8 @@ fn fvar_instances(t: &Testable, _context: &Context) -> CheckFnResult {
             "suspicious-fvar-coords",
             &format!(
                 "fvar instance coordinates for non-wght axes are not the same as the fvar defaults. This may be intentional so please check with the font author:\n\n{}\n\n",
-                md_table.as_markdown().map_err(|_| CheckError::Error("Can't happen (table creation failed)".to_string()))?
-            ),
+                md_table.build().with(tabled::settings::Style::markdown())
+            )
         ));
     }
     return_result(problems)

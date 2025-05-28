@@ -33,11 +33,11 @@ fn version_format(t: &Testable, _context: &Context) -> CheckFnResult {
             problems.push(Status::fail(
                 "bad-version-strings",
                 &format!(
-                    "The NameID.VERSION_STRING (nameID=5) value must follow\
-                      the pattern \"Version X.Y\" with X.Y greater than or\
-                      equal to 1.000.\
-                     The \"Version\" prefix is a recommendation given by the\
-                      OpenType spec. Current version string is: \"{}\"",
+                    "The NameID.VERSION_STRING (nameID=5) value must follow the pattern \"Version X.Y\" with X.Y greater than or equal to 1.000.
+
+The \"Version\" prefix is a recommendation given by the OpenType spec.
+
+Current version string is: \"{}\"",
                     version_string,
                 ),
             ));

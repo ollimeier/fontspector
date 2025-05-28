@@ -28,7 +28,7 @@ fontations = { workspace = true }
 itertools = { workspace = true }
 unicode-properties = { workspace = true }
 unicode_names2 = { workspace = true }
-markdown-table = { workspace = true }
+tabled = { workspace = true }
 log = { workspace = true }
 humansize = "2.1.3"
 serde_json = { workspace = true }

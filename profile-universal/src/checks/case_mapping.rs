@@ -1,5 +1,5 @@
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
-use markdown_table::{Heading, MarkdownTable};
+use tabled::builder::Builder;
 use unicode_properties::{GeneralCategoryGroup, UnicodeGeneralCategory};
 
 fn swapcase(c: &char) -> Option<char> {
@@ -90,18 +90,19 @@ fn case_mapping(t: &Testable, context: &Context) -> CheckFnResult {
     if missing_counterparts_table.is_empty() {
         Ok(Status::just_one_pass())
     } else {
-        let mut table = MarkdownTable::new(missing_counterparts_table);
-        table.with_headings(vec![
-            Heading::new("Glyph present in the font".to_string(), None),
-            Heading::new("Missing case-swapping counterpart".to_string(), None),
-        ]);
+        let mut table = Builder::from_iter(missing_counterparts_table.into_iter());
+        table.insert_record(
+            0,
+            vec![
+                "Glyph present in the font",
+                "Missing case-swapping counterpart",
+            ],
+        );
         Ok(Status::just_one_fail(
             "missing-case-counterparts",
             &format!(
                 "The following glyphs are missing case-swapping counterparts:\n\n{}",
-                table.as_markdown().map_err(|_| CheckError::Error(
-                    "Can't happen (table creation failed)".to_string()
-                ))?
+                table.build().with(tabled::settings::Style::markdown())
             ),
         ))
     }

@@ -3,7 +3,7 @@ use fontations::skrifa::{FontRef, MetadataProvider};
 use fontspector_checkapi::{prelude::*, skip, testfont, FileTypeConvert};
 use hashbrown::HashMap;
 use itertools::Itertools;
-use markdown_table::{Heading, MarkdownTable};
+use tabled::builder::Builder;
 
 use crate::utils::build_expected_font;
 
@@ -159,17 +159,20 @@ fn compulsory_axis_values(t: &Testable, _context: &Context) -> CheckFnResult {
         })
         .collect();
     let missing_italic_av = !rows.iter().any(|r| r[0].contains("Italic"));
-    let mut table = MarkdownTable::new(rows);
-    table.with_headings(vec![
-        Heading::new("Name".to_string(), None),
-        Heading::new("Axis".to_string(), None),
-        Heading::new("Current Value".to_string(), None),
-        Heading::new("Expected Value".to_string(), None),
-        Heading::new("Current Flags".to_string(), None),
-        Heading::new("Expected Flags".to_string(), None),
-        Heading::new("Current Linked Value".to_string(), None),
-        Heading::new("Expected Linked Value".to_string(), None),
+    let mut table = Builder::new();
+    table.push_record(vec![
+        "Name",
+        "Axis",
+        "Current Value",
+        "Expected Value",
+        "Current Flags",
+        "Expected Flags",
+        "Current Linked Value",
+        "Expected Linked Value",
     ]);
+    for row in rows {
+        table.push_record(row);
+    }
     let is_italic = f
         .font()
         .fvar()?
@@ -187,7 +190,7 @@ fn compulsory_axis_values(t: &Testable, _context: &Context) -> CheckFnResult {
             "bad-axis-values",
             &format!(
                 "Compulsory STAT Axis Values are incorrect:\n\n{}\n\n",
-                table.to_string()
+                table.build().with(tabled::settings::Style::markdown())
             ),
         ));
     }

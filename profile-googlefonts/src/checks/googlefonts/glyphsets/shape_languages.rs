@@ -1,23 +1,23 @@
 use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 use google_fonts_glyphsets::{get_glyphset_coverage, languages_per_glyphset};
 use hashbrown::HashMap;
-use markdown_table::MarkdownTable;
 use shaperglot::{Checker, Languages, ResultCode};
+use tabled::builder::Builder;
 
 fn table_of_results(
     context: &Context,
     _title: &str,
     results: &HashMap<String, Vec<String>>,
-) -> Result<String, CheckError> {
-    let table = MarkdownTable::new(
-        results
-            .iter()
-            .map(|(message, languages)| vec![message.to_string(), bullet_list(context, languages)])
-            .collect(),
-    );
-    table
-        .as_markdown()
-        .map_err(|_| CheckError::Error("Can't happen (table creation failed)".to_string()))
+) -> String {
+    let mut table = Builder::from_iter(
+        std::iter::once(vec!["Message".to_string(), "Languages".to_string()]).chain(
+            results.iter().map(|(message, languages)| {
+                vec![message.to_string(), bullet_list(context, languages)]
+            }),
+        ),
+    )
+    .build();
+    table.with(tabled::settings::Style::markdown()).to_string()
 }
 #[check(
     id = "googlefonts/glyphsets/shape_languages",
@@ -69,8 +69,8 @@ fn shape_languages(t: &Testable, context: &Context) -> CheckFnResult {
         problems.push(Status::fail(
             "failed-language-shaping",
             &format!(
-                "Failed language shaping:\n{}",
-                table_of_results(context, "FAIL", &fails)?
+                "Failed language shaping:\n\n{}",
+                table_of_results(context, "FAIL", &fails)
             ),
         ));
     }
@@ -78,8 +78,8 @@ fn shape_languages(t: &Testable, context: &Context) -> CheckFnResult {
         problems.push(Status::warn(
             "warning-language-shaping",
             &format!(
-                "Warning language shaping:\n{}",
-                table_of_results(context, "WARN", &warns)?
+                "Warning language shaping:\n\n{}",
+                table_of_results(context, "WARN", &warns)
             ),
         ));
     }
