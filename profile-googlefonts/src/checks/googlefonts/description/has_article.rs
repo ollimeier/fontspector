@@ -28,7 +28,7 @@ fn has_article(c: &TestableCollection, _context: &Context) -> CheckFnResult {
         .unwrap_or(false);
     if !is_noto {
         if article.is_none() {
-            problems.push(Status::fail(
+            problems.push(Status::info(
                 "missing-article",
                 "This font doesn't have an ARTICLE.en_us.html file.",
             ));
