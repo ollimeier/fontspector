@@ -10,6 +10,7 @@ use fontspector_checkapi::{
 use profile_adobe::Adobe;
 use profile_googlefonts::GoogleFonts;
 use profile_iso15008::Iso15008;
+use profile_iso15009::Iso15009;
 use profile_microsoft::Microsoft;
 use profile_opentype::OpenType;
 use profile_universal::Universal;
@@ -36,6 +37,9 @@ pub fn check_fonts(fonts: &JsValue, profile: &str) -> Result<String, JsValue> {
     Iso15008
         .register(&mut registry)
         .expect("Couldn't register iso15008 profile, fontspector bug");
+    Iso15009
+        .register(&mut registry)
+        .expect("Couldn't register iso15009 profile, fontspector bug");
     Adobe
         .register(&mut registry)
         .expect("Couldn't register Adobe profile, fontspector bug");

@@ -220,6 +220,7 @@ const PROFILES: Record<string, string> = {
   universal: "Universal (community best practices)",
   googlefonts: "Google Fonts",
   iso15008: "ISO 15008 (in-car accessibility)",
+  iso15009: "iso15009",
   adobefonts: "Adobe Fonts",
   fontbureau: "Font Bureau",
   // typenetwork: "Type Network",

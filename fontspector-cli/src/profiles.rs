@@ -4,6 +4,7 @@ use fontbakery_bridge::FontbakeryBridge;
 use fontspector_checkapi::{Plugin, Profile, Registry};
 use profile_googlefonts::GoogleFonts;
 use profile_iso15008::Iso15008;
+use profile_iso15009::Iso15009;
 use profile_opentype::OpenType;
 use profile_universal::Universal;
 use std::io::Read;
@@ -85,6 +86,10 @@ pub(crate) fn register_core_profiles(args: &Args, registry: &mut Registry<'stati
     Iso15008
         .register(registry)
         .expect("Couldn't register iso15008 profile, fontspector bug");
+    #[allow(clippy::expect_used)] // If this fails, I *want* to panic
+    Iso15009
+        .register(registry)
+        .expect("Couldn't register iso15009 profile, fontspector bug");
 }
 
 #[cfg(feature = "python")]

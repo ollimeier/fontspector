@@ -27,6 +27,7 @@ fontbakery-bridge = { path = "../fontbakery-bridge", optional = true, version = 
 profile-universal = { path = "../profile-universal", version = "1.0.0", package = "fontspector-profile-universal" }
 profile-opentype = { path = "../profile-opentype", version = "1.0.0", package = "fontspector-profile-opentype" }
 profile-iso15008 = { path = "../profile-iso15008", version = "1.0.0", package = "fontspector-profile-iso15008" }
+profile-iso15009 = { path = "../profile-iso15009", version = "1.0.0", package = "fontspector-profile-iso15009" }
 profile-googlefonts = { path = "../profile-googlefonts", version = "1.0.0", package = "fontspector-profile-googlefonts" }
 clap = { version = "4", features = ["derive", "string"] }
 itertools = { workspace = true }

@@ -1,0 +1,18 @@
+[package]
+name = "fontspector-profile-iso15009"
+version = "1.0.1"
+edition = "2021"
+authors = ["Simon Cozens <simon@simon-cozens.org>"]
+description = "Fontspector checks for OpenType font conformance to ISO 15009:2008"
+repository = "https://github.com/fonttools/fontspector"
+homepage = "https://fonttools.github.io/fontspector/"
+license = "Apache-2.0"
+
+[dependencies]
+fontspector-checkapi = { path = "../fontspector-checkapi", features = [
+    "kurbo",
+], version = "1.0.0" }
+fontations = { workspace = true }
+kurbo = { workspace = true }
+itertools = { workspace = true }
+rustybuzz = { workspace = true }

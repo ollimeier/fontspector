@@ -8,6 +8,7 @@ members = [
     "profile-adobe",
     "profile-designspace",
     "profile-iso15008",
+    "profile-iso15009",
     "profile-microsoft",
     "profile-opentype",
     "profile-universal",

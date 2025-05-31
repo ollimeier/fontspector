@@ -1290,6 +1290,7 @@ dependencies = [
  "fontspector-fontbakery-bridge",
  "fontspector-profile-googlefonts",
  "fontspector-profile-iso15008",
+ "fontspector-profile-iso15009",
  "fontspector-profile-opentype",
  "fontspector-profile-universal",
  "homedir",
@@ -1427,6 +1428,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "fontspector-profile-iso15009"
+version = "1.0.1"
+dependencies = [
+ "fontations",
+ "fontspector-checkapi",
+ "itertools 0.13.0",
+ "kurbo",
+ "rustybuzz",
+]
+
+[[package]]
 name = "fontspector-profile-microsoft"
 version = "0.1.0"
 dependencies = [
@@ -1487,6 +1499,7 @@ dependencies = [
  "fontspector-checkapi",
  "fontspector-profile-googlefonts",
  "fontspector-profile-iso15008",
+ "fontspector-profile-iso15009",
  "fontspector-profile-opentype",
  "fontspector-profile-universal",
  "pyo3",
@@ -1503,6 +1516,7 @@ dependencies = [
  "fontspector-profile-adobe",
  "fontspector-profile-googlefonts",
  "fontspector-profile-iso15008",
+ "fontspector-profile-iso15009",
  "fontspector-profile-microsoft",
  "fontspector-profile-opentype",
  "fontspector-profile-universal",
