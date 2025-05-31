@@ -3,8 +3,8 @@ mod checks;
 
 use fontspector_checkapi::{ProfileBuilder, Registry};
 
-pub struct iso15009;
-impl fontspector_checkapi::Plugin for iso15009 {
+pub struct Iso15009;
+impl fontspector_checkapi::Plugin for Iso15009 {
     fn register(&self, cr: &mut Registry) -> Result<(), String> {
         let builder = ProfileBuilder::new()
             .add_section("iso15009 Fonts Checks")
