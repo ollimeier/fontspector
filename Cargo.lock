@@ -1387,6 +1387,7 @@ dependencies = [
  "fontspector-checkapi",
  "itertools 0.13.0",
  "pluginator",
+ "serde_json",
 ]
 
 [[package]]
