@@ -1,5 +1,5 @@
 use fontations::write::FontBuilder;
-use fontspector_checkapi::{fixfont, prelude::*, testfont, FileTypeConvert};
+use fontspector_checkapi::{prelude::*, testfont, FileTypeConvert};
 
 const UNWANTED_TABLES: [&[u8; 4]; 23] = [
     b"acnt", b"ankr", b"bdat", b"bhed", b"bloc", b"bmap", b"bsln", b"EBSC", b"fdsc", b"feat",
@@ -30,7 +30,7 @@ fn unwanted_aat_tables(t: &Testable, _context: &Context) -> CheckFnResult {
     for tag in UNWANTED_TABLES.iter() {
         if f.has_table(tag) {
             found.push(String::from_utf8(tag.to_vec()).map_err(|_| {
-                CheckError::Error(format!("Font tag '{:?}' wasn't UTF8?", tag.to_vec()))
+                FontspectorError::General(format!("Font tag '{:?}' wasn't UTF8?", tag.to_vec()))
             })?);
         }
     }
@@ -50,7 +50,7 @@ fn unwanted_aat_tables(t: &Testable, _context: &Context) -> CheckFnResult {
 }
 
 fn delete_unwanted_aat_tables(t: &mut Testable) -> FixFnResult {
-    let f = fixfont!(t);
+    let f = testfont!(t);
     let mut new_font = FontBuilder::new();
     for table in f.font().table_directory.table_records() {
         let tag = table.tag.get();
