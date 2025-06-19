@@ -14,26 +14,33 @@ use std::collections::HashMap;
     title = "Check name table entries against configuration"
 )]
 fn name_entries(f: &Testable, context: &Context) -> CheckFnResult {
-    let config = &context.configuration;
-    skip!(config.is_empty(), "no-context", "No configuration context provided for name table checks.");
+    let local_config = context.local_config("fontwerk/name_entries");
+    let config = local_config.as_object();
+    skip!(
+        config.is_none() || config.unwrap().is_empty(),
+        "no-context",
+        "No configuration context provided for name table checks."
+    );
 
     let font = testfont!(f);
     let mut bad_names: Vec<String> = vec![];
-    for (key, value) in config.iter() {
-        let string_id = get_string_id_from_string(key);
-        if string_id.is_none() {
-            bad_names.push(format!("Unknown name table entry: {}",key, ));
-            continue;
-        }
-        let string_id = string_id.unwrap();
-        let name_table_entries: Vec<_> = font.get_name_entry_strings(string_id).collect();
-        if name_table_entries.is_empty() {
-            bad_names.push(format!("No {} entry found", key));
-        }
-        for entry in name_table_entries {
-            let value_str = value.as_str().unwrap();
-            if entry != value_str {
-                bad_names.push(format!("Name {} is {} but should be {}", key, entry, value_str));
+    if let Some(config_map) = config {
+        for (key, value) in config_map.iter() {
+            let string_id = get_string_id_from_string(key);
+            if string_id.is_none() {
+                bad_names.push(format!("Unknown name table entry: {}",key, ));
+                continue;
+            }
+            let string_id = string_id.unwrap();
+            let name_table_entries: Vec<_> = font.get_name_entry_strings(string_id).collect();
+            if name_table_entries.is_empty() {
+                bad_names.push(format!("No {} entry found", key));
+            }
+            for entry in name_table_entries {
+                let value_str = value.as_str().unwrap();
+                if entry != value_str {
+                    bad_names.push(format!("{} is '{}' but should be '{}'.", key, entry, value_str));
+                }
             }
         }
     }
@@ -129,7 +136,7 @@ mod tests {
                 Some(
                     "The following issues have been found:\n\n\
                     * No LICENSE_URL entry found\n\
-                    * Name MANUFACTURER is Fontwerk but should be Another Foundry"
+                    * MANUFACTURER is 'Fontwerk' but should be 'Another Foundry'."
                         .to_string(),
                 ),
             ),
@@ -162,8 +169,11 @@ mod tests {
         );
 
         for (i, config) in configs.iter().enumerate() {
+            let conf = HashMap::from([
+                ("fontwerk/name_entries".to_string(), serde_json::json!(config)),
+            ]);
             let context = Context {
-                configuration: config.clone(),
+                configuration: conf.clone(),
                 ..Default::default()
             };
             let result = name_entries_impl(&testable, &context)
