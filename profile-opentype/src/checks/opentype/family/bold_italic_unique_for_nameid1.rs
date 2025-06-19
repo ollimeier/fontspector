@@ -20,7 +20,7 @@ use fontspector_checkapi::{prelude::*, FileTypeConvert};
 fn bold_italic_unique_for_nameid1(c: &TestableCollection, _context: &Context) -> CheckFnResult {
     let fonts = TTF.from_collection(c);
     let mut problems = vec![];
-    let mut flags: HashSet<(bool, bool, String)> = HashSet::new();
+    let mut flags: HashSet<(bool, bool, Option<String>)> = HashSet::new();
     let ribbi = fonts.iter().filter(|f| f.is_ribbi());
     for font in ribbi {
         let fsselection = font.get_os2_fsselection()?;
@@ -28,13 +28,13 @@ fn bold_italic_unique_for_nameid1(c: &TestableCollection, _context: &Context) ->
         let val = (
             fsselection.intersects(SelectionFlags::BOLD),
             fsselection.intersects(SelectionFlags::ITALIC),
-            name_id_1[0].clone(), // use the first name id 1 entry
+            name_id_1.first().cloned() // use the first name id 1 entry
         );
         if flags.contains(&val) {
             problems.push(Status::fail(
                 "unique-fsselection",
                 &(format!(
-                    "Font {} has the same selection flags ({}{}{}) as another font ({})",
+                    "Font {} has the same selection flags ({}{}{}) as another font ({:?})",
                     font.filename.to_string_lossy(),
                     if val.0 { "bold" } else { "" },
                     if val.0 && val.1 { " & " } else { "" },
