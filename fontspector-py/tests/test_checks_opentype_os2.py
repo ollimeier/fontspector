@@ -230,7 +230,8 @@ def test_check_family_bold_italic_unique_for_nameid1(check):
         "CabinCondensed-Regular.ttf",
         "CabinCondensed-Bold.ttf",
     ]
-    
+    font_paths = [os.path.join(base_path, n) for n in font_names]
+    ttFonts = [TTFont(x) for x in font_paths]
     assert_PASS(check(ttFonts))
 
 
