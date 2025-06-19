@@ -5,13 +5,79 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.1.0 (2025-06-19)
+
+### Chore
+
+ - <csr-id-f44be5515dcaea17b96b1df7a4b11407561d0c17/> Improve error handling
+   * chore: Better error handling
+   
+   * chore: Better error handling for fix functions too
+ - <csr-id-d2a69bed4d1046672bb328484a31ba0466b1b648/> fix typo
+
+### New Features
+
+ - <csr-id-82b1cb17c491e78f6adc0811bb632cc1531dd7dc/> Allow TOML config, allow explicit_checks/exclude_checks keys
+   * feat(cli): Allow TOML config, allow explicit_checks/exclude_checks keys
+   
+   * fix(opentype/vendor_id): Support config file key property
+ - <csr-id-0e4f7173896fcc94006d2a2bb15d966a3ccdaa6f/> Use shadow-rs to provide detailed build information in --version and -V
+
+### Bug Fixes
+
+ - <csr-id-6be6c093abfc298ff9cb6b30118d0fd1107049c8/> Don't use terminal reporter if there are stdout reporters
+ - <csr-id-82398535287401e767098901b1da578809d28485/> Make list checks work, add permalinks
+   * fix(web): Make list checks work, add permalinks (#162)
+   
+   * feat(googlefonts): Allow soft_dotted check on wasm, why not
+ - <csr-id-57f0fc7e0da55ec91a965c38a8c2518e3b4208a0/> update rust crate zip to v4
+ - <csr-id-baec736820268d31100172fd70a324c47e6bc34a/> Reduce the use of printlns to avoid panic when piped
+ - <csr-id-7793cb485fbe3a45baa88ae5673d57c3be8b0f84/> Sort results in HTML/MD reports by severity
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 9 commits contributed to the release over the course of 28 calendar days.
+ - 30 days passed between releases.
+ - 9 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 10 unique issues were worked on: [#121](https://github.com/fonttools/fontspector/issues/121), [#122](https://github.com/fonttools/fontspector/issues/122), [#125](https://github.com/fonttools/fontspector/issues/125), [#126](https://github.com/fonttools/fontspector/issues/126), [#157](https://github.com/fonttools/fontspector/issues/157), [#162](https://github.com/fonttools/fontspector/issues/162), [#200](https://github.com/fonttools/fontspector/issues/200), [#228](https://github.com/fonttools/fontspector/issues/228), [#265](https://github.com/fonttools/fontspector/issues/265), [#275](https://github.com/fonttools/fontspector/issues/275)
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **[#121](https://github.com/fonttools/fontspector/issues/121)**
+    - Sort results in HTML/MD reports by severity ([`7793cb4`](https://github.com/fonttools/fontspector/commit/7793cb485fbe3a45baa88ae5673d57c3be8b0f84))
+ * **[#122](https://github.com/fonttools/fontspector/issues/122)**
+    - Use shadow-rs to provide detailed build information in --version and -V ([`0e4f717`](https://github.com/fonttools/fontspector/commit/0e4f7173896fcc94006d2a2bb15d966a3ccdaa6f))
+ * **[#125](https://github.com/fonttools/fontspector/issues/125)**
+    - Allow TOML config, allow explicit_checks/exclude_checks keys ([`82b1cb1`](https://github.com/fonttools/fontspector/commit/82b1cb17c491e78f6adc0811bb632cc1531dd7dc))
+ * **[#126](https://github.com/fonttools/fontspector/issues/126)**
+    - Reduce the use of printlns to avoid panic when piped ([`baec736`](https://github.com/fonttools/fontspector/commit/baec736820268d31100172fd70a324c47e6bc34a))
+ * **[#157](https://github.com/fonttools/fontspector/issues/157)**
+    - Update rust crate zip to v4 ([`57f0fc7`](https://github.com/fonttools/fontspector/commit/57f0fc7e0da55ec91a965c38a8c2518e3b4208a0))
+ * **[#162](https://github.com/fonttools/fontspector/issues/162)**
+    - Make list checks work, add permalinks ([`8239853`](https://github.com/fonttools/fontspector/commit/82398535287401e767098901b1da578809d28485))
+ * **[#200](https://github.com/fonttools/fontspector/issues/200)**
+    - Make list checks work, add permalinks ([`8239853`](https://github.com/fonttools/fontspector/commit/82398535287401e767098901b1da578809d28485))
+ * **[#228](https://github.com/fonttools/fontspector/issues/228)**
+    - Don't use terminal reporter if there are stdout reporters ([`6be6c09`](https://github.com/fonttools/fontspector/commit/6be6c093abfc298ff9cb6b30118d0fd1107049c8))
+ * **[#265](https://github.com/fonttools/fontspector/issues/265)**
+    - Fix typo ([`d2a69be`](https://github.com/fonttools/fontspector/commit/d2a69bed4d1046672bb328484a31ba0466b1b648))
+ * **[#275](https://github.com/fonttools/fontspector/issues/275)**
+    - Improve error handling ([`f44be55`](https://github.com/fonttools/fontspector/commit/f44be5515dcaea17b96b1df7a4b11407561d0c17))
+</details>
+
 ## v1.0.2 (2025-05-20)
 
 ### Commit Statistics
 
 <csr-read-only-do-not-edit/>
 
- - 5 commits contributed to the release over the course of 4 calendar days.
+ - 6 commits contributed to the release over the course of 4 calendar days.
  - 11 days passed between releases.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 4 unique issues were worked on: [#111](https://github.com/fonttools/fontspector/issues/111), [#112](https://github.com/fonttools/fontspector/issues/112), [#113](https://github.com/fonttools/fontspector/issues/113), [#114](https://github.com/fonttools/fontspector/issues/114)
@@ -31,6 +97,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * **[#114](https://github.com/fonttools/fontspector/issues/114)**
     - Add badges reporter ([`8683fb8`](https://github.com/fonttools/fontspector/commit/8683fb89801fb1df5c07d71f45c07efa79b111e0))
  * **Uncategorized**
+    - Release fontspector v1.0.2 ([`f2b10ca`](https://github.com/fonttools/fontspector/commit/f2b10ca543aa9fe3ccc34e85ebb0a7063795a9a0))
     - Release fontspector v1.0.2 ([`3ac581d`](https://github.com/fonttools/fontspector/commit/3ac581dc6067f3d7641a34c9cfa2ced698300326))
 </details>
 
