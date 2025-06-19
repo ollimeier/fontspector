@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v1.1.0 (2025-06-19)
 
+<csr-id-65132c0dd6dfae2e1ef30c994dee9135fe7dbf33/>
+<csr-id-f44be5515dcaea17b96b1df7a4b11407561d0c17/>
+<csr-id-8b28d1aa1c7af4dacdbcfbd83af69dbf401ecf46/>
+
 ### Chore
 
  - <csr-id-65132c0dd6dfae2e1ef30c994dee9135fe7dbf33/> Update font protos
@@ -17,38 +21,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### New Features
 
+<csr-id-5f06e2526b40e8a6852e5e1aad70fbfbba6753a1/>
+<csr-id-725a78d0d14a2840e74dfa4014909bfac7b21d52/>
+<csr-id-c26526c49bf0f30c842efafc4aa9414dece14699/>
+
  - <csr-id-ea5107c15304c96b035aab80551ce8ddb7e7e98b/> Add fix function
    * chore(api): add_table is not polymorphic so this idea just didn't work
-   
-   * feat(cjk_vertical_metrics): Add fix function
- - <csr-id-5f06e2526b40e8a6852e5e1aad70fbfbba6753a1/> Add designer name to mandatory name table entries
- - <csr-id-725a78d0d14a2840e74dfa4014909bfac7b21d52/> New GF CJK vertical metrics schema
-   * feat(googlefonts): New GF CJK vertical metrics schema
-   
-   * test(googlefonts): New GF CJK vertical metrics schema
- - <csr-id-c26526c49bf0f30c842efafc4aa9414dece14699/> Check no languages entries are present
-   * feat(googlefonts/metadata/validate): Check no languages entries are present
-   
-   * test(googlefonts/metadata/validate): Check no languages entries are present
+* feat(cjk_vertical_metrics): Add fix function
+* feat(googlefonts): New GF CJK vertical metrics schema
+* test(googlefonts): New GF CJK vertical metrics schema
+* feat(googlefonts/metadata/validate): Check no languages entries are present
+* test(googlefonts/metadata/validate): Check no languages entries are present
 
 ### Bug Fixes
 
+<csr-id-2e7c907463e093bb9e904ad783d63c0cd42628f8/>
+<csr-id-c181f4647ba8c3750495046870144e03897904c3/>
+<csr-id-5d058c99b38b636f6ec3130c10296ae664a3384d/>
+<csr-id-f0420267c40ced0c8a5dcbb204cfc020c155969f/>
+<csr-id-bc48fb1bc721e5b8b59780900e75c6e3ed177409/>
+
  - <csr-id-82398535287401e767098901b1da578809d28485/> Make list checks work, add permalinks
    * fix(web): Make list checks work, add permalinks (#162)
-   
-   * feat(googlefonts): Allow soft_dotted check on wasm, why not
- - <csr-id-2e7c907463e093bb9e904ad783d63c0cd42628f8/> skip license/article checks when not in google/fonts
-   * fix(googlefonts): skip license/article checks when not in google/fonts (#142)
-   
-   * fix(googlefonts/description/has_article): Change fail status to info
-   
-   * test: Fixup tests
-   
-   * test: Add missing file
- - <csr-id-c181f4647ba8c3750495046870144e03897904c3/> skip checks on unlisted files
- - <csr-id-5d058c99b38b636f6ec3130c10296ae664a3384d/> update rust crate scraper to 0.23.0
- - <csr-id-f0420267c40ced0c8a5dcbb204cfc020c155969f/> Resolve path so there's always a directory
- - <csr-id-bc48fb1bc721e5b8b59780900e75c6e3ed177409/> Move to tabled to display tables correctly
+* feat(googlefonts): Allow soft_dotted check on wasm, why not
+* fix(googlefonts): skip license/article checks when not in google/fonts (#142)
+* fix(googlefonts/description/has_article): Change fail status to info
+* test: Fixup tests
+* test: Add missing file
 
 ### Refactor
 
@@ -58,7 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 13 commits contributed to the release over the course of 28 calendar days.
+ - 14 commits contributed to the release over the course of 28 calendar days.
  - 30 days passed between releases.
  - 13 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 16 unique issues were worked on: [#120](https://github.com/fonttools/fontspector/issues/120), [#127](https://github.com/fonttools/fontspector/issues/127), [#137](https://github.com/fonttools/fontspector/issues/137), [#142](https://github.com/fonttools/fontspector/issues/142), [#144](https://github.com/fonttools/fontspector/issues/144), [#145](https://github.com/fonttools/fontspector/issues/145), [#150](https://github.com/fonttools/fontspector/issues/150), [#152](https://github.com/fonttools/fontspector/issues/152), [#162](https://github.com/fonttools/fontspector/issues/162), [#180](https://github.com/fonttools/fontspector/issues/180), [#200](https://github.com/fonttools/fontspector/issues/200), [#227](https://github.com/fonttools/fontspector/issues/227), [#230](https://github.com/fonttools/fontspector/issues/230), [#275](https://github.com/fonttools/fontspector/issues/275), [#280](https://github.com/fonttools/fontspector/issues/280), [#281](https://github.com/fonttools/fontspector/issues/281)
@@ -101,7 +100,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Add fix function ([`ea5107c`](https://github.com/fonttools/fontspector/commit/ea5107c15304c96b035aab80551ce8ddb7e7e98b))
  * **[#281](https://github.com/fonttools/fontspector/issues/281)**
     - Update font protos ([`65132c0`](https://github.com/fonttools/fontspector/commit/65132c0dd6dfae2e1ef30c994dee9135fe7dbf33))
+ * **Uncategorized**
+    - Release fontspector-profile-opentype v1.1.0, fontspector-profile-googlefonts v1.1.0, fontspector-profile-universal v1.1.0 ([`7cd073b`](https://github.com/fonttools/fontspector/commit/7cd073b65714dc47fc6a007308bc7f466612010c))
 </details>
+
+<csr-unknown>
+ Add designer name to mandatory name table entries New GF CJK vertical metrics schema Check no languages entries are present skip license/article checks when not in google/fonts skip checks on unlisted files update rust crate scraper to 0.23.0 Resolve path so there’s always a directory Move to tabled to display tables correctly<csr-unknown/>
 
 ## v1.0.2 (2025-05-19)
 

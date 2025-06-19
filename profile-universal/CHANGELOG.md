@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v1.1.0 (2025-06-19)
 
+<csr-id-f44be5515dcaea17b96b1df7a4b11407561d0c17/>
+
 ### Chore
 
  - <csr-id-f44be5515dcaea17b96b1df7a4b11407561d0c17/> Improve error handling
@@ -18,8 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
  - <csr-id-ea5107c15304c96b035aab80551ce8ddb7e7e98b/> Add fix function
    * chore(api): add_table is not polymorphic so this idea just didn't work
-   
-   * feat(cjk_vertical_metrics): Add fix function
+* feat(cjk_vertical_metrics): Add fix function
 
 ### Bug Fixes
 
@@ -29,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 3 commits contributed to the release over the course of 22 calendar days.
+ - 4 commits contributed to the release over the course of 22 calendar days.
  - 30 days passed between releases.
  - 3 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 3 unique issues were worked on: [#137](https://github.com/fonttools/fontspector/issues/137), [#275](https://github.com/fonttools/fontspector/issues/275), [#280](https://github.com/fonttools/fontspector/issues/280)
@@ -46,6 +47,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Improve error handling ([`f44be55`](https://github.com/fonttools/fontspector/commit/f44be5515dcaea17b96b1df7a4b11407561d0c17))
  * **[#280](https://github.com/fonttools/fontspector/issues/280)**
     - Add fix function ([`ea5107c`](https://github.com/fonttools/fontspector/commit/ea5107c15304c96b035aab80551ce8ddb7e7e98b))
+ * **Uncategorized**
+    - Release fontspector-profile-opentype v1.1.0, fontspector-profile-googlefonts v1.1.0, fontspector-profile-universal v1.1.0 ([`7cd073b`](https://github.com/fonttools/fontspector/commit/7cd073b65714dc47fc6a007308bc7f466612010c))
 </details>
 
 ## v1.0.2 (2025-05-19)
