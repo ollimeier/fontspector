@@ -5,13 +5,62 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.1.0 (2025-06-19)
+
+### Chore
+
+ - <csr-id-f44be5515dcaea17b96b1df7a4b11407561d0c17/> Improve error handling
+   * chore: Better error handling
+   
+   * chore: Better error handling for fix functions too
+
+### New Features
+
+ - <csr-id-ea5107c15304c96b035aab80551ce8ddb7e7e98b/> Add fix function
+   * chore(api): add_table is not polymorphic so this idea just didn't work
+   
+   * feat(cjk_vertical_metrics): Add fix function
+ - <csr-id-82b1cb17c491e78f6adc0811bb632cc1531dd7dc/> Allow TOML config, allow explicit_checks/exclude_checks keys
+   * feat(cli): Allow TOML config, allow explicit_checks/exclude_checks keys
+   
+   * fix(opentype/vendor_id): Support config file key property
+
+### Bug Fixes
+
+ - <csr-id-5382a410d33321beecee209b270ba4158fc1514b/> cff font* test: Extend unittest for monospace* feat(monospace): fix output message* test(monospace): make unittest fail with CFF font (as expected)* fix(monospace): remove 'glyf' from required tables
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 4 commits contributed to the release over the course of 23 calendar days.
+ - 30 days passed between releases.
+ - 4 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 4 unique issues were worked on: [#125](https://github.com/fonttools/fontspector/issues/125), [#234](https://github.com/fonttools/fontspector/issues/234), [#275](https://github.com/fonttools/fontspector/issues/275), [#280](https://github.com/fonttools/fontspector/issues/280)
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **[#125](https://github.com/fonttools/fontspector/issues/125)**
+    - Allow TOML config, allow explicit_checks/exclude_checks keys ([`82b1cb1`](https://github.com/fonttools/fontspector/commit/82b1cb17c491e78f6adc0811bb632cc1531dd7dc))
+ * **[#234](https://github.com/fonttools/fontspector/issues/234)**
+    - Cff font* test: Extend unittest for monospace* feat(monospace): fix output message* test(monospace): make unittest fail with CFF font (as expected)* fix(monospace): remove 'glyf' from required tables ([`5382a41`](https://github.com/fonttools/fontspector/commit/5382a410d33321beecee209b270ba4158fc1514b))
+ * **[#275](https://github.com/fonttools/fontspector/issues/275)**
+    - Improve error handling ([`f44be55`](https://github.com/fonttools/fontspector/commit/f44be5515dcaea17b96b1df7a4b11407561d0c17))
+ * **[#280](https://github.com/fonttools/fontspector/issues/280)**
+    - Add fix function ([`ea5107c`](https://github.com/fonttools/fontspector/commit/ea5107c15304c96b035aab80551ce8ddb7e7e98b))
+</details>
+
 ## v1.0.2 (2025-05-19)
 
 ### Commit Statistics
 
 <csr-read-only-do-not-edit/>
 
- - 2 commits contributed to the release over the course of 7 calendar days.
+ - 3 commits contributed to the release over the course of 7 calendar days.
  - 11 days passed between releases.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 2 unique issues were worked on: [#107](https://github.com/fonttools/fontspector/issues/107), [#111](https://github.com/fonttools/fontspector/issues/111)
@@ -26,6 +75,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Move to fontations crate ([`da2830b`](https://github.com/fonttools/fontspector/commit/da2830ba694bf3379142a81dad043031e1c39f35))
  * **[#111](https://github.com/fonttools/fontspector/issues/111)**
     - Include most of the fixes from gftools-fix ([`2de6875`](https://github.com/fonttools/fontspector/commit/2de68751c8c4da8c29f9e46d444280cdf478c6b2))
+ * **Uncategorized**
+    - Release fontspector-profile-opentype v1.0.2, fontspector-profile-googlefonts v1.0.2, fontspector-profile-universal v1.0.2 ([`fd2d019`](https://github.com/fonttools/fontspector/commit/fd2d0197d3918c1f74890b69fed4fe49ac8a3408))
 </details>
 
 ## v1.0.1 (2025-05-08)

@@ -5,13 +5,56 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.1.0 (2025-06-19)
+
+### Chore
+
+ - <csr-id-f44be5515dcaea17b96b1df7a4b11407561d0c17/> Improve error handling
+   * chore: Better error handling
+   
+   * chore: Better error handling for fix functions too
+
+### New Features
+
+ - <csr-id-ea5107c15304c96b035aab80551ce8ddb7e7e98b/> Add fix function
+   * chore(api): add_table is not polymorphic so this idea just didn't work
+   
+   * feat(cjk_vertical_metrics): Add fix function
+
+### Bug Fixes
+
+ - <csr-id-bc48fb1bc721e5b8b59780900e75c6e3ed177409/> Move to tabled to display tables correctly
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 3 commits contributed to the release over the course of 22 calendar days.
+ - 30 days passed between releases.
+ - 3 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 3 unique issues were worked on: [#137](https://github.com/fonttools/fontspector/issues/137), [#275](https://github.com/fonttools/fontspector/issues/275), [#280](https://github.com/fonttools/fontspector/issues/280)
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **[#137](https://github.com/fonttools/fontspector/issues/137)**
+    - Move to tabled to display tables correctly ([`bc48fb1`](https://github.com/fonttools/fontspector/commit/bc48fb1bc721e5b8b59780900e75c6e3ed177409))
+ * **[#275](https://github.com/fonttools/fontspector/issues/275)**
+    - Improve error handling ([`f44be55`](https://github.com/fonttools/fontspector/commit/f44be5515dcaea17b96b1df7a4b11407561d0c17))
+ * **[#280](https://github.com/fonttools/fontspector/issues/280)**
+    - Add fix function ([`ea5107c`](https://github.com/fonttools/fontspector/commit/ea5107c15304c96b035aab80551ce8ddb7e7e98b))
+</details>
+
 ## v1.0.2 (2025-05-19)
 
 ### Commit Statistics
 
 <csr-read-only-do-not-edit/>
 
- - 4 commits contributed to the release over the course of 7 calendar days.
+ - 5 commits contributed to the release over the course of 7 calendar days.
  - 11 days passed between releases.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 2 unique issues were worked on: [#107](https://github.com/fonttools/fontspector/issues/107), [#111](https://github.com/fonttools/fontspector/issues/111)
@@ -27,6 +70,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * **[#111](https://github.com/fonttools/fontspector/issues/111)**
     - Include most of the fixes from gftools-fix ([`2de6875`](https://github.com/fonttools/fontspector/commit/2de68751c8c4da8c29f9e46d444280cdf478c6b2))
  * **Uncategorized**
+    - Release fontspector-profile-universal v1.0.2 ([`768ee53`](https://github.com/fonttools/fontspector/commit/768ee534822c8a8a9bce8cc6f80e8bc0a702d0ed))
     - Release fontspector-profile-googlefonts v1.0.2, fontspector-profile-universal v1.0.2 ([`d26f105`](https://github.com/fonttools/fontspector/commit/d26f105058189e6baa1ccd726d2151851e4e7d85))
     - Release fontspector-profile-opentype v1.0.2, fontspector-profile-googlefonts v1.0.2, fontspector-profile-universal v1.0.2 ([`fd2d019`](https://github.com/fonttools/fontspector/commit/fd2d0197d3918c1f74890b69fed4fe49ac8a3408))
 </details>

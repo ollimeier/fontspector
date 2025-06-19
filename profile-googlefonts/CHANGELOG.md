@@ -5,13 +5,111 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.1.0 (2025-06-19)
+
+### Chore
+
+ - <csr-id-65132c0dd6dfae2e1ef30c994dee9135fe7dbf33/> Update font protos
+ - <csr-id-f44be5515dcaea17b96b1df7a4b11407561d0c17/> Improve error handling
+   * chore: Better error handling
+   
+   * chore: Better error handling for fix functions too
+
+### New Features
+
+ - <csr-id-ea5107c15304c96b035aab80551ce8ddb7e7e98b/> Add fix function
+   * chore(api): add_table is not polymorphic so this idea just didn't work
+   
+   * feat(cjk_vertical_metrics): Add fix function
+ - <csr-id-5f06e2526b40e8a6852e5e1aad70fbfbba6753a1/> Add designer name to mandatory name table entries
+ - <csr-id-725a78d0d14a2840e74dfa4014909bfac7b21d52/> New GF CJK vertical metrics schema
+   * feat(googlefonts): New GF CJK vertical metrics schema
+   
+   * test(googlefonts): New GF CJK vertical metrics schema
+ - <csr-id-c26526c49bf0f30c842efafc4aa9414dece14699/> Check no languages entries are present
+   * feat(googlefonts/metadata/validate): Check no languages entries are present
+   
+   * test(googlefonts/metadata/validate): Check no languages entries are present
+
+### Bug Fixes
+
+ - <csr-id-82398535287401e767098901b1da578809d28485/> Make list checks work, add permalinks
+   * fix(web): Make list checks work, add permalinks (#162)
+   
+   * feat(googlefonts): Allow soft_dotted check on wasm, why not
+ - <csr-id-2e7c907463e093bb9e904ad783d63c0cd42628f8/> skip license/article checks when not in google/fonts
+   * fix(googlefonts): skip license/article checks when not in google/fonts (#142)
+   
+   * fix(googlefonts/description/has_article): Change fail status to info
+   
+   * test: Fixup tests
+   
+   * test: Add missing file
+ - <csr-id-c181f4647ba8c3750495046870144e03897904c3/> skip checks on unlisted files
+ - <csr-id-5d058c99b38b636f6ec3130c10296ae664a3384d/> update rust crate scraper to 0.23.0
+ - <csr-id-f0420267c40ced0c8a5dcbb204cfc020c155969f/> Resolve path so there's always a directory
+ - <csr-id-bc48fb1bc721e5b8b59780900e75c6e3ed177409/> Move to tabled to display tables correctly
+
+### Refactor
+
+ - <csr-id-8b28d1aa1c7af4dacdbcfbd83af69dbf401ecf46/> Dynamically update script and language tags from MS website
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 13 commits contributed to the release over the course of 28 calendar days.
+ - 30 days passed between releases.
+ - 13 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 16 unique issues were worked on: [#120](https://github.com/fonttools/fontspector/issues/120), [#127](https://github.com/fonttools/fontspector/issues/127), [#137](https://github.com/fonttools/fontspector/issues/137), [#142](https://github.com/fonttools/fontspector/issues/142), [#144](https://github.com/fonttools/fontspector/issues/144), [#145](https://github.com/fonttools/fontspector/issues/145), [#150](https://github.com/fonttools/fontspector/issues/150), [#152](https://github.com/fonttools/fontspector/issues/152), [#162](https://github.com/fonttools/fontspector/issues/162), [#180](https://github.com/fonttools/fontspector/issues/180), [#200](https://github.com/fonttools/fontspector/issues/200), [#227](https://github.com/fonttools/fontspector/issues/227), [#230](https://github.com/fonttools/fontspector/issues/230), [#275](https://github.com/fonttools/fontspector/issues/275), [#280](https://github.com/fonttools/fontspector/issues/280), [#281](https://github.com/fonttools/fontspector/issues/281)
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **[#120](https://github.com/fonttools/fontspector/issues/120)**
+    - Check no languages entries are present ([`c26526c`](https://github.com/fonttools/fontspector/commit/c26526c49bf0f30c842efafc4aa9414dece14699))
+ * **[#127](https://github.com/fonttools/fontspector/issues/127)**
+    - Dynamically update script and language tags from MS website ([`8b28d1a`](https://github.com/fonttools/fontspector/commit/8b28d1aa1c7af4dacdbcfbd83af69dbf401ecf46))
+ * **[#137](https://github.com/fonttools/fontspector/issues/137)**
+    - Move to tabled to display tables correctly ([`bc48fb1`](https://github.com/fonttools/fontspector/commit/bc48fb1bc721e5b8b59780900e75c6e3ed177409))
+ * **[#142](https://github.com/fonttools/fontspector/issues/142)**
+    - Skip license/article checks when not in google/fonts ([`2e7c907`](https://github.com/fonttools/fontspector/commit/2e7c907463e093bb9e904ad783d63c0cd42628f8))
+ * **[#144](https://github.com/fonttools/fontspector/issues/144)**
+    - Update rust crate scraper to 0.23.0 ([`5d058c9`](https://github.com/fonttools/fontspector/commit/5d058c99b38b636f6ec3130c10296ae664a3384d))
+ * **[#145](https://github.com/fonttools/fontspector/issues/145)**
+    - Resolve path so there's always a directory ([`f042026`](https://github.com/fonttools/fontspector/commit/f0420267c40ced0c8a5dcbb204cfc020c155969f))
+ * **[#150](https://github.com/fonttools/fontspector/issues/150)**
+    - Skip checks on unlisted files ([`c181f46`](https://github.com/fonttools/fontspector/commit/c181f4647ba8c3750495046870144e03897904c3))
+ * **[#152](https://github.com/fonttools/fontspector/issues/152)**
+    - Skip license/article checks when not in google/fonts ([`2e7c907`](https://github.com/fonttools/fontspector/commit/2e7c907463e093bb9e904ad783d63c0cd42628f8))
+ * **[#162](https://github.com/fonttools/fontspector/issues/162)**
+    - Make list checks work, add permalinks ([`8239853`](https://github.com/fonttools/fontspector/commit/82398535287401e767098901b1da578809d28485))
+ * **[#180](https://github.com/fonttools/fontspector/issues/180)**
+    - New GF CJK vertical metrics schema ([`725a78d`](https://github.com/fonttools/fontspector/commit/725a78d0d14a2840e74dfa4014909bfac7b21d52))
+ * **[#200](https://github.com/fonttools/fontspector/issues/200)**
+    - Make list checks work, add permalinks ([`8239853`](https://github.com/fonttools/fontspector/commit/82398535287401e767098901b1da578809d28485))
+ * **[#227](https://github.com/fonttools/fontspector/issues/227)**
+    - Add designer name to mandatory name table entries ([`5f06e25`](https://github.com/fonttools/fontspector/commit/5f06e2526b40e8a6852e5e1aad70fbfbba6753a1))
+ * **[#230](https://github.com/fonttools/fontspector/issues/230)**
+    - Add designer name to mandatory name table entries ([`5f06e25`](https://github.com/fonttools/fontspector/commit/5f06e2526b40e8a6852e5e1aad70fbfbba6753a1))
+ * **[#275](https://github.com/fonttools/fontspector/issues/275)**
+    - Improve error handling ([`f44be55`](https://github.com/fonttools/fontspector/commit/f44be5515dcaea17b96b1df7a4b11407561d0c17))
+ * **[#280](https://github.com/fonttools/fontspector/issues/280)**
+    - Add fix function ([`ea5107c`](https://github.com/fonttools/fontspector/commit/ea5107c15304c96b035aab80551ce8ddb7e7e98b))
+ * **[#281](https://github.com/fonttools/fontspector/issues/281)**
+    - Update font protos ([`65132c0`](https://github.com/fonttools/fontspector/commit/65132c0dd6dfae2e1ef30c994dee9135fe7dbf33))
+</details>
+
 ## v1.0.2 (2025-05-19)
 
 ### Commit Statistics
 
 <csr-read-only-do-not-edit/>
 
- - 4 commits contributed to the release over the course of 7 calendar days.
+ - 5 commits contributed to the release over the course of 7 calendar days.
  - 11 days passed between releases.
  - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 2 unique issues were worked on: [#107](https://github.com/fonttools/fontspector/issues/107), [#111](https://github.com/fonttools/fontspector/issues/111)
@@ -27,6 +125,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * **[#111](https://github.com/fonttools/fontspector/issues/111)**
     - Include most of the fixes from gftools-fix ([`2de6875`](https://github.com/fonttools/fontspector/commit/2de68751c8c4da8c29f9e46d444280cdf478c6b2))
  * **Uncategorized**
+    - Release fontspector-profile-googlefonts v1.0.2, fontspector-profile-universal v1.0.2 ([`d26f105`](https://github.com/fonttools/fontspector/commit/d26f105058189e6baa1ccd726d2151851e4e7d85))
     - Bump axisregistry ([`a048609`](https://github.com/fonttools/fontspector/commit/a048609b7734f1b5f13d154118b2ffcc7d795b71))
     - Release fontspector-profile-opentype v1.0.2, fontspector-profile-googlefonts v1.0.2, fontspector-profile-universal v1.0.2 ([`fd2d019`](https://github.com/fonttools/fontspector/commit/fd2d0197d3918c1f74890b69fed4fe49ac8a3408))
 </details>
