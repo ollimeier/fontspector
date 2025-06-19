@@ -2,11 +2,11 @@
 use fontbakery_bridge::FontbakeryBridge;
 
 use fontspector_checkapi::{Plugin, Profile, Registry};
+use profile_fontwerk::Fontwerk;
 use profile_googlefonts::GoogleFonts;
 use profile_iso15008::Iso15008;
 use profile_opentype::OpenType;
 use profile_universal::Universal;
-use profile_fontwerk::Fontwerk;
 use std::io::Read;
 use std::path::PathBuf;
 

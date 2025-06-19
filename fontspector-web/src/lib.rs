@@ -9,12 +9,12 @@ use fontspector_checkapi::{
     TestableType,
 };
 use profile_adobe::Adobe;
+use profile_fontwerk::Fontwerk;
 use profile_googlefonts::GoogleFonts;
 use profile_iso15008::Iso15008;
 use profile_microsoft::Microsoft;
 use profile_opentype::OpenType;
 use profile_universal::Universal;
-use profile_fontwerk::Fontwerk;
 
 // #[wasm_bindgen]
 // extern "C" {
@@ -51,9 +51,7 @@ fn register_profiles<'a>() -> Registry<'a> {
         .register(&mut registry)
         .expect("Couldn't register Fontwerk profile, fontspector bug");
 
-    for (name, toml) in [
-        ("fontbureau", include_str!("../../profiles/fontbureau.toml")),
-    ] {
+    for (name, toml) in [("fontbureau", include_str!("../../profiles/fontbureau.toml"))] {
         let profile = Profile::from_toml(toml).expect("Couldn't load profile, fontspector bug");
         registry
             .register_profile(name, profile)

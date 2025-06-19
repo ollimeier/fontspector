@@ -5,10 +5,10 @@ use fontspector_checkapi::{
     CheckImplementation, Context, Plugin, Registry, StatusCode, Testable, TestableCollection,
     TestableType,
 };
+use profile_fontwerk::Fontwerk;
 use profile_googlefonts::GoogleFonts;
 use profile_opentype::OpenType;
 use profile_universal::Universal;
-use profile_fontwerk::Fontwerk;
 use pyo3::{
     exceptions::PyValueError,
     prelude::*,
