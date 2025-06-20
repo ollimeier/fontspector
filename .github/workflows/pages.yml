@@ -1,7 +1,7 @@
 name: Build GH Pages
 on:
   push:
-    branches: ["main"]
+    branches: ["fontwerk-page"]
   workflow_dispatch:
 
 jobs:
