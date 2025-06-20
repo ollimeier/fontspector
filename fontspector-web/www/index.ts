@@ -215,32 +215,6 @@ function renderLog(log: Status, id: string, filename: string) {
   `);
 }
 
-/* Add a profile from the profiles list */
-const PROFILES: Record<string, string> = {
-  opentype: "OpenType (standards compliance)",
-  universal: "Universal (community best practices)",
-  googlefonts: "Google Fonts",
-  iso15008: "ISO 15008 (in-car accessibility)",
-  adobefonts: "Adobe Fonts",
-  fontbureau: "Font Bureau",
-  // typenetwork: "Type Network",
-  fontwerk: "Fontwerk",
-  microsoft: "Microsoft",
-};
-
-function addProfile(profilename: string, col: number) {
-  const checked = profilename == "universal" ? "checked" : "";
-  const widget = $(`
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="profile-${profilename}" ${checked}>
-        <label class="form-check-label" for="profile-${profilename}">
-           ${PROFILES[profilename]}
-        </label>
-    </div>
-  `);
-  $(`#profiles .row #col${col}`).append(widget);
-}
-
 /**
  * Display all the checks
  *
@@ -357,31 +331,20 @@ $(function () {
           face,
           font,
         };
+        var files: Record<string, Uint8Array> = {};
+        for (var filename of Object.keys(fonts)) {
+          files[filename] = fonts[filename].file;
+        }
+        const profile = "fontwerk";
+        const loglevels = "INFO";
+        const fulllists = true;
+        fbWorker.postMessage({ profile, files, loglevels, fulllists });
       });
       reader.readAsArrayBuffer(file);
     },
   };
   Dropzone.discover();
   $('[data-toggle="tooltip"]').tooltip();
-  Object.keys(PROFILES).forEach((profilename, ix) => {
-    addProfile(profilename, ix % 2);
-  });
   $("#startModal").show();
-  $("#test").click(function () {
-    const profile = $("#profiles .form-check-input:checked")[0].id.replace(
-      "profile-",
-      ""
-    );
-    const fulllists = $("#full-lists").is(":checked");
-    const loglevels = $("#loglevels").val();
-    var files: Record<string, Uint8Array> = {};
-    for (var filename of Object.keys(fonts)) {
-      files[filename] = fonts[filename].file;
-    }
-    console.log(files);
-    fbWorker.postMessage({ profile, files, loglevels, fulllists });
-  });
-  $("#listchecksbtn").on("click", () => listChecks());
-  $(".leftarrow").click(reset);
   fbWorker.postMessage({ id: "justload" });
 });
