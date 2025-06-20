@@ -28,7 +28,7 @@ fn bold_italic_unique_for_nameid1(c: &TestableCollection, _context: &Context) ->
         let val = (
             fsselection.intersects(SelectionFlags::BOLD),
             fsselection.intersects(SelectionFlags::ITALIC),
-            name_id_1.first().cloned() // use the first name id 1 entry
+            name_id_1.first().cloned(), // use the first name id 1 entry
         );
         if flags.contains(&val) {
             problems.push(Status::fail(
