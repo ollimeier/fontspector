@@ -1,9 +1,9 @@
-// This is kind of dead for now since we have implemented all the fontbakery checks
-// that it used to cover. In the future, we'll bring it back as a way to run
-// arbitrary fontbakery checks inside of Rust.
+//!  Fontbakery Bridge
+//!
+//!  This module provides a bridge to run Fontbakery checks from Rust.
+//!  It allows running Python checks that take a single Font or TTFont object as an argument.
 #![allow(dead_code)]
 #![allow(non_upper_case_globals)]
-#![deny(clippy::unwrap_used, clippy::expect_used)]
 
 use std::ffi::CString;
 
@@ -14,6 +14,7 @@ use pyo3::{
     types::{PyList, PyTuple},
 };
 use serde_json::json;
+/// The profile implementation for the Fontbakery Bridge.
 pub struct FontbakeryBridge;
 
 // We isolate the Python part to avoid type/result madness.
@@ -34,6 +35,7 @@ fn python_checkrunner_impl(
                 "Expected exactly one mandatory argument".to_string(),
             ));
         }
+        #[allow(clippy::indexing_slicing)] // We just checked that args has at least one element
         let arg = if args[0] == "font" {
             // Convert the Testable to a Python Font object
             let testable = PyModule::import(py, "fontbakery.testable")?;
@@ -116,6 +118,7 @@ fn python_checkrunner(c: &Testable, context: &Context) -> CheckFnResult {
         .unwrap_or_else(|e| Err(FontspectorError::Python(format!("Python error: {}", e))))
 }
 
+/// This function registers all checks from a Python module with the given name
 pub fn register_python_checks(
     modulename: &str,
     source: &str,
@@ -146,6 +149,7 @@ pub fn register_python_checks(
                 let id: String = obj.getattr("id")?.extract()?;
                 // Check the mandatory arguments
                 let args = obj.getattr("mandatoryArgs")?.extract::<Vec<String>>()?;
+                #[allow(clippy::indexing_slicing)] // In the right hand branch, args has length one
                 if args.len() != 1 || !(args[0] == "font" || args[0] == "ttFont") {
                     log::warn!(
                         "Can't load check {}; unable to support arguments: {}",

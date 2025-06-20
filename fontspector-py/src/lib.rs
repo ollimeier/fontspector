@@ -1,4 +1,3 @@
-#![deny(clippy::unwrap_used, clippy::expect_used)]
 use std::{collections::HashMap, env, path::Path, vec};
 // Provide an environment where we can run fontbakery tests
 // as-is, but have them call a Rust implementation underneath
@@ -101,7 +100,11 @@ impl CheckTester {
             directory: "".to_string(),
         };
         let newargs = if matches!(check.implementation, CheckImplementation::CheckOne(_)) {
-            TestableType::Single(&collection.testables[0])
+            let first = &collection
+                .testables
+                .first()
+                .ok_or_else(|| PyValueError::new_err("No testables found in the collection"))?;
+            TestableType::Single(first)
         } else {
             TestableType::Collection(&collection)
         };
