@@ -36,7 +36,7 @@ pub(crate) fn register_and_return_toml_profile(
             if args.use_python {
                 for python_file in profile.check_definitions.iter() {
                     if let Err(e) = load_python_profile(registry, python_file, &path) {
-                        log::error!("Could not load python profile {:}: {:}", python_file, e);
+                        log::error!("Could not load python profile {python_file:}: {e:}");
                         std::process::exit(1);
                     }
                 }
@@ -109,26 +109,18 @@ pub fn load_python_profile(
     } else {
         PathBuf::from(python_file)
     };
-    log::info!("Loading python profile from file {:?}", python_path);
-    let mut file = std::fs::File::open(&python_path).map_err(|e| {
-        format!(
-            "Could not open python profile file {:?}: {:?}",
-            python_path, e
-        )
-    })?;
+    log::info!("Loading python profile from file {python_path:?}");
+    let mut file = std::fs::File::open(&python_path)
+        .map_err(|e| format!("Could not open python profile file {python_path:?}: {e:?}"))?;
     let mut source = String::new();
-    file.read_to_string(&mut source).map_err(|e| {
-        format!(
-            "Could not read python profile file {:?}: {:?}",
-            python_path, e
-        )
-    })?;
+    file.read_to_string(&mut source)
+        .map_err(|e| format!("Could not read python profile file {python_path:?}: {e:?}"))?;
     // Turn the path into a valid Python module name
     let module_name = python_file
         .replace("-", "_")
         .replace("\\", ".")
         .replace("/", ".")
         .replace(".py", "");
-    log::debug!("Module name: {:?}", module_name);
+    log::debug!("Module name: {module_name:?}");
     fontbakery_bridge::register_python_checks(&module_name, &source, registry)
 }

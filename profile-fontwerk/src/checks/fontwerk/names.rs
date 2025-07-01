@@ -121,7 +121,7 @@ mod tests {
 
     #[test]
     fn test_get_name_ids_from_string() {
-        let string_id = get_string_id_from_string(&"TYPOGRAPHIC_FAMILY_NAME".to_string());
+        let string_id = get_string_id_from_string("TYPOGRAPHIC_FAMILY_NAME");
         assert_eq!(string_id.unwrap(), StringId::TYPOGRAPHIC_FAMILY_NAME);
     }
 

@@ -76,11 +76,11 @@ impl Reporter for TerminalReporter {
                     }
 
                     if !fileheading_done {
-                        let _ = writeln!(std::io::stdout(), "Testing: {filename:}");
+                        let _ = writeln!(std::io::stdout(), "Testing: {filename}");
                         fileheading_done = true;
                     }
                     if !sectionheading_done {
-                        let _ = writeln!(std::io::stdout(), "  Section: {sectionname:}\n");
+                        let _ = writeln!(std::io::stdout(), "  Section: {sectionname}\n");
                         sectionheading_done = true;
                     }
                     let _ = writeln!(std::io::stdout(), ">> {:}", result.check_id);

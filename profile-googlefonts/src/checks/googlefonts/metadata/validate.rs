@@ -268,8 +268,7 @@ mod tests {
             .collect::<Vec<_>>();
         assert!(
             result.iter().all(|r| r.severity < StatusCode::Warn),
-            "Expected all checks to pass, but got: {:#?}",
-            result
+            "Expected all checks to pass, but got: {result:#?}",
         );
 
         let league_gothic =
@@ -283,8 +282,7 @@ mod tests {
             .collect::<Vec<_>>();
         assert!(
             result.iter().all(|r| r.severity < StatusCode::Warn),
-            "Expected all checks to pass, but got: {:#?}",
-            result
+            "Expected all checks to pass, but got: {result:#?}",
         );
         let league_languages =
             (String::from_utf8_lossy(league_gothic) + "\n  languages: \"en_Latn\"\n").to_string();
