@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v1.2.0 (2025-07-02)
 
+<csr-id-0c45bd3c0f7689c4afb5270881a9b374a433e00d/>
+<csr-id-a6b7ffc4f39c6b1c1bd92cd9b07f4ba22d54ef2e/>
+
 ### Chore
 
  - <csr-id-0c45bd3c0f7689c4afb5270881a9b374a433e00d/> Order result summary bad to good
@@ -20,16 +23,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug Fixes
 
+<csr-id-46e90e51624979590af83272f96cbcfc521b7d0a/>
+
  - <csr-id-3a8cd3f220746bb67b33863ee3ec1125d1ad0f3b/> Correctly parse URL in OFL text
    * fix(googlefonts/metadata/consistent_repo_urls): Correctly parse URL in OFL text (#296)
-   
-   * chore: Style fixes for new clippy
-   
-   * chore: Style fixes for new clippy
- - <csr-id-46e90e51624979590af83272f96cbcfc521b7d0a/> Improve rationale rewrapping
-   * fix(cli): Improve rationale rewrapping
-   
-   * chore: Style fixes for new clippy
+* chore: Style fixes for new clippy
+* chore: Style fixes for new clippy
+* fix(cli): Improve rationale rewrapping
+* chore: Style fixes for new clippy
 
 ### Style
 
@@ -42,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 5 commits contributed to the release over the course of 11 calendar days.
+ - 6 commits contributed to the release over the course of 11 calendar days.
  - 12 days passed between releases.
  - 5 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 6 unique issues were worked on: [#161](https://github.com/fonttools/fontspector/issues/161), [#287](https://github.com/fonttools/fontspector/issues/287), [#296](https://github.com/fonttools/fontspector/issues/296), [#299](https://github.com/fonttools/fontspector/issues/299), [#302](https://github.com/fonttools/fontspector/issues/302), [#308](https://github.com/fonttools/fontspector/issues/308)
@@ -65,7 +66,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Correctly parse URL in OFL text ([`3a8cd3f`](https://github.com/fonttools/fontspector/commit/3a8cd3f220746bb67b33863ee3ec1125d1ad0f3b))
  * **[#308](https://github.com/fonttools/fontspector/issues/308)**
     - Order result summary bad to good ([`0c45bd3`](https://github.com/fonttools/fontspector/commit/0c45bd3c0f7689c4afb5270881a9b374a433e00d))
+ * **Uncategorized**
+    - Release fontspector-checkapi v1.1.1, fontspector-profile-opentype v1.2.0, fontspector-profile-googlefonts v1.1.1, fontspector-profile-universal v1.1.1, fontspector v1.2.0 ([`f407a9a`](https://github.com/fonttools/fontspector/commit/f407a9aaf0aae501443842311f1b5c27eab007b6))
 </details>
+
+<csr-unknown>
+ Improve rationale rewrapping<csr-unknown/>
 
 ## v1.1.0 (2025-06-19)
 
@@ -137,9 +143,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * **Uncategorized**
     - Release fontspector v1.1.0 ([`58ca147`](https://github.com/fonttools/fontspector/commit/58ca147b8caada787ad60defc165064f5d61263d))
 </details>
-
-<csr-unknown>
- Use shadow-rs to provide detailed build information in –version and -V update rust crate zip to v4 Reduce the use of printlns to avoid panic when piped Sort results in HTML/MD reports by severity<csr-unknown/>
 
 ## v1.0.2 (2025-05-20)
 
