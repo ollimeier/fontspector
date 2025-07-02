@@ -5,6 +5,70 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.2.0 (2025-07-02)
+
+### Chore
+
+ - <csr-id-138edbbfba88008d71d9247eccbdfc017fef8b81/> Update fontations dependencies
+   * chore: Update fontations dependencies
+   
+   * test(italic_angle): Update bounds check
+
+### New Features
+
+ - <csr-id-06e1ff0b9234917d3040559465b70c4b3c44e61e/> fontwerk profile
+
+### Bug Fixes
+
+ - <csr-id-46e90e51624979590af83272f96cbcfc521b7d0a/> Improve rationale rewrapping
+   * fix(cli): Improve rationale rewrapping
+   
+   * chore: Style fixes for new clippy
+ - <csr-id-24e8aaeb0226552af2a94eb51b724afbf4f29cf3/> Allow larger families with same bits
+   * Extend test for bold_italic_unique_for_nameid1 with condensed styles
+   
+   * Add missing ttFonts to unittest
+   
+   * Fix bold_italic_unique_for_nameid1
+   
+   * Use: .first(), because we avoid indexing into vectors
+   
+   * Fix: Lint issue
+
+### Style
+
+ - <csr-id-a6b7ffc4f39c6b1c1bd92cd9b07f4ba22d54ef2e/> deny indexing slicing
+   * chore: More lints into Cargo.toml
+   
+   * style: Deny indexing slicing
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 5 commits contributed to the release over the course of 11 calendar days.
+ - 12 days passed between releases.
+ - 5 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 5 unique issues were worked on: [#161](https://github.com/fonttools/fontspector/issues/161), [#279](https://github.com/fonttools/fontspector/issues/279), [#287](https://github.com/fonttools/fontspector/issues/287), [#291](https://github.com/fonttools/fontspector/issues/291), [#299](https://github.com/fonttools/fontspector/issues/299)
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **[#161](https://github.com/fonttools/fontspector/issues/161)**
+    - Fontwerk profile ([`06e1ff0`](https://github.com/fonttools/fontspector/commit/06e1ff0b9234917d3040559465b70c4b3c44e61e))
+ * **[#279](https://github.com/fonttools/fontspector/issues/279)**
+    - Allow larger families with same bits ([`24e8aae`](https://github.com/fonttools/fontspector/commit/24e8aaeb0226552af2a94eb51b724afbf4f29cf3))
+ * **[#287](https://github.com/fonttools/fontspector/issues/287)**
+    - Deny indexing slicing ([`a6b7ffc`](https://github.com/fonttools/fontspector/commit/a6b7ffc4f39c6b1c1bd92cd9b07f4ba22d54ef2e))
+ * **[#291](https://github.com/fonttools/fontspector/issues/291)**
+    - Update fontations dependencies ([`138edbb`](https://github.com/fonttools/fontspector/commit/138edbbfba88008d71d9247eccbdfc017fef8b81))
+ * **[#299](https://github.com/fonttools/fontspector/issues/299)**
+    - Improve rationale rewrapping ([`46e90e5`](https://github.com/fonttools/fontspector/commit/46e90e51624979590af83272f96cbcfc521b7d0a))
+</details>
+
 ## v1.1.0 (2025-06-19)
 
 <csr-id-f44be5515dcaea17b96b1df7a4b11407561d0c17/>
@@ -34,7 +98,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 5 commits contributed to the release over the course of 23 calendar days.
+ - 6 commits contributed to the release over the course of 23 calendar days.
  - 30 days passed between releases.
  - 4 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 4 unique issues were worked on: [#125](https://github.com/fonttools/fontspector/issues/125), [#234](https://github.com/fonttools/fontspector/issues/234), [#275](https://github.com/fonttools/fontspector/issues/275), [#280](https://github.com/fonttools/fontspector/issues/280)
@@ -54,11 +118,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * **[#280](https://github.com/fonttools/fontspector/issues/280)**
     - Add fix function ([`ea5107c`](https://github.com/fonttools/fontspector/commit/ea5107c15304c96b035aab80551ce8ddb7e7e98b))
  * **Uncategorized**
+    - Release fontspector-checkapi v1.1.0, fontspector-profile-opentype v1.1.0, fontspector-profile-googlefonts v1.1.0, fontspector-profile-universal v1.1.0 ([`b126546`](https://github.com/fonttools/fontspector/commit/b12654669b361af01b98615c288f3bb816cfe0f6))
     - Release fontspector-profile-opentype v1.1.0, fontspector-profile-googlefonts v1.1.0, fontspector-profile-universal v1.1.0 ([`7cd073b`](https://github.com/fonttools/fontspector/commit/7cd073b65714dc47fc6a007308bc7f466612010c))
 </details>
-
-<csr-unknown>
- Allow TOML config, allow explicit_checks/exclude_checks keys<csr-unknown/>
 
 ## v1.0.2 (2025-05-19)
 

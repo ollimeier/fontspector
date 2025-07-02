@@ -5,6 +5,52 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.1.1 (2025-07-02)
+
+### Chore
+
+ - <csr-id-138edbbfba88008d71d9247eccbdfc017fef8b81/> Update fontations dependencies
+   * chore: Update fontations dependencies
+   
+   * test(italic_angle): Update bounds check
+
+### Bug Fixes
+
+ - <csr-id-46e90e51624979590af83272f96cbcfc521b7d0a/> Improve rationale rewrapping
+   * fix(cli): Improve rationale rewrapping
+   
+   * chore: Style fixes for new clippy
+
+### Style
+
+ - <csr-id-a6b7ffc4f39c6b1c1bd92cd9b07f4ba22d54ef2e/> deny indexing slicing
+   * chore: More lints into Cargo.toml
+   
+   * style: Deny indexing slicing
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 3 commits contributed to the release over the course of 11 calendar days.
+ - 12 days passed between releases.
+ - 3 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 3 unique issues were worked on: [#287](https://github.com/fonttools/fontspector/issues/287), [#291](https://github.com/fonttools/fontspector/issues/291), [#299](https://github.com/fonttools/fontspector/issues/299)
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **[#287](https://github.com/fonttools/fontspector/issues/287)**
+    - Deny indexing slicing ([`a6b7ffc`](https://github.com/fonttools/fontspector/commit/a6b7ffc4f39c6b1c1bd92cd9b07f4ba22d54ef2e))
+ * **[#291](https://github.com/fonttools/fontspector/issues/291)**
+    - Update fontations dependencies ([`138edbb`](https://github.com/fonttools/fontspector/commit/138edbbfba88008d71d9247eccbdfc017fef8b81))
+ * **[#299](https://github.com/fonttools/fontspector/issues/299)**
+    - Improve rationale rewrapping ([`46e90e5`](https://github.com/fonttools/fontspector/commit/46e90e51624979590af83272f96cbcfc521b7d0a))
+</details>
+
 ## v1.1.0 (2025-06-19)
 
 <csr-id-f44be5515dcaea17b96b1df7a4b11407561d0c17/>
@@ -30,7 +76,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 4 commits contributed to the release over the course of 22 calendar days.
+ - 5 commits contributed to the release over the course of 22 calendar days.
  - 30 days passed between releases.
  - 3 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 3 unique issues were worked on: [#137](https://github.com/fonttools/fontspector/issues/137), [#275](https://github.com/fonttools/fontspector/issues/275), [#280](https://github.com/fonttools/fontspector/issues/280)
@@ -48,6 +94,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * **[#280](https://github.com/fonttools/fontspector/issues/280)**
     - Add fix function ([`ea5107c`](https://github.com/fonttools/fontspector/commit/ea5107c15304c96b035aab80551ce8ddb7e7e98b))
  * **Uncategorized**
+    - Release fontspector-checkapi v1.1.0, fontspector-profile-opentype v1.1.0, fontspector-profile-googlefonts v1.1.0, fontspector-profile-universal v1.1.0 ([`b126546`](https://github.com/fonttools/fontspector/commit/b12654669b361af01b98615c288f3bb816cfe0f6))
     - Release fontspector-profile-opentype v1.1.0, fontspector-profile-googlefonts v1.1.0, fontspector-profile-universal v1.1.0 ([`7cd073b`](https://github.com/fonttools/fontspector/commit/7cd073b65714dc47fc6a007308bc7f466612010c))
 </details>
 

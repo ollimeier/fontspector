@@ -5,7 +5,57 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.1.1 (2025-07-02)
+
+### Bug Fixes
+
+ - <csr-id-3a8cd3f220746bb67b33863ee3ec1125d1ad0f3b/> Correctly parse URL in OFL text
+   * fix(googlefonts/metadata/consistent_repo_urls): Correctly parse URL in OFL text (#296)
+   
+   * chore: Style fixes for new clippy
+   
+   * chore: Style fixes for new clippy
+ - <csr-id-46e90e51624979590af83272f96cbcfc521b7d0a/> Improve rationale rewrapping
+   * fix(cli): Improve rationale rewrapping
+   
+   * chore: Style fixes for new clippy
+
+### Style
+
+ - <csr-id-a6b7ffc4f39c6b1c1bd92cd9b07f4ba22d54ef2e/> deny indexing slicing
+   * chore: More lints into Cargo.toml
+   
+   * style: Deny indexing slicing
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 3 commits contributed to the release over the course of 11 calendar days.
+ - 12 days passed between releases.
+ - 3 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 4 unique issues were worked on: [#287](https://github.com/fonttools/fontspector/issues/287), [#296](https://github.com/fonttools/fontspector/issues/296), [#299](https://github.com/fonttools/fontspector/issues/299), [#302](https://github.com/fonttools/fontspector/issues/302)
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **[#287](https://github.com/fonttools/fontspector/issues/287)**
+    - Deny indexing slicing ([`a6b7ffc`](https://github.com/fonttools/fontspector/commit/a6b7ffc4f39c6b1c1bd92cd9b07f4ba22d54ef2e))
+ * **[#296](https://github.com/fonttools/fontspector/issues/296)**
+    - Correctly parse URL in OFL text ([`3a8cd3f`](https://github.com/fonttools/fontspector/commit/3a8cd3f220746bb67b33863ee3ec1125d1ad0f3b))
+ * **[#299](https://github.com/fonttools/fontspector/issues/299)**
+    - Improve rationale rewrapping ([`46e90e5`](https://github.com/fonttools/fontspector/commit/46e90e51624979590af83272f96cbcfc521b7d0a))
+ * **[#302](https://github.com/fonttools/fontspector/issues/302)**
+    - Correctly parse URL in OFL text ([`3a8cd3f`](https://github.com/fonttools/fontspector/commit/3a8cd3f220746bb67b33863ee3ec1125d1ad0f3b))
+</details>
+
 ## v1.1.0 (2025-06-19)
+
+<csr-id-f44be5515dcaea17b96b1df7a4b11407561d0c17/>
+<csr-id-8b28d1aa1c7af4dacdbcfbd83af69dbf401ecf46/>
 
 ### Chore
 
@@ -16,22 +66,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### New Features
 
+<csr-id-82b1cb17c491e78f6adc0811bb632cc1531dd7dc/>
+
  - <csr-id-ea5107c15304c96b035aab80551ce8ddb7e7e98b/> Add fix function
    * chore(api): add_table is not polymorphic so this idea just didn't work
-   
-   * feat(cjk_vertical_metrics): Add fix function
- - <csr-id-82b1cb17c491e78f6adc0811bb632cc1531dd7dc/> Allow TOML config, allow explicit_checks/exclude_checks keys
-   * feat(cli): Allow TOML config, allow explicit_checks/exclude_checks keys
-   
-   * fix(opentype/vendor_id): Support config file key property
+* feat(cjk_vertical_metrics): Add fix function
+* feat(cli): Allow TOML config, allow explicit_checks/exclude_checks keys
+* fix(opentype/vendor_id): Support config file key property
 
 ### Bug Fixes
 
+<csr-id-5d058c99b38b636f6ec3130c10296ae664a3384d/>
+
  - <csr-id-82398535287401e767098901b1da578809d28485/> Make list checks work, add permalinks
    * fix(web): Make list checks work, add permalinks (#162)
-   
-   * feat(googlefonts): Allow soft_dotted check on wasm, why not
- - <csr-id-5d058c99b38b636f6ec3130c10296ae664a3384d/> update rust crate scraper to 0.23.0
+* feat(googlefonts): Allow soft_dotted check on wasm, why not
 
 ### Refactor
 
@@ -41,7 +90,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 6 commits contributed to the release over the course of 23 calendar days.
+ - 7 commits contributed to the release over the course of 23 calendar days.
  - 30 days passed between releases.
  - 6 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 7 unique issues were worked on: [#125](https://github.com/fonttools/fontspector/issues/125), [#127](https://github.com/fonttools/fontspector/issues/127), [#144](https://github.com/fonttools/fontspector/issues/144), [#162](https://github.com/fonttools/fontspector/issues/162), [#200](https://github.com/fonttools/fontspector/issues/200), [#275](https://github.com/fonttools/fontspector/issues/275), [#280](https://github.com/fonttools/fontspector/issues/280)
@@ -66,7 +115,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Improve error handling ([`f44be55`](https://github.com/fonttools/fontspector/commit/f44be5515dcaea17b96b1df7a4b11407561d0c17))
  * **[#280](https://github.com/fonttools/fontspector/issues/280)**
     - Add fix function ([`ea5107c`](https://github.com/fonttools/fontspector/commit/ea5107c15304c96b035aab80551ce8ddb7e7e98b))
+ * **Uncategorized**
+    - Release fontspector-checkapi v1.1.0, fontspector-profile-opentype v1.1.0, fontspector-profile-googlefonts v1.1.0, fontspector-profile-universal v1.1.0 ([`b126546`](https://github.com/fonttools/fontspector/commit/b12654669b361af01b98615c288f3bb816cfe0f6))
 </details>
+
+<csr-unknown>
+ Allow TOML config, allow explicit_checks/exclude_checks keys update rust crate scraper to 0.23.0<csr-unknown/>
 
 ## v1.0.1 (2025-05-19)
 
