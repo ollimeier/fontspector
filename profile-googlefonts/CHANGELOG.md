@@ -5,7 +5,47 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.2.0 (2025-07-11)
+
+### New Features
+
+ - <csr-id-66839cbfb32380dd2b45184c82722f3fe4083341/> Display Unicode names of missing codepoints
+
+### Bug Fixes
+
+ - <csr-id-dc046deddb76c9aec8e0cfba84fb69d3e5cf397b/> Correctl deserialize remote_styles
+ - <csr-id-525b27b4f24d91acad5ad0c0c101135592698b95/> Only check for regressions if we have the font already
+   * fix(googlefonts/cjk_vertical_metrics_regressions): Only check for regressions if we have the font already
+   
+   * chore(ci): apt-get update before installing
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 3 commits contributed to the release over the course of 3 calendar days.
+ - 3 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 3 unique issues were worked on: [#313](https://github.com/fonttools/fontspector/issues/313), [#325](https://github.com/fonttools/fontspector/issues/325), [#327](https://github.com/fonttools/fontspector/issues/327)
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **[#313](https://github.com/fonttools/fontspector/issues/313)**
+    - Display Unicode names of missing codepoints ([`66839cb`](https://github.com/fonttools/fontspector/commit/66839cbfb32380dd2b45184c82722f3fe4083341))
+ * **[#325](https://github.com/fonttools/fontspector/issues/325)**
+    - Only check for regressions if we have the font already ([`525b27b`](https://github.com/fonttools/fontspector/commit/525b27b4f24d91acad5ad0c0c101135592698b95))
+ * **[#327](https://github.com/fonttools/fontspector/issues/327)**
+    - Correctl deserialize remote_styles ([`dc046de`](https://github.com/fonttools/fontspector/commit/dc046deddb76c9aec8e0cfba84fb69d3e5cf397b))
+</details>
+
 ## v1.1.1 (2025-07-02)
+
+<csr-id-ffc7318ba547efe312e4d28508696b85f408d6a2/>
+<csr-id-138edbbfba88008d71d9247eccbdfc017fef8b81/>
+<csr-id-a6b7ffc4f39c6b1c1bd92cd9b07f4ba22d54ef2e/>
 
 ### Chore
 
@@ -22,29 +62,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug Fixes
 
+<csr-id-7c02a3ba9acd19b519aa5e5a65bb8fc68bd7fe9f/>
+<csr-id-3a8cd3f220746bb67b33863ee3ec1125d1ad0f3b/>
+<csr-id-46e90e51624979590af83272f96cbcfc521b7d0a/>
+<csr-id-faed004625c34224d986f191ce6f41356cea5d97/>
+
  - <csr-id-f9388545e3093cc20a8e549ecef9db5b618dd4fd/> Merge subsets_correct and includes_production_subsets
    * fix(googlefonts/metadata/subsets_correct): Merge subsets_correct and includes_production_subsets (#293)
-   
-   * test(googlefonts/metadata/subsets_correct): Merge subsets_correct and includes_production_subsets (#293)
- - <csr-id-7c02a3ba9acd19b519aa5e5a65bb8fc68bd7fe9f/> Use best family name for consistency with METADATA.pb
- - <csr-id-3a8cd3f220746bb67b33863ee3ec1125d1ad0f3b/> Correctly parse URL in OFL text
-   * fix(googlefonts/metadata/consistent_repo_urls): Correctly parse URL in OFL text (#296)
-   
-   * chore: Style fixes for new clippy
-   
-   * chore: Style fixes for new clippy
- - <csr-id-46e90e51624979590af83272f96cbcfc521b7d0a/> Improve rationale rewrapping
-   * fix(cli): Improve rationale rewrapping
-   
-   * chore: Style fixes for new clippy
- - <csr-id-faed004625c34224d986f191ce6f41356cea5d97/> add skip for cff fonts
-   * Add failing unittest for googlefonts/gasp
-   
-   * fix unittest
-   
-   * Add skip to googlefonts/gasp
-   
-   * Fix(Lint)
+* test(googlefonts/metadata/subsets_correct): Merge subsets_correct and includes_production_subsets (#293)
+* fix(googlefonts/metadata/consistent_repo_urls): Correctly parse URL in OFL text (#296)
+* chore: Style fixes for new clippy
+* chore: Style fixes for new clippy
+* fix(cli): Improve rationale rewrapping
+* chore: Style fixes for new clippy
+* Add failing unittest for googlefonts/gasp
+* fix unittest
+* Add skip to googlefonts/gasp
+* Fix(Lint)
 
 ### Style
 
@@ -57,7 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 8 commits contributed to the release over the course of 11 calendar days.
+ - 9 commits contributed to the release over the course of 11 calendar days.
  - 12 days passed between releases.
  - 8 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 9 unique issues were worked on: [#286](https://github.com/fonttools/fontspector/issues/286), [#287](https://github.com/fonttools/fontspector/issues/287), [#291](https://github.com/fonttools/fontspector/issues/291), [#293](https://github.com/fonttools/fontspector/issues/293), [#296](https://github.com/fonttools/fontspector/issues/296), [#299](https://github.com/fonttools/fontspector/issues/299), [#302](https://github.com/fonttools/fontspector/issues/302), [#304](https://github.com/fonttools/fontspector/issues/304), [#306](https://github.com/fonttools/fontspector/issues/306)
@@ -88,7 +122,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Use best family name for consistency with METADATA.pb ([`7c02a3b`](https://github.com/fonttools/fontspector/commit/7c02a3ba9acd19b519aa5e5a65bb8fc68bd7fe9f))
  * **[#306](https://github.com/fonttools/fontspector/issues/306)**
     - Merge subsets_correct and includes_production_subsets ([`f938854`](https://github.com/fonttools/fontspector/commit/f9388545e3093cc20a8e549ecef9db5b618dd4fd))
+ * **Uncategorized**
+    - Release fontspector-checkapi v1.1.1, fontspector-profile-opentype v1.2.0, fontspector-profile-googlefonts v1.1.1, fontspector-profile-universal v1.1.1, fontspector v1.2.0 ([`f407a9a`](https://github.com/fonttools/fontspector/commit/f407a9aaf0aae501443842311f1b5c27eab007b6))
 </details>
+
+<csr-unknown>
+ Use best family name for consistency with METADATA.pb Correctly parse URL in OFL text Improve rationale rewrapping add skip for cff fonts<csr-unknown/>
 
 ## v1.1.0 (2025-06-19)
 

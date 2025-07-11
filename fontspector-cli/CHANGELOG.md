@@ -5,6 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.3.0 (2025-07-11)
+
+### New Features
+
+ - <csr-id-3d7a965e900a6aed406ddf8a78f490ff3d42dd6a/> Support installing with cargo-binstall
+
+### Bug Fixes
+
+ - <csr-id-cefb5250c292752ece71d7fe3b2ccd30f682f416/> update rust crate indicatif to 0.18
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 2 commits contributed to the release over the course of 7 calendar days.
+ - 2 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 2 unique issues were worked on: [#314](https://github.com/fonttools/fontspector/issues/314), [#326](https://github.com/fonttools/fontspector/issues/326)
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **[#314](https://github.com/fonttools/fontspector/issues/314)**
+    - Update rust crate indicatif to 0.18 ([`cefb525`](https://github.com/fonttools/fontspector/commit/cefb5250c292752ece71d7fe3b2ccd30f682f416))
+ * **[#326](https://github.com/fonttools/fontspector/issues/326)**
+    - Support installing with cargo-binstall ([`3d7a965`](https://github.com/fonttools/fontspector/commit/3d7a965e900a6aed406ddf8a78f490ff3d42dd6a))
+</details>
+
 ## v1.2.0 (2025-07-02)
 
 <csr-id-0c45bd3c0f7689c4afb5270881a9b374a433e00d/>
@@ -43,7 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 8 commits contributed to the release over the course of 11 calendar days.
+ - 9 commits contributed to the release over the course of 11 calendar days.
  - 12 days passed between releases.
  - 5 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 6 unique issues were worked on: [#161](https://github.com/fonttools/fontspector/issues/161), [#287](https://github.com/fonttools/fontspector/issues/287), [#296](https://github.com/fonttools/fontspector/issues/296), [#299](https://github.com/fonttools/fontspector/issues/299), [#302](https://github.com/fonttools/fontspector/issues/302), [#308](https://github.com/fonttools/fontspector/issues/308)
@@ -67,6 +97,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * **[#308](https://github.com/fonttools/fontspector/issues/308)**
     - Order result summary bad to good ([`0c45bd3`](https://github.com/fonttools/fontspector/commit/0c45bd3c0f7689c4afb5270881a9b374a433e00d))
  * **Uncategorized**
+    - Release fontspector-profile-iso15008 v1.0.2, fontspector v1.2.0 ([`3b75f05`](https://github.com/fonttools/fontspector/commit/3b75f0584028dde09ee048620017e95aaa9661af))
     - Release fontspector-profile-fontwerk v1.0.0, fontspector v1.2.0 ([`0efca53`](https://github.com/fonttools/fontspector/commit/0efca539ecee573a378018c93f9ae71b561715de))
     - Release fontspector-profile-fontwerk v1.0.0, fontspector v1.2.0 ([`a038c9b`](https://github.com/fonttools/fontspector/commit/a038c9bcbd8afc76610852b12e2de72b3dc944e7))
     - Release fontspector-checkapi v1.1.1, fontspector-profile-opentype v1.2.0, fontspector-profile-googlefonts v1.1.1, fontspector-profile-universal v1.1.1, fontspector v1.2.0 ([`f407a9a`](https://github.com/fonttools/fontspector/commit/f407a9aaf0aae501443842311f1b5c27eab007b6))
